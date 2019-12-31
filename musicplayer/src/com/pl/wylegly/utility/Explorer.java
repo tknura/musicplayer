@@ -18,10 +18,9 @@ public class Explorer {
 	private List<Files> songList;
 	private String mainDirectoryPath;
 	
-
+	
 	public Explorer(String mainDirectoryPath) {
 		this.mainDirectoryPath = mainDirectoryPath;
-		songList = 
 	}
 	
 	private void exploreDirectories(String startDirectory, String filter) {
@@ -49,7 +48,6 @@ public class Explorer {
 					listFiles(file.getAbsolutePath(), filter);
 				}else {
 					//file with specifeid format found
-					s
 				}
 			}
 		}
