@@ -2,28 +2,18 @@ package com.pl.wylegly.utility;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
 
 public class Explorer {
 
-	private List<File> songList;
+	private List<File> fileList;
 	private String mainDirectoryPath;
 	
 	
 	public Explorer(String mainDirectoryPath) {
 		this.mainDirectoryPath = mainDirectoryPath;
-		songList = new ArrayList<File>();
+		fileList = new ArrayList<File>();
 
 	}
 	
@@ -34,7 +24,6 @@ public class Explorer {
 
 			@Override
 			public boolean accept(File f) {
-				System.out.println(f.getName());
 				return f.getName().endsWith(filter) || f.isDirectory();
 			}
 			
@@ -52,9 +41,8 @@ public class Explorer {
 				if(file.isDirectory()) {
 					listFiles(file.getAbsolutePath(), filter);
 
-				}else {
-					//file with specifeid format found
-
+				}else if(file.isFile()) {
+					this.fileList.add(file);
 				}
 			}
 		} catch (Exception e) {
@@ -62,12 +50,12 @@ public class Explorer {
 		}
 	}
 	
-	public List<File> getSongList(){
-		return this.songList;
+	public List<File> getFileList(){
+		return this.fileList;
 	}
 	
 	public void printSongList() {
-		for(File file : songList) {
+		for(File file : fileList) {
 			System.out.println(file.getAbsolutePath());
 		}
 	}
