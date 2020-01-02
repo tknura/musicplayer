@@ -10,10 +10,14 @@ public class Details {
 	private String artist;
 	private BufferedImage imageHandler;
 	
-	public Details() {
-		
+	public Details(Duration duration, String name, String artist, BufferedImage imageHandler) {
+		super();
+		this.duration = duration;
+		this.name = name;
+		this.artist = artist;
+		this.imageHandler = imageHandler;
 	}
-	
+
 	private void retrieveImage() {
 		
 	}
