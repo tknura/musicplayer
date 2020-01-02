@@ -10,7 +10,7 @@ public class SongList {
 	protected LinkedList<Song> songs;
 	
 	public SongList() {
-		
+		songs = new LinkedList<Song>();
 	}
 	
 	public LinkedList<Song> get() {

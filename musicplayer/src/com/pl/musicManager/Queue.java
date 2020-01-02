@@ -9,9 +9,10 @@ import com.pl.musicManager.management.FileProcessor;
 public class Queue extends SongList{
 	
 	public Queue() {
-		
+		super();
 	}
+	
 	public void shuffle() {
-		//Collections.shuffle();
+		Collections.shuffle(songs);
 	}
 }
