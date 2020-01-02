@@ -3,7 +3,7 @@ package com.pl.musicManager;
 import java.awt.image.BufferedImage;
 import java.time.Duration;
 
-public class Details {
+public class Details implements Comparable<Details>{
 	
 	private Duration duration;
 	private String name;
@@ -17,9 +17,45 @@ public class Details {
 		this.artist = artist;
 		this.imageHandler = imageHandler;
 	}
-
-	private void retrieveImage() {
-		
+	
+	public Duration getDuration() {
+		return duration;
 	}
 
+	public void setDuration(Duration duration) {
+		this.duration = duration;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getArtist() {
+		return artist;
+	}
+
+	public void setArtist(String artist) {
+		this.artist = artist;
+	}
+
+	public BufferedImage getImageHandler() {
+		return imageHandler;
+	}
+
+	public void setImageHandler(BufferedImage imageHandler) {
+		this.imageHandler = imageHandler;
+	}
+	
+	@Override
+	public int compareTo(Details details) {
+		return this.name.compareTo(details.getName());
+	}
+	
+	private void retrieveImage() {
+		//TODO retrieving images
+	}
 }
