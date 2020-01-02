@@ -27,7 +27,9 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		launch(args);
-		Explorer myExplorer = new Explorer("C:/Users/Błażej/Desktop");
+		//launch(args);
+		Explorer myExplorer = new Explorer("C:/Users/Błażej/Desktop/test");
+		myExplorer.exploreDirectories("dasfsagzdCasdS");
+		myExplorer.printSongList();
 	}
 }
