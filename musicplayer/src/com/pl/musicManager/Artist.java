@@ -4,6 +4,11 @@ public class Artist implements Comparable<Artist>{
 	
 	private String name;
 
+	public Artist(String name) {
+		super();
+		this.name = name;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -12,11 +17,6 @@ public class Artist implements Comparable<Artist>{
 		this.name = name;
 	}
 
-	public Artist(String name) {
-		super();
-		this.name = name;
-	}
-	
 	@Override
 	public int compareTo(Artist artist) {
 		return this.name.compareTo(artist.getName());

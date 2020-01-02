@@ -10,8 +10,12 @@ public class Details implements Comparable<Details>{
 	private String artist;
 	private BufferedImage imageHandler;
 	
-	private void retrieveImage() {
-		//TODO retrieving images
+	public Details(Duration duration, String name, String artist, BufferedImage imageHandler) {
+		super();
+		this.duration = duration;
+		this.name = name;
+		this.artist = artist;
+		this.imageHandler = imageHandler;
 	}
 	
 	public Duration getDuration() {
@@ -46,16 +50,12 @@ public class Details implements Comparable<Details>{
 		this.imageHandler = imageHandler;
 	}
 	
-	public Details(Duration duration, String name, String artist, BufferedImage imageHandler) {
-		super();
-		this.duration = duration;
-		this.name = name;
-		this.artist = artist;
-		this.imageHandler = imageHandler;
-	}
-	
 	@Override
 	public int compareTo(Details details) {
 		return this.name.compareTo(details.getName());
+	}
+	
+	private void retrieveImage() {
+		//TODO retrieving images
 	}
 }
