@@ -20,10 +20,11 @@ public class Explorer {
 	private List<File> songList;
 	private String mainDirectoryPath;
 	
-
+	
 	public Explorer(String mainDirectoryPath) {
 		this.mainDirectoryPath = mainDirectoryPath;
 		songList = new ArrayList<File>();
+
 	}
 	
 	public void exploreDirectories(String filter) {
@@ -50,6 +51,10 @@ public class Explorer {
 			for(File file : files) {
 				if(file.isDirectory()) {
 					listFiles(file.getAbsolutePath(), filter);
+
+				}else {
+					//file with specifeid format found
+
 				}
 			}
 		} catch (Exception e) {
