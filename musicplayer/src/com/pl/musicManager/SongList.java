@@ -1,9 +1,17 @@
-package com.pl.wylegly.musicManager;
+package com.pl.musicManager;
 
+import java.io.File;
 import java.util.LinkedList;
+import java.util.List;
+
+import com.pl.musicManager.management.FileProcessor;
 
 public class SongList {
 	protected LinkedList<Song> songs;
+	
+	public SongList() {
+		
+	}
 	
 	public LinkedList<Song> get() {
 		return songs;
@@ -37,12 +45,5 @@ public class SongList {
 		//TODO sorting alphabetical by song name
 	}
 	
-	public void sortByAlbum() {
-		//TODO sorting alphabetical by album name
-	}
-	
-	public void sortByArists() {
-		//TODO sorting alphabetical by arists name
-	}
 	
 }

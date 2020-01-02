@@ -1,4 +1,4 @@
-package com.pl.wylegly.musicManager;
+package com.pl.musicManager;
 
 public class Song {
 	

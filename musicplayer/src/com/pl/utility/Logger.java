@@ -1,4 +1,4 @@
-package com.pl.wylegly.utility;
+package com.pl.utility;
 
 public class Logger {
 
