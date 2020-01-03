@@ -1,10 +1,7 @@
 package com.pl.musicManager;
 
-import java.io.File;
-import java.util.Collections;
-import java.util.List;
 
-import com.pl.musicManager.management.FileProcessor;
+import java.util.Collections;
 
 public class Queue extends SongList{
 	
