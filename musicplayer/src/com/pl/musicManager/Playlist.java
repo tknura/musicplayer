@@ -20,12 +20,12 @@ public class Playlist extends SongList{
 	}
 	
 	public void sortByAlbums() {
-		Comparator<Song> compareByAlbum = (Song s1, Song s2) -> s1.getAlbumName().compareTo(s2.getAlbumName());
+		Comparator<Song> compareByAlbum = (Song s1, Song s2) ->  s1.getAlbum().toString().compareTo(s2.getAlbum().toString());
 		songs.sort(compareByAlbum);
 	}
 	
 	public void sortByArists() {
-		Comparator<Song> compareByArtists = (Song s1, Song s2) -> s1.getSongDetails().getArtist().compareTo(s2.getSongDetails().getArtist());
+		Comparator<Song> compareByArtists = (Song s1, Song s2) -> s1.getArtist().toString().compareTo(s2.getArtist().toString());
 		this.songs.sort(compareByArtists);
 	}
 }

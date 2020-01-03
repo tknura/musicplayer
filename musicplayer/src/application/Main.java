@@ -1,5 +1,12 @@
 package application;
 	
+import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 
 import javafx.application.Application;
@@ -28,5 +35,16 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		//launch(args);
+		List<Song> songs = new LinkedList<>();
+		Duration length = Duration.between(Instant.EPOCH, Instant.now());
+		
+		Explorer explorer = new Explorer("C:/Users/Błażej/Desktop/test");
+		explorer.exploreDirectories(".mp3");
+		for(File file : explorer.getFileList()) {
+			songs.add(new Song(null, null, null, length, 0, file.getAbsolutePath()));
+		};
+		
+		
+		
 	}
 }
