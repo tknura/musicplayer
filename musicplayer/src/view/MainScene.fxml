@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
@@ -43,14 +42,17 @@
         </tabs>
       </TabPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
          <bottom>
-            <StackPane prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: -secondary_color;" styleClass="root" stylesheets="@ui/stylesheet.css" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: -primary_color;" styleClass="root" stylesheets="@../ui/stylesheet.css" BorderPane.alignment="CENTER">
                <children>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ui/icons/011-back.png" />
+                              <Image url="@../ui/icons/011-back.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="6.0" top="5.0" />
@@ -58,12 +60,12 @@
                         </ImageView>
                         <ImageView fx:id="PlayButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
                            <image>
-                              <Image url="@ui/icons/013-play.png" />
+                              <Image url="@../ui/icons/013-play.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@ui/icons/001-next.png" />
+                              <Image url="@../ui/icons/001-next.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="6.0" top="5.0" />
@@ -77,13 +79,10 @@
                </children>
             </StackPane>
          </bottom>
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
       </BorderPane>
       <ImageView fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
          <image>
-            <Image url="@../../UI/placeholder.jpg" />
+            <Image url="@../../../UI/placeholder.jpg" />
          </image>
          <StackPane.margin>
             <Insets bottom="20.0" left="35.0" />
