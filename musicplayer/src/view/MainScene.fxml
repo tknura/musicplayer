@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -46,26 +48,41 @@
             <Insets />
          </StackPane.margin>
          <bottom>
-            <StackPane prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: -primary_color;" styleClass="root" stylesheets="@../ui/stylesheet.css" BorderPane.alignment="CENTER">
+            <StackPane prefHeight="80.0" prefWidth="1280.0" style="-fx-background-color: -primary_color;" styleClass="root" stylesheets="@../resources/stylesheets/player.css" BorderPane.alignment="CENTER">
                <children>
+                  <Label fx:id="songname_label" styleClass="songname_label" text="Song Name" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="40.0" left="175.0" />
+                     </StackPane.margin></Label>
+                  <Label fx:id="artistname_label" styleClass="artistname_label" text="Artist name" textFill="WHITE" StackPane.alignment="BOTTOM_LEFT">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="25.0" left="175.0" />
+                     </StackPane.margin>
+                  </Label>
                   <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="back_button" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../ui/icons/011-back.png" />
+                              <Image url="@../resources/icons/011-back.png" />
                            </image>
                            <HBox.margin>
                               <Insets right="6.0" top="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <ImageView fx:id="PlayButton" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
+                        <ImageView fx:id="play_button" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="root">
                            <image>
-                              <Image url="@../ui/icons/013-play.png" />
+                              <Image url="@../resources/icons/013-play.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="next_button" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../ui/icons/001-next.png" />
+                              <Image url="@../resources/icons/001-next.png" />
                            </image>
                            <HBox.margin>
                               <Insets left="6.0" top="5.0" />
