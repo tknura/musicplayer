@@ -1,36 +1,88 @@
 package com.pl.musicManager;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.time.Duration;
-import java.util.List;
-
-import com.pl.musicManager.management.FileProcessor;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.image.Image;
 
 public class Album extends SongList implements Comparable<Album> {
 	
-	private Details albumDetails;
+	private SimpleStringProperty title;
+	private SimpleStringProperty artist;
+	private long lengthInSeconds;
+	private Image cover;
+	private SimpleObjectProperty<Image> coverProperty;
 
-	public Album(Duration duration, String name, String artist, BufferedImage imageHandler) {
-		albumDetails = new Details(duration, name , artist, imageHandler);
+	
+	public Album(String title, String artist, Image cover) {
+		
+		if(title == null) {
+			title = "Unknown album";
+		}
+		if(artist == null) {
+			artist = "Unknown artist";
+		}
+		
+		this.title = new SimpleStringProperty(title);
+		this.artist = new SimpleStringProperty(artist);
+		this.lengthInSeconds = CalculateAlbumLength();
+		this.cover = cover;
+		this.coverProperty = new SimpleObjectProperty<Image>(cover);
+		
 	}
 	
-	public Album(Details albumDetails) {
-		super();
-		this.albumDetails = albumDetails;
+	public SimpleStringProperty getTitle() {
+		return title;
+	}
+
+	public void setTitle(SimpleStringProperty title) {
+		this.title = title;
+	}
+
+	public SimpleStringProperty getArtist() {
+		return artist;
+	}
+
+	public void setArtist(SimpleStringProperty artist) {
+		this.artist = artist;
+	}
+
+	public long getLengthInSeconds() {
+		return lengthInSeconds;
+	}
+
+	public void setLengthInSeconds(long lengthInSeconds) {
+		this.lengthInSeconds = lengthInSeconds;
+	}
+
+	public Image getCover() {
+		return cover;
+	}
+
+	public void setCover(Image cover) {
+		this.cover = cover;
+	}
+
+	public SimpleObjectProperty<Image> getCoverProperty() {
+		return coverProperty;
+	}
+
+	public void setCoverProperty(SimpleObjectProperty<Image> coverProperty) {
+		this.coverProperty = coverProperty;
 	}
 	
-	public Details getAlbumDetails() {
-		return albumDetails;
-	}
-
-	public void setAlbumDetails(Details albumDetails) {
-		this.albumDetails = albumDetails;
-	}
-
-
 	@Override
 	public int compareTo(Album album) {
-		return this.albumDetails.compareTo(album.getAlbumDetails());
+		return this.title.toString().compareTo(album.getTitle().toString());
 	}
+	
+	private long CalculateAlbumLength() {
+		long result = 0;
+		
+		for(Song s : songs) {
+			result += s.getLengthInSeconds();
+		}
+		
+		return result;
+	}
+
 }
