@@ -22,7 +22,7 @@ public class Main extends Application {
 		try {
         // Read file fxml and draw interface.
         Parent root = FXMLLoader.load(getClass()
-                .getResource("/MainScene.fxml"));
+                .getResource("/view/MainScene.fxml"));
 
         primaryStage.setTitle("My Application");
         primaryStage.setScene(new Scene(root));
@@ -34,7 +34,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		//launch(args);
+		launch(args);
 		List<Song> songs = new LinkedList<>();
 		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 		
@@ -43,8 +43,6 @@ public class Main extends Application {
 		for(File file : explorer.getFileList()) {
 			songs.add(new Song(null, null, null, length, 0, file.getAbsolutePath()));
 		};
-		
-		
 		
 	}
 }
