@@ -2,7 +2,7 @@ package com.pl.musicManager;
 
 import java.util.Comparator;
 
-public class Playlist extends SongList{
+public class Playlist extends SongList implements Comparable<Playlist>{
 	
 	private String name;
 
@@ -28,4 +28,10 @@ public class Playlist extends SongList{
 		Comparator<Song> compareByArtists = (Song s1, Song s2) -> s1.getArtist().toString().compareTo(s2.getArtist().toString());
 		this.songs.sort(compareByArtists);
 	}
+
+	@Override
+	public int compareTo(Playlist playlist) {
+		return this.name.compareTo(playlist.getName());
+	}
+	
 }

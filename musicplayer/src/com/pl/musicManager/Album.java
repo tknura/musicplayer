@@ -8,12 +8,13 @@ public class Album extends SongList implements Comparable<Album> {
 	
 	private SimpleStringProperty title;
 	private SimpleStringProperty artist;
+	private int releaseYear;
 	private long lengthInSeconds;
 	private Image cover;
 	private SimpleObjectProperty<Image> coverProperty;
 
 	
-	public Album(String title, String artist, Image cover) {
+	public Album(String title, String artist, int releaseYear, Image cover) {
 		
 		if(title == null) {
 			title = "Unknown album";
@@ -25,6 +26,7 @@ public class Album extends SongList implements Comparable<Album> {
 		this.title = new SimpleStringProperty(title);
 		this.artist = new SimpleStringProperty(artist);
 		this.lengthInSeconds = CalculateAlbumLength();
+		this.releaseYear = releaseYear;
 		this.cover = cover;
 		this.coverProperty = new SimpleObjectProperty<Image>(cover);
 		
@@ -52,6 +54,14 @@ public class Album extends SongList implements Comparable<Album> {
 
 	public void setLengthInSeconds(long lengthInSeconds) {
 		this.lengthInSeconds = lengthInSeconds;
+	}
+
+	public int getReleaseYear() {
+		return releaseYear;
+	}
+
+	public void setReleaseYear(int releaseYear) {
+		this.releaseYear = releaseYear;
 	}
 
 	public Image getCover() {
