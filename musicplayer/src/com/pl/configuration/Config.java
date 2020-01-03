@@ -32,6 +32,8 @@ public class Config {
  		switch(extension) {
  		case".mp3":
  		case ".mp4": 
+ 		case ".png":
+ 		case ".pdf":
  			return true;
  		default:
  			return false;
@@ -45,5 +47,17 @@ public class Config {
  	
  	public static List<String> getExtensions(){
  		return Config.extensions;
+ 	}
+ 	
+ 	public static void printConfig() {
+ 		System.out.println("Directories:");
+ 		for(String directory : Config.directories) {
+ 			System.out.println(directory);
+ 		}
+ 		
+ 		System.out.println("Extensions:");
+ 		for(String extensons : Config.extensions) {
+ 			System.out.println(extensons);
+ 		}
  	}
 }

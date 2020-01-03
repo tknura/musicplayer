@@ -17,7 +17,7 @@ public class Explorer {
 
 	}
 	
-	public void exploreDirectories(String filter) {
+	public void exploreDirectory(String filter) {
 		
 		//Filter accepts files with specified format or directories
 		FileFilter myFilter = new FileFilter() {
@@ -27,6 +27,19 @@ public class Explorer {
 				return f.getName().endsWith(filter) || f.isDirectory();
 			}
 			
+		};
+		
+		listFiles(this.mainDirectoryPath, myFilter);
+	}
+	
+	public void exploreDirectory(ArrayList<String> extensions) {
+		FileFilter myFilter = new FileFilter() {
+			@Override
+			public boolean accept(File f) {
+				String fileName = f.getName();
+				String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+				return extensions.contains(fileExtension) || f.isDirectory();
+			}
 		};
 		
 		listFiles(this.mainDirectoryPath, myFilter);

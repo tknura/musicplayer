@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.pl.configuration.Config;
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 
@@ -34,15 +35,18 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		launch(args);
-		List<Song> songs = new LinkedList<>();
-		Duration length = Duration.between(Instant.EPOCH, Instant.now());
-		
-		Explorer explorer = new Explorer("C:/Users/Błażej/Desktop/test");
-		explorer.exploreDirectories(".mp3");
-		for(File file : explorer.getFileList()) {
-			songs.add(new Song(null, null, null, length, 0, file.getAbsolutePath()));
-		};
-		
+		//launch(args);
+//		List<Song> songs = new LinkedList<>();
+//		Duration length = Duration.between(Instant.EPOCH, Instant.now());
+//		
+//		Explorer explorer = new Explorer("C:/Users/Błażej/Desktop/test");
+//		explorer.exploreDirectories(".mp3");
+//		for(File file : explorer.getFileList()) {
+//			songs.add(new Song(null, null, null, length, 0, file.getAbsolutePath()));
+//		};
+		String[] directories = {"C:/Users/Błażej/Desktop/test"};
+		String[] extensions = {".pdf", ".mp3", ".png"};
+		Config config = new Config(directories, extensions);	
+		Config.printConfig();
 	}
 }

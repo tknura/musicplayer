@@ -9,9 +9,9 @@ public class FileProcessor {
 
 	private Explorer explorer;
 	
-	public FileProcessor(String extension) {
-		this.explorer = new Explorer("C:/Users/Błażej/Desktop/test");
-		explorer.exploreDirectories(extension);
+	public FileProcessor(String directory, String extension) {
+		this.explorer = new Explorer(directory);
+		explorer.exploreDirectory(extension);
 	}
 	
 	public List<File> getFileList() {
