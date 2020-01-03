@@ -10,7 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Song {
+public class Song implements Comparable<Song>{
 	
 	private SimpleStringProperty title;
 	private SimpleStringProperty artist;
@@ -111,7 +111,9 @@ public class Song {
 		this.playing = new SimpleBooleanProperty(playing);
 	}
 
-	
-
+	@Override
+	public int compareTo(Song song) {
+		return this.getTitle().compareTo(song.getTitle());
+	}
 
 }

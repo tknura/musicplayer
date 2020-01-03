@@ -1,6 +1,7 @@
 package com.pl.musicManager;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class SongList {
 	}
 	
 	public void sortByName() {
-		//TODO sorting alphabetical by song name
+		Collections.sort(songs);
 	}
 	
 	
