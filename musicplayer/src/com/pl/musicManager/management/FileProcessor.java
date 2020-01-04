@@ -7,11 +7,9 @@ import com.pl.utility.Explorer;
 
 public class FileProcessor {
 
-	private Explorer explorer;
 	
-	public FileProcessor(String directory, String extension) {
-		this.explorer = new Explorer(directory);
-		explorer.exploreDirectory(extension);
+	public FileProcessor() {
+	
 	}
 	
 	public List<File> getFileList() {

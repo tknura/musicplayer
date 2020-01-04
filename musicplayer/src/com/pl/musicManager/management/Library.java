@@ -30,16 +30,7 @@ public class Library {
 	}
 	
 	public void retrieveSongList() {
-		for(String directory : Config.getDirectories()) {
-			for(String extension : Config.getExtensions()) {
-				FileProcessor fp = new FileProcessor(directory, extension);
-				for(File file : fp.getFileList()) {
-					System.out.println("Filename: " + file.getName());
-				}
-				
-			}
-			
-		}
+		FileProcessor fp = new FIleProcessor
 	}
 	
 	
