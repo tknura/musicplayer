@@ -30,7 +30,7 @@ public class Library {
 	}
 	
 	public void retrieveSongList() {
-		FileProcessor fp = new FIleProcessor
+		FileProcessor fp;
 	}
 	
 	

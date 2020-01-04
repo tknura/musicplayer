@@ -7,6 +7,7 @@ import com.pl.utility.Explorer;
 
 public class FileProcessor {
 
+	private Explorer explorer;
 	
 	public FileProcessor() {
 	

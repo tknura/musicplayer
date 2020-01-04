@@ -17,7 +17,7 @@
     -fx-background-color: -basic-color;
     -fx-background-insets: 0.0;
     -fx-background-radius: 0.0;
-    -fx-padding: 0em 7.5em 0em 7.5em;
+    -fx-padding: 0em 5em 0em 5em;
 } 
 
 .tab:selected {
