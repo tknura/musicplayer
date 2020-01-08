@@ -2,15 +2,20 @@ package com.pl.musicManager;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class SongList {
-	protected LinkedList<Song> songs;
+	protected List<Song> songs;
 	
 	public SongList() {
 		songs = new LinkedList<Song>();
 	}
 	
-	public LinkedList<Song> get() {
+	public SongList(List<Song> songs) {
+		this.songs = songs;
+	}
+	
+	public List<Song> get() {
 		return songs;
 	}
 	

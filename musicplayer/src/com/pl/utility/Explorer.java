@@ -5,57 +5,51 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pl.configuration.Config;
+
 public class Explorer {
 
-	private List<File> fileList;
-	private String mainDirectoryPath;
+	private static List<File> fileList;
+	private static FileFilter fileFilter;
 	
-	
-	public Explorer(String mainDirectoryPath) {
-		this.mainDirectoryPath = mainDirectoryPath;
+	static {
 		fileList = new ArrayList<File>();
-
-	}
-	
-	public void exploreDirectory(String filter) {
-		
-		//Filter accepts files with specified format or directories
-		FileFilter myFilter = new FileFilter() {
-
-			@Override
-			public boolean accept(File f) {
-				return f.getName().endsWith(filter) || f.isDirectory();
-			}
-			
-		};
-		
-		listFiles(this.mainDirectoryPath, myFilter);
-	}
-	
-	public void exploreDirectory(ArrayList<String> extensions) {
-		FileFilter myFilter = new FileFilter() {
+		fileFilter = new FileFilter() {
 			@Override
 			public boolean accept(File f) {
 				String fileName = f.getName();
 				String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-				return extensions.contains(fileExtension) || f.isDirectory();
+				return Config.getExtensions().contains(fileExtension) || f.isDirectory();
 			}
 		};
-		
-		listFiles(this.mainDirectoryPath, myFilter);
 	}
 	
-	private void listFiles(String startDirectory, FileFilter filter){
+	public Explorer() {
+
+	}
+	
+	public static List<File> getFileList(){
+		return fileList;
+	}
+	
+	public static void exploreDirectories() {
+		for(String directory : Config.getDirectories()) {
+			addFilesToList(directory);
+		}
+	}
+	
+	
+	private static void addFilesToList(String startDirectory){
 		
 		try {
 			File dir = new File(startDirectory);
-			File[] files = dir.listFiles(filter);
+			File[] files = dir.listFiles(fileFilter);
 			for(File file : files) {
 				if(file.isDirectory()) {
-					listFiles(file.getAbsolutePath(), filter);
+					addFilesToList(file.getAbsolutePath());
 
 				}else if(file.isFile()) {
-					this.fileList.add(file);
+					fileList.add(file);
 				}
 			}
 		} catch (Exception e) {
@@ -63,11 +57,9 @@ public class Explorer {
 		}
 	}
 	
-	public List<File> getFileList(){
-		return this.fileList;
-	}
 	
-	public void printSongList() {
+	
+	public static void printSongList() {
 		for(File file : fileList) {
 			System.out.println(file.getAbsolutePath());
 		}

@@ -7,8 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.pl.configuration.Config;
-import com.pl.musicManager.Song;
-import com.pl.utility.Explorer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -48,5 +46,6 @@ public class Main extends Application {
 		String[] extensions = {".pdf", ".mp3", ".png"};
 		Config config = new Config(directories, extensions);	
 		Config.printConfig();
+		
 	}
 }

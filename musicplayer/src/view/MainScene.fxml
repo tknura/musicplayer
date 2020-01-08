@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
@@ -102,11 +103,11 @@
                            <graphic>
                               <Group scaleX="0.05" scaleY="0.05">
                                  <children>
-                                    <SVGPath content="m181 151h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                                    <SVGPath content="m181 151h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" />
                                     <SVGPath content="m121 151h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
                                     <SVGPath content="m181 211h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
                                     <SVGPath content="m121 211h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
-                                    <SVGPath content="m181 271h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                                    <SVGPath content="m181 271h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" />
                                     <SVGPath content="m121 271h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
                                     <SVGPath content="m181 331h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
                                     <SVGPath content="m121 331h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
@@ -171,7 +172,7 @@
             </StackPane>
          </bottom>
          <center>
-            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" styleClass="tab" stylesheets="@../resources/stylesheets/tab.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" styleClass="tab" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab closable="false" text="Songs">
                   <content>
@@ -197,11 +198,12 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="235.0" fitWidth="254.0" layoutX="163.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="235.0" fitWidth="254.0" layoutX="218.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../UI/icons/png/004-settings.png" />
                                  </image>
                               </ImageView>
+                              <Label alignment="CENTER" layoutX="250.0" layoutY="358.0" prefHeight="36.0" prefWidth="171.0" textAlignment="CENTER" />
                            </children></AnchorPane>
                     </content>
                   </Tab>
@@ -212,6 +214,10 @@
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin>
+               <stylesheets>
+                  <URL value="@../resources/stylesheets/tab.css" />
+                  <URL value="@../resources/stylesheets/tabContent.css" />
+               </stylesheets>
             </TabPane>
          </center>
       </BorderPane>

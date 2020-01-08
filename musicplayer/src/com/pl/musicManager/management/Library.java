@@ -1,9 +1,7 @@
 package com.pl.musicManager.management;
 
-import java.io.File;
 import java.util.LinkedList;
 
-import com.pl.configuration.Config;
 import com.pl.musicManager.Album;
 import com.pl.musicManager.Artist;
 import com.pl.musicManager.Playlist;
@@ -30,9 +28,6 @@ public class Library {
 	}
 	
 	public void retrieveSongList() {
-		FileProcessor fp;
+		this.songList = new SongList();
 	}
-	
-	
-	
 }

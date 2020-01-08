@@ -1,0 +1,79 @@
+* {
+    -color1:    #1f1936;
+    -color2:    #6c7688;
+    -color3:    #58c5c6;   
+    -color4:    #83886f;
+    -color5:    #fefefe;
+    -color6:    #504b62;
+
+    -primary-color: -color1;
+    -unselc-primary-color: -color6;
+    -secondary-color: -color3;
+    -basic-color: -color5;
+}
+
+.songname-label {
+    -fx-font-size: 20;
+    -fx-text-fill: -basic-color;
+    -fx-font-weight: bold;
+}
+
+.artistname-label {
+    -fx-font-size: 12;
+    -fx-text-fill: -secondary-color;
+}
+
+.play-pause-button {    
+    -size: 35;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+
+    -fx-background-color: transparent;
+}
+
+.play-button > SVGPath {
+    -fx-fill: -secondary-color;
+}
+
+.pause-button > SVGPath {
+    -fx-fill: -secondary-color;
+}
+
+.back-button , .next-button{
+    -size: 25;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+    
+    -fx-background-color: transparent;
+}
+
+.back-button > Group > SVGPath, .next-button > Group > SVGPath {
+    -fx-fill: -basic-color;
+}
+
+.clickable-button {
+    -size: 25;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+    
+    -fx-background-color: transparent;
+}
+
+.clickable-button > Group > SVGPath {
+    -fx-fill: -unselc-primary-color;
+}
+
+.clickable-button:selected > Group > SVGPath {
+    -fx-fill: -secondary-color;
+}
+
+.player {
+    -fx-background-color: -primary-color;
+}
+
