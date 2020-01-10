@@ -4,6 +4,12 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.AudioHeader;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.Tag;
+
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 
@@ -32,7 +38,16 @@ public class FileProcessor {
 	
 	
 	private static Song process(File file) {
-		//File -> Song obj
+		try {
+			AudioFile audioFile = AudioFileIO.read(file);
+			Tag tag = audioFile.getTag();
+			AudioHeader header = audioFile.getAudioHeader();
+			String title = tag.getFirst(FieldKey.TITLE);
+			String artst = tag.getFirst(FieldKey.ALBUM_ARTIST);
+			String album = tag.getFirst(FieldKey.ALBUM);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		return null;
 	}
 	
