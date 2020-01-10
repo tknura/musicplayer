@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.pl.configuration.Config;
+import com.pl.musicManager.management.Library;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
@@ -51,6 +52,7 @@ public class Main extends Application {
 		String[] extensions = {".pdf", ".mp3", ".png"};
 		Config config = new Config(directories, extensions);	
 		Config.printConfig();
-		
+		Library library = new Library();
+		library.writeToJSON();
 	}
 }

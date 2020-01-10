@@ -1,6 +1,7 @@
 package com.pl.musicManager.management;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,16 +39,19 @@ public class FileProcessor {
 	
 	
 	private static Song process(File file) {
-		try {
-			AudioFile audioFile = AudioFileIO.read(file);
-			Tag tag = audioFile.getTag();
-			AudioHeader header = audioFile.getAudioHeader();
-			String title = tag.getFirst(FieldKey.TITLE);
-			String artst = tag.getFirst(FieldKey.ALBUM_ARTIST);
-			String album = tag.getFirst(FieldKey.ALBUM);
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
+//		try {
+//			AudioFile audioFile = AudioFileIO.read(file);
+//			Tag tag = audioFile.getTag();
+//			AudioHeader header = audioFile.getAudioHeader();
+//			String title = tag.getFirst(FieldKey.TITLE);
+//			String artst = tag.getFirst(FieldKey.ALBUM_ARTIST);
+//			String album = tag.getFirst(FieldKey.ALBUM);
+//			String length = Integer.toString(header.getTrackLength());
+//			Duration duration = Duration.ofSeconds(header.getAudioDataLength());
+//			int playCount = 
+//		}catch(Exception ex) {
+//			ex.printStackTrace();
+//		}
 		return null;
 	}
 	
