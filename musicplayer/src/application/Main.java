@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.pl.configuration.Config;
+import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
 import javafx.application.Application;
@@ -19,13 +20,11 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {        
-		
+        Font.loadFont(getClass().getResourceAsStream("/resources/font/Uniform-Rounded.ttf"), 14);
 		try {
         // Read file fxml and draw interface.
         Parent root = FXMLLoader.load(getClass()
                 .getResource("/view/MainScene.fxml"));
-        
-        Font.loadFont(getClass().getResourceAsStream("/resources/font/Uniform-Rounded.ttf"), 14);
         //System.out.println(Font.getFontNames());
         
         final Scene scene = new Scene(root);
@@ -39,7 +38,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		//launch(args);
+		launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
