@@ -5,6 +5,7 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToggleButton?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="853.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../resources/stylesheets/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainSceneController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../resources/stylesheets/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainSceneController">
    <children>
       <BorderPane prefHeight="393.0" prefWidth="1280.0">
          <StackPane.margin>
@@ -175,9 +176,26 @@
             <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" styleClass="tab" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab closable="false" text="Songs">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView prefHeight="573.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0" />
+                              <VBox prefWidth="270.0" styleClass="title-group" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <SVGPath content="m181 226v80.855469c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-109.84375l120-48v88.699219c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-232.15625l-180 72zm-30 135c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm150-30c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm-90-154.84375 120-48v27.6875l-120 48zm0 0" scaleX="0.75" scaleY="0.75" />
+                                    <Label alignment="CENTER" prefHeight="66.0" prefWidth="270.0" text="SONGS" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Calibri" size="45.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
                 </Tab>
                   <Tab closable="false" text="Albums">
                     <content>

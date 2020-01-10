@@ -1,3 +1,7 @@
+@font-face {
+    src: url(“Uniform-Rounded.ttf”);
+    }
+
 * {
     -color1:    #1f1936;
     -color2:    #6c7688;
@@ -10,6 +14,8 @@
     -unselc-primary-color: -color6;
     -secondary-color: -color3;
     -basic-color: -color5;
+    
+     -fx-font-family: "UniformRnd-Regular";
 }
 
 .songname-label {

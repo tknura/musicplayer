@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -22,9 +23,13 @@ public class Main extends Application {
         // Read file fxml and draw interface.
         Parent root = FXMLLoader.load(getClass()
                 .getResource("/view/MainScene.fxml"));
-
+        
+        Font.loadFont(getClass().getResourceAsStream("/resources/font/Uniform-Rounded.ttf"), 14);
+        //System.out.println(Font.getFontNames());
+        
+        final Scene scene = new Scene(root);
         primaryStage.setTitle("My Application");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
      
     } catch(Exception e) {
