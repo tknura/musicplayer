@@ -1,9 +1,15 @@
 package com.pl.musicManager;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.Duration;
+import java.util.UUID;
+
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,6 +17,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Song implements Comparable<Song>{
+	
 	
 	private SimpleStringProperty title;
 	private SimpleStringProperty artist;
@@ -21,9 +28,9 @@ public class Song implements Comparable<Song>{
 	private String directory;
 	private SimpleBooleanProperty selected;
 	private SimpleBooleanProperty playing;
+	private int id;
 	
-	
-	public Song(String title, String artist, String album, Duration length, int playCount, String directory) {
+	public Song(String title, String artist, String album, Duration length, int playCount, String directory, int id) {
 		
 		if(title == null) {
 			Path path = Paths.get(directory);
@@ -48,10 +55,14 @@ public class Song implements Comparable<Song>{
 		this.playCount = new SimpleIntegerProperty(playCount);
 		this.selected = new SimpleBooleanProperty(false);
 		this.playing = new SimpleBooleanProperty(false);
-		
+		this.id = id;
 	}
 
 
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getTitle() {
 		return title.get();
 	}

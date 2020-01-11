@@ -69,7 +69,8 @@ public class MainSceneController {
     private ObservableList<Song> generatetest() {
     	ObservableList<Song> songOList = FXCollections.observableArrayList();
     	for (int i = 0; i < 10; i++) {
-    		Song tmp = new Song("test" + Integer.toString(i), "test" + Integer.toString(i) , "test" + Integer.toString(i), Duration.ofSeconds(100), 1, "test");
+    		Song tmp = new Song("test" + Integer.toString(i), "test" + Integer.toString(i), 
+    				"test" + Integer.toString(i), Duration.ofSeconds(100), 1, "test", i);
     		songOList.add(tmp);
 		}
     	System.out.println(songOList);

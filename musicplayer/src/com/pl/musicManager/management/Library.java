@@ -8,56 +8,87 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.LinkedList;
+import java.util.List;
 
 import org.hildan.fxgson.FxGson;
-import org.hildan.fxgson.FxGson.*;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder.*;
 import com.pl.musicManager.Album;
 import com.pl.musicManager.Artist;
 import com.pl.musicManager.Playlist;
-import com.pl.musicManager.Song;
 import com.pl.musicManager.SongList;
   
 public class Library {
 
-	private SongList songList;
-	private LinkedList<Album> albumList;
-	private LinkedList<Artist> artistList;
-	private LinkedList<Playlist> playlistList;
+	private static SongList songList;
+	private static List<Album> albumList;
+	private static List<Artist> artistList;
+	private static List<Playlist> playlistList;
+	
+	static {
+		songList = new SongList();
+		albumList = new LinkedList<Album>();
+		artistList = new LinkedList<Artist>();
+		playlistList = new LinkedList<Playlist>();
+	}
 	
 	public SongList getSongList() {
 		return songList;
 	}
-	public LinkedList<Album> getAlbumList() {
+	public List<Album> getAlbumList() {
 		return albumList;
 	}
-	public LinkedList<Artist> getArtistList() {
+	public List<Artist> getArtistList() {
 		return artistList;
 	}
-	public LinkedList<Playlist> getPlaylistList() {
+	public List<Playlist> getPlaylistList() {
 		return playlistList;
 	}
-	
-	public void retrieveSongList() {
-		this.songList = new SongList();
-	}
+
 	
 	public void writeToJSON()  {
 		try {
+			//Creating file inside resources
 			Path source = Paths.get("src/resources");
+			
 			FileWriter fileWriter = new FileWriter(source.toAbsolutePath().toString() + "/library.json");
-			System.out.println(source.toAbsolutePath().toString());
 			
-			Gson gson = FxGson.coreBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+			//Initializing gson
+			Gson gson = FxGson.coreBuilder().setPrettyPrinting().create();
 			
-			Song song = new Song("Sunflower", "Post Malone", "Sunflower", Duration.ZERO, 3, "myDirectory");
-			gson.toJson(song, fileWriter);
+			//Saving songList
+			gson.toJson(songList, fileWriter);
+			//Saving albumList
+			gson.toJson(new AlbumListWrapper(Library.albumList), fileWriter);
+			//Saving artistList
+			gson.toJson(new ArtistListWrapper(Library.artistList), fileWriter);
+			//Saving playlistList
+			gson.toJson(new PlaylistListWrapper(Library.playlistList),fileWriter);
 			
 			fileWriter.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	private class AlbumListWrapper{
+		List<Album> albumList;
+		private AlbumListWrapper(List<Album> albumList) {
+			this.albumList = albumList;
+		}
+	}
+	
+	private class ArtistListWrapper{
+		List<Artist> artistList;
+		private ArtistListWrapper(List<Artist> artistList) {
+			this.artistList = artistList;
+		}
+	}
+	
+	private class PlaylistListWrapper{
+		List<Playlist> playlistList;
+		private PlaylistListWrapper(List<Playlist> playlistList) {
+			this.playlistList = playlistList;
 		}
 	}
 }
