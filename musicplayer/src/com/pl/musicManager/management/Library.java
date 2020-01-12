@@ -26,10 +26,9 @@ public class Library {
 	private static List<Playlist> playlistList;
 	
 	static {
-		songList = new SongList();
-		albumList = new LinkedList<Album>();
-		artistList = new LinkedList<Artist>();
-		playlistList = new LinkedList<Playlist>();
+	
+		
+		
 	}
 	
 	public SongList getSongList() {

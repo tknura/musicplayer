@@ -38,7 +38,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-//		launch(args);
+		launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
