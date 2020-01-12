@@ -10,5 +10,6 @@
 .title-group > .label {
     -fx-font-size: 45px;
     -fx-text-fill: -color2;
+    -fx-font-family: "Uniform Rnd Medium";
     -fx-font-weight: bold;
 }
