@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="627.0" prefWidth="1044.0" stylesheets="@../resources/stylesheets/tabContent.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SongPanelController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../resources/stylesheets/tabContent.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SongPanelController">
    <children>
       <VBox prefWidth="270.0" styleClass="title-group" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

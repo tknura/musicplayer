@@ -7,9 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 
 public class PlayerController {
-	@FXML private Label songnameLabel;
-	
-	@FXML private Label artistnameLabel;
 	
 	@FXML private Group pauseIcon;
 
