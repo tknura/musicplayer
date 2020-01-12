@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="1280.0" styleClass="player" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PlayerController">
+   <children>
+      <VBox StackPane.alignment="BOTTOM_LEFT">
+         <children>
+            <Label fx:id="songnameLabel" styleClass="songname-label" text="Song Name" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="artistnameLabel" styleClass="artistname-label" text="Artist name" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <StackPane.margin>
+            <Insets left="175.0" top="10.0" />
+         </StackPane.margin>
+      </VBox>
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="BOTTOM_LEFT">
+         <children>
+            <Button fx:id="prevButton" maxHeight="97.0" maxWidth="99.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="99.0" styleClass="back-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m226 151h-90v210h90v-86.25l135 101.25v-240l-135 101.25zm105 45v120l-80-60zm-135 135h-30v-150h30zm0 0" layoutX="20.0" layoutY="20.0" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="10.0" layoutY="10.0" />
+                     </children>
+                  </Group>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="playPauseButton" alignment="CENTER" mnemonicParsing="false" styleClass="play-pause-button">
+               <graphic>
+                  <Group scaleX="0.075" scaleY="0.075">
+                     <children>
+                        <Group fx:id="pauseIcon" opacity="0.0" styleClass="play-button">
+                           <children>
+                              <SVGPath content="m151 361h90v-210h-90zm30-180h30v150h-30zm0 0" />
+                              <SVGPath content="m271 361h90v-210h-90zm30-180h30v150h-30zm0 0" />
+                           </children>
+                        </Group>
+                        <Group fx:id="playIcon" layoutX="-20.0" layoutY="-20.0" styleClass="pause-button">
+                           <children>
+                              <SVGPath content="m181 404.027344 222.042969-148.027344-222.042969-148.027344zm30-240 137.957031 91.972656-137.957031 91.972656zm0 0" layoutX="20.0" layoutY="20.0" />
+                              <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="20.0" layoutY="20.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+               </graphic>
+            </Button>
+            <Button fx:id="nextButton" mnemonicParsing="false" styleClass="next-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m286 237.25-135-101.25v240l135-101.25v86.25h90v-210h-90zm-105 78.75v-120l80 60zm135-135h30v150h-30zm0 0" layoutX="20.0" layoutY="20.0" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="20.0" layoutY="20.0" />
+                     </children>
+                  </Group>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="10.0" top="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <StackPane.margin>
+            <Insets top="7.0" />
+         </StackPane.margin>
+      </HBox>
+      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ToggleButton fx:id="queueButton" mnemonicParsing="false" styleClass="clickable-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m181 151h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" />
+                        <SVGPath content="m121 151h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m181 211h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m121 211h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m181 271h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" />
+                        <SVGPath content="m121 271h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m181 331h210v30h-210zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m121 331h30v30h-30zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="15.0" layoutY="15.0" styleClass="back-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="repeatButton" mnemonicParsing="false" styleClass="clickable-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m301 121h-120c-41.355469 0-75 33.644531-75 75v104.378906l90-72v-17.378906h105v46.210938l114.011719-91.210938-114.011719-91.210938zm30 16.210938 35.988281 28.789062-35.988281 28.789062v-13.789062h-165v32.960938l-30 24v-41.960938c0-24.8125 20.1875-45 45-45h150zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m316 301h-105v-46.210938l-114.011719 91.210938 114.011719 91.210938v-46.210938h120c41.355469 0 75-33.644531 75-75v-104.371094l-90 71.996094zm30-2.953125 30-24v41.953125c0 24.8125-20.1875 45-45 45h-150v13.789062l-35.988281-28.789062 35.988281-28.789062v13.789062h165zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="15.0" layoutY="15.0" styleClass="back-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="shuffleButton" mnemonicParsing="false" styleClass="clickable-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m430.011719 166-114.011719-91.210938v46.210938h-10.53125c-34.855469 0-67.5625 17.527344-86.96875 46.171875-19.40625-28.644531-52.113281-46.171875-86.96875-46.171875h-40.53125v90h40.53125c5.3125 0 10.277344 2.851562 12.957031 7.441406l21.914063 37.558594-21.910156 37.554688c-2.679688 4.59375-7.648438 7.445312-12.960938 7.445312h-40.53125v90h40.53125c34.855469 0 67.5625-17.527344 86.96875-46.171875 19.40625 28.644531 52.113281 46.171875 86.96875 46.171875h10.53125v46.210938l114.011719-91.210938-112.5-90zm-259.613281 37.320312c-8.035157-13.765624-22.929688-22.320312-38.867188-22.320312h-10.53125v-30h10.53125c26.570312 0 51.394531 14.257812 64.785156 37.207031l4.816406 8.261719-17.367187 29.765625zm25.917968 120.472657c-13.390625 22.949219-38.214844 37.207031-64.785156 37.207031h-10.53125v-30h10.53125c15.9375 0 30.832031-8.554688 38.871094-22.324219l70.28125-120.46875c13.390625-22.949219 38.214844-37.207031 64.785156-37.207031h40.53125v-13.789062l35.988281 28.789062-35.988281 28.789062v-13.789062h-40.53125c-15.9375 0-30.832031 8.554688-38.871094 22.324219zm149.683594-6.582031 35.988281 28.789062-35.988281 28.789062v-13.789062h-40.53125c-26.570312 0-51.394531-14.257812-64.785156-37.207031l-4.816406-8.261719 17.367187-29.765625 13.367187 22.914063c8.035157 13.765624 22.929688 22.320312 38.867188 22.320312h40.53125zm-30-16.210938h-10.53125c-5.3125 0-10.277344-2.851562-12.957031-7.441406l-21.914063-37.558594 21.910156-37.554688c2.683594-4.59375 7.648438-7.445312 12.960938-7.445312h10.53125zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="15.0" layoutY="15.0" styleClass="back-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="volumeButton" mnemonicParsing="false" styleClass="clickable-button">
+               <graphic>
+                  <Group scaleX="0.05" scaleY="0.05">
+                     <children>
+                        <SVGPath content="m444.03125 224.179688-21.210938-21.210938-31.820312 31.816406-31.820312-31.816406-21.210938 21.210938 31.816406 31.820312-31.816406 31.820312 21.210938 21.210938 31.820312-31.816406 31.820312 31.816406 21.210938-21.210938-31.816406-31.820312zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m91 181v150h70l140 105v-360l-140 105zm60 120h-30v-90h30zm120 75-90-67.5v-105l90-67.5zm0 0" layoutX="20.0" layoutY="20.0" styleClass="back-button-icon" />
+                        <SVGPath content="m256 0c-140.96875 0-256 115.050781-256 256 0 140.96875 115.050781 256 256 256 140.96875 0 256-115.050781 256-256 0-140.96875-115.050781-256-256-256zm0 482c-124.617188 0-226-101.382812-226-226s101.382812-226 226-226 226 101.382812 226 226-101.382812 226-226 226zm0 0" layoutX="15.0" layoutY="15.0" styleClass="back-button-icon" />
+                     </children>
+                  </Group>
+               </graphic>
+            </ToggleButton>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets right="30.0" top="7.0" />
+         </padding>
+         <StackPane.margin>
+            <Insets top="20.0" />
+         </StackPane.margin>
+      </HBox>
+   </children>
+</StackPane>
