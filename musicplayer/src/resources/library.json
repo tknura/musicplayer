@@ -1,9 +1,48 @@
 {
-  "songs": []
-}{
-  "albumList": []
-}{
-  "artistList": []
-}{
-  "playlistList": []
+  "albumList": [
+    {
+      "title": "Album1",
+      "artist": "Album1",
+      "releaseYear": 1,
+      "lengthInSeconds": 0,
+      "cover": null,
+      "coverProperty": null,
+      "songs": [
+        {
+          "title": "Sunflower",
+          "artist": "Post Malone",
+          "album": "Sunflower",
+          "length": "0:00",
+          "lengthInSeconds": 0,
+          "playCount": 3,
+          "directory": null,
+          "selected": false,
+          "playing": false,
+          "id": 0
+        }
+      ]
+    },
+    {
+      "title": "Album2",
+      "artist": "Album2",
+      "releaseYear": 2,
+      "lengthInSeconds": 0,
+      "cover": null,
+      "coverProperty": null,
+      "songs": [
+        {
+          "title": "Circles",
+          "artist": "Post Malone",
+          "album": "HIB",
+          "length": "0:00",
+          "lengthInSeconds": 0,
+          "playCount": 33,
+          "directory": null,
+          "selected": false,
+          "playing": false,
+          "id": 1
+        }
+      ]
+    }
+  ]
 }
