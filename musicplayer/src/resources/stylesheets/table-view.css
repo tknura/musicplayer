@@ -15,6 +15,7 @@
 
  .table-view .column-header-background .label {
     -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .table-view .column-header {

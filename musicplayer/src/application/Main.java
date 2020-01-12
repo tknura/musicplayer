@@ -9,6 +9,7 @@ import java.util.List;
 import com.pl.configuration.Config;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
+import com.pl.utility.FontLoader;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,17 +21,13 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {        
-        Font.loadFont(getClass().getResourceAsStream("/resources/font/Uniform-Rounded.ttf"), 14);
+		FontLoader.LoadAll();
 		try {
         // Read file fxml and draw interface.
         Parent root = FXMLLoader.load(getClass()
                 .getResource("/view/MainScene.fxml"));
         //System.out.println(Font.getFontNames());
-        
-        final Scene scene = new Scene(root);
-        primaryStage.setTitle("My Application");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        SetUpScene(primaryStage, root);
      
     } catch(Exception e) {
         e.printStackTrace();
@@ -54,4 +51,14 @@ public class Main extends Application {
 		Library library = new Library();
 		library.writeToJSON();
 	}
+	
+	public static void SetUpScene(Stage stage, Parent root) {
+		final Scene scene = new Scene(root);
+    	stage.sizeToScene();
+        stage.setMinWidth(800);
+        stage.setMinHeight(720);
+        stage.setTitle("My Application");
+        stage.setScene(scene);
+        stage.show();
+}
 }
