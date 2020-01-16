@@ -32,8 +32,6 @@ public class Config {
  		switch(extension) {
  		case".mp3":
  		case ".mp4": 
- 		case ".png":
- 		case ".pdf":
  			return true;
  		default:
  			return false;

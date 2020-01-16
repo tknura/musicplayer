@@ -9,6 +9,7 @@ import java.util.List;
 import com.pl.configuration.Config;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
+import com.pl.utility.Explorer;
 import com.pl.utility.FontLoader;
 
 import javafx.application.Application;
@@ -35,7 +36,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		launch(args);
+//		launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
@@ -47,9 +48,8 @@ public class Main extends Application {
 		String[] directories = {"C:/Users/Błażej/Desktop/test"};
 		String[] extensions = {".pdf", ".mp3", ".png"};
 		Config config = new Config(directories, extensions);	
-		Config.printConfig();
-		Library library = new Library();
-		library.writeToJSON();
+		
+		Library.initializeLibrary();
 	}
 	
 	public static void SetUpScene(Stage stage, Parent root) {

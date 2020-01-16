@@ -13,15 +13,24 @@ public class Explorer {
 	private static FileFilter fileFilter;
 	
 	static {
+		//Initialize list
 		fileList = new ArrayList<File>();
+		
+		//Create filter accepting all selected extensions
 		fileFilter = new FileFilter() {
 			@Override
 			public boolean accept(File f) {
+				if(f.isDirectory()) {
+					return true;
+				}
 				String fileName = f.getName();
 				String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-				return Config.getExtensions().contains(fileExtension) || f.isDirectory();
+				return  Config.getExtensions().contains(fileExtension);
 			}
 		};
+		
+		//Explore directories and collect files
+		exploreDirectories();
 	}
 	
 	public Explorer() {
@@ -37,13 +46,12 @@ public class Explorer {
 			addFilesToList(directory);
 		}
 	}
-	
-	
-	private static void addFilesToList(String startDirectory){
 		
+	private static void addFilesToList(String startDirectory){
 		try {
 			File dir = new File(startDirectory);
 			File[] files = dir.listFiles(fileFilter);
+			
 			for(File file : files) {
 				if(file.isDirectory()) {
 					addFilesToList(file.getAbsolutePath());
@@ -56,8 +64,6 @@ public class Explorer {
 			System.err.println(e.getMessage());
 		}
 	}
-	
-	
 	
 	public static void printSongList() {
 		for(File file : fileList) {

@@ -30,7 +30,9 @@ public class Song implements Comparable<Song>{
 	private SimpleBooleanProperty playing;
 	private int id;
 	
-	public Song(String title, String artist, String album, Duration length, int playCount, String directory, int id) {
+	public Song(int id, String directory, String title, String artist, String album, Duration length, int playCount) {
+		this.id = id;
+		this.directory = directory;
 		
 		if(title == null) {
 			Path path = Paths.get(directory);
@@ -48,21 +50,27 @@ public class Song implements Comparable<Song>{
 		this.title = new SimpleStringProperty(title);
 		this.artist = new SimpleStringProperty(artist);
 		this.album = new SimpleStringProperty(album);
+		
 		long seconds = length.getSeconds();
 		this.length = new SimpleStringProperty(length.toMinutes() + ":" +
 								(seconds < 10 ? "0" + seconds : seconds));
+		
 		this.lengthInSeconds = length.getSeconds();
+		
 		this.playCount = new SimpleIntegerProperty(playCount);
 		this.selected = new SimpleBooleanProperty(false);
 		this.playing = new SimpleBooleanProperty(false);
-		this.id = id;
+		
 	}
-
 
 	public int getId() {
 		return this.id;
 	}
 	
+	public String getDirectory() {
+		return this.directory;
+	}
+
 	public String getTitle() {
 		return title.get();
 	}
@@ -102,7 +110,7 @@ public class Song implements Comparable<Song>{
 	
 	public StringProperty getLengthProperty() {
 		return length;
-	}
+	}	
 	
 	public void setPlayCount(int playCount) {
 		this.playCount = new SimpleIntegerProperty(playCount);
@@ -127,4 +135,15 @@ public class Song implements Comparable<Song>{
 		return this.getTitle().compareTo(song.getTitle());
 	}
 
+	public void print() {
+		System.out.println("ID: " + id);
+		System.out.println("Directory: " + directory);
+		System.out.println("Title: " + title);
+		System.out.println("Artist: " + artist);
+		System.out.println("Album: " + album);
+		System.out.println("Length: " + length);
+		System.out.println("Length in seconds: " + lengthInSeconds);
+		System.out.println("Play count: " + playCount);
+
+	}
 }

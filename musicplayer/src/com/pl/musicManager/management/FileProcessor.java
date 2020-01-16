@@ -20,42 +20,46 @@ public class FileProcessor {
 	
 	static {
 		songList = new LinkedList<Song>();
+		FileProcessor.parse();
 	}
 	
 	public FileProcessor() {
-	
-		
+			
 	}
 	
-	private static List<Song> getSongList(){
+	public static List<Song> getSongList(){
 		return songList;
 	}
 	
-	private static void process(){
+	/**
+	 * Method parses List of Files retrieved from Explorer class
+	 * into List of Song objects */
+	private static void parse(){
+		int id = 0;
 		for(File file : Explorer.getFileList()) {
-			songList.add(process(file));
+			System.out.println("Parsing file");
+			AudioFile audioFile;
+			try {
+				//Tutaj sa errory! 
+				audioFile = AudioFileIO.read(file);
+				Tag tag = audioFile.getTag();
+				AudioHeader header = audioFile.getAudioHeader();
+				
+				String directory = file.getAbsolutePath();
+				String title = tag.getFirst(FieldKey.TITLE);
+				String artist = tag.getFirst(FieldKey.ALBUM_ARTIST);
+				String album = tag.getFirst(FieldKey.ALBUM);
+				long length = header.getTrackLength();
+				Duration duration = Duration.ofSeconds(header.getAudioDataLength());
+				
+				Song song = new Song(id++, directory, title, artist, album, Duration.ofSeconds(length), 0);
+				songList.add(song);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}			
 		}
 	}
-	
-	
-	private static Song process(File file) {
-//		try {
-//			AudioFile audioFile = AudioFileIO.read(file);
-//			Tag tag = audioFile.getTag();
-//			AudioHeader header = audioFile.getAudioHeader();
-//			String title = tag.getFirst(FieldKey.TITLE);
-//			String artst = tag.getFirst(FieldKey.ALBUM_ARTIST);
-//			String album = tag.getFirst(FieldKey.ALBUM);
-//			String length = Integer.toString(header.getTrackLength());
-//			Duration duration = Duration.ofSeconds(header.getAudioDataLength());
-//			int playCount = 
-//		}catch(Exception ex) {
-//			ex.printStackTrace();
-//		}
-		return null;
-	}
-	
-	
-	
+		
 	
 }

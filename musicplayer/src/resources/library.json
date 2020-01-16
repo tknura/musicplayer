@@ -1,7 +1,16 @@
-null{
-  "albumList": null
-}{
-  "artistList": null
-}{
-  "playlistList": null
+{
+  "songs": [
+    {
+      "title": "Sunflower - Spider-Man: Into the Spider-Verse",
+      "artist": "",
+      "album": "",
+      "length": "2:158",
+      "lengthInSeconds": 158,
+      "playCount": 0,
+      "directory": "C:\\Users\\Błażej\\Desktop\\test\\Sunflower.mp3",
+      "selected": false,
+      "playing": false,
+      "id": 0
+    }
+  ]
 }
