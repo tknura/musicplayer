@@ -14,7 +14,8 @@
  }
 
  .table-view .column-header-background .label {
-    -fx-text-fill: white;
+    -fx-text-fill: -basic-color;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
 }
 
@@ -30,11 +31,14 @@
     -fx-background-color: transparent;
 }
 
+.table-row-cell {
+    -fx-background-insets: 0, 0 0 1 0;
+ }
+
 .table-row-cell:selected {
-    -fx-background-color: -secondary-color; 
+    -fx-background-color: -secondary-color;
  }
 
  .table-row-cell:selected .text {
-        -fx-fill: -basic-color ;
- 
+        -fx-fill:  -basic-color;
  }
