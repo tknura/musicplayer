@@ -4,37 +4,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="coverDisplay" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_LEFT">
-         <image>
-            <Image url="@../../../UI/placeholder.jpg" />
-         </image>
-         <StackPane.margin>
-            <Insets />
-         </StackPane.margin>
-      </ImageView>
-      <VBox alignment="BOTTOM_LEFT" prefHeight="120.0" prefWidth="156.0" StackPane.alignment="BOTTOM_LEFT">
+      <HBox>
          <children>
-            <Label fx:id="songnameLabel" styleClass="songname-label" text="Song Name" textFill="WHITE">
-               <font>
-                  <Font name="Calibri Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="artistnameLabel" styleClass="artistname-label" text="Artist name" textFill="WHITE">
-               <font>
-                  <Font name="Calibri" size="12.0" />
-               </font>
-            </Label>
+            <ImageView fx:id="coverDisplay" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../UI/placeholder.jpg" />
+               </image>
+            </ImageView>
+            <VBox alignment="BOTTOM_LEFT" prefHeight="120.0" prefWidth="156.0">
+               <children>
+                  <Label fx:id="songnameLabel" styleClass="songname-label" text="Song Name" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="artistnameLabel" styleClass="artistname-label" text="Artist name" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </VBox>
          </children>
-         <StackPane.margin>
-            <Insets left="130.0" />
-         </StackPane.margin>
-      </VBox>
+      </HBox>
    </children>
 </StackPane>
