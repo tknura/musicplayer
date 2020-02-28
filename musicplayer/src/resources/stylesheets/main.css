@@ -13,14 +13,3 @@
     
      -fx-font-family: "Uniform Rnd";
 }
-
-.songname-label {
-    -fx-font-size: 22;
-    -fx-text-fill: -basic-color;
-    -fx-font-weight: bold;
-}
-
-.artistname-label {
-    -fx-font-size: 14;
-    -fx-text-fill: -secondary-color;
-}

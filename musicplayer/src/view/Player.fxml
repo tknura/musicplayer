@@ -11,27 +11,32 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.SVGPath?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" styleClass="player" stylesheets="@../resources/stylesheets/player.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PlayerController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" styleClass="player" stylesheets="@../resources/stylesheets/player.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PlayerController">
    <children>
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="150.0" prefHeight="14.0" prefWidth="500.0" StackPane.alignment="BOTTOM_CENTER">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="200.0" prefHeight="14.0" prefWidth="560.0" StackPane.alignment="BOTTOM_CENTER">
          <children>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0" prefWidth="460.0">
+            <StackPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0">
                <children>
-                  <ProgressBar fx:id="timeProgressBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="110.0" prefHeight="5.0" prefWidth="460.0" progress="0.0" />
-                  <Slider fx:id="timeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0" prefWidth="460.0" />
+                  <ProgressBar fx:id="timeProgressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="5.0" prefWidth="460.0" progress="0.0" />
+                  <Slider fx:id="timeSlider" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0" prefWidth="460.0" />
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </StackPane>
-            <Label fx:id="songDuration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="40.0" styleClass="songtime-label" text="00:00">
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="actualSongDuration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="0:00" />
+                  <Label fx:id="songDuration11" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="/" textAlignment="CENTER" />
+                  <Label fx:id="songDuration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="0:00" />
+               </children>
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
-            </Label>
+            </HBox>
          </children>
          <StackPane.margin>
-            <Insets bottom="10.0" left="350.0" right="330.0" />
+            <Insets bottom="10.0" left="390.0" right="340.0" />
          </StackPane.margin>
       </HBox>
       <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="135.0" StackPane.alignment="TOP_RIGHT">
