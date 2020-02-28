@@ -11,9 +11,16 @@ public class Player {
 	
 	private static MediaPlayer mediaPlayer;
 	private  static Queue songsQueue;
-	private static Duration currentDuration;
 	private static Song currentPlayingSong;
 	
+	public static MediaPlayer getMediaPlayer() {
+		return mediaPlayer;
+	}
+
+	public static void setMediaPlayer(MediaPlayer mediaPlayer) {
+		Player.mediaPlayer = mediaPlayer;
+	}
+
 	public static Queue getSongsQueue() {
 		return songsQueue;
 	}
@@ -30,27 +37,31 @@ public class Player {
 		Player.currentPlayingSong = currentPlayingSong;
 	}
 
-	public static void Load(Song song) {
+	public static void load(Song song) {
 		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toString());
 		currentPlayingSong = song;
 		mediaPlayer = new MediaPlayer(currentSongMedia);
 	}
 	
-	public static void Load() {
-		Load(currentPlayingSong);
+	public static void load() {
+		load(currentPlayingSong);
 	}
 	
-	public static void Resume() {
+	public static void resume() {
 		mediaPlayer.play();	
 		currentPlayingSong.setPlaying(true);
 	}
 	
-	public static void Pause() {
+	public static void pause() {
 		mediaPlayer.pause();
 		currentPlayingSong.setPlaying(false);
 	}
 	
 	public static ReadOnlyObjectProperty<Duration> currentTimeProperty(){
 		return mediaPlayer.currentTimeProperty();
+	}
+	
+	public static void seek(Duration duration) {
+		mediaPlayer.seek(duration);
 	}
 }
