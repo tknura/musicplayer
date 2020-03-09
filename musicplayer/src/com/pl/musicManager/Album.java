@@ -6,16 +6,16 @@ import javafx.scene.image.Image;
 
 public class Album extends SongList implements Comparable<Album> {
 	
-	private SimpleStringProperty title;
 	private SimpleStringProperty artist;
 	private int releaseYear;
 	private long lengthInSeconds;
 	private Image cover;
 	private SimpleObjectProperty<Image> coverProperty;
-
+	private int id;
 	
-	public Album(String title, String artist, int releaseYear, Image cover) {
-		
+	public Album(int id, String title, String artist, int releaseYear, Image cover) {
+		super(title);
+		this.id = id;
 		if(title == null) {
 			title = "Unknown album";
 		}
@@ -23,21 +23,12 @@ public class Album extends SongList implements Comparable<Album> {
 			artist = "Unknown artist";
 		}
 		
-		this.title = new SimpleStringProperty(title);
 		this.artist = new SimpleStringProperty(artist);
-		this.lengthInSeconds = CalculateAlbumLength();
+		this.lengthInSeconds = 0;
 		this.releaseYear = releaseYear;
 		this.cover = cover;
 		this.coverProperty = new SimpleObjectProperty<Image>(cover);
 		
-	}
-	
-	public SimpleStringProperty getTitle() {
-		return title;
-	}
-
-	public void setTitle(SimpleStringProperty title) {
-		this.title = title;
 	}
 
 	public SimpleStringProperty getArtist() {
@@ -72,6 +63,9 @@ public class Album extends SongList implements Comparable<Album> {
 		this.cover = cover;
 	}
 
+	public int getId() {
+		return id;
+	}
 	public SimpleObjectProperty<Image> getCoverProperty() {
 		return coverProperty;
 	}
@@ -82,10 +76,10 @@ public class Album extends SongList implements Comparable<Album> {
 	
 	@Override
 	public int compareTo(Album album) {
-		return this.title.toString().compareTo(album.getTitle().toString());
+		return this.getTitle().toString().compareTo(album.getTitle().toString());
 	}
 	
-	private long CalculateAlbumLength() {
+	private long calculateAlbumLength() {
 		long result = 0;
 		
 		for(Song s : songs) {
@@ -94,5 +88,11 @@ public class Album extends SongList implements Comparable<Album> {
 		
 		return result;
 	}
+	
+	public void add(Song song) {
+		songs.add(song);
+		lengthInSeconds += song.getLengthInSeconds();
+	}
+	  
 
 }

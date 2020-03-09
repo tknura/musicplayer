@@ -26,11 +26,12 @@ public class Song implements Comparable<Song>{
 	private long lengthInSeconds;
 	private SimpleIntegerProperty playCount;
 	private String directory;
-	private SimpleBooleanProperty selected;
-	private SimpleBooleanProperty playing;
+	private transient SimpleBooleanProperty selected;
+	private transient SimpleBooleanProperty playing;
 	private int id;
 	
 	public Song(int id, String directory, String title, String artist, String album, Duration length, int playCount) {
+		//TO DO! ID CHECK
 		this.id = id;
 		this.directory = directory;
 		
@@ -51,9 +52,9 @@ public class Song implements Comparable<Song>{
 		this.artist = new SimpleStringProperty(artist);
 		this.album = new SimpleStringProperty(album);
 		
-		long seconds = length.getSeconds();
+		long seconds = length.getSeconds() % 60;
 		this.length = new SimpleStringProperty(length.toMinutes() + ":" +
-								(seconds < 10 ? "0" + seconds : seconds));
+								(seconds < 10 ? "0" + seconds  : seconds));
 		
 		this.lengthInSeconds = length.getSeconds();
 		
@@ -61,7 +62,8 @@ public class Song implements Comparable<Song>{
 		this.selected = new SimpleBooleanProperty(false);
 		this.playing = new SimpleBooleanProperty(false);
 		
-	}
+	} 
+	
 
 	public int getId() {
 		return this.id;
@@ -138,12 +140,13 @@ public class Song implements Comparable<Song>{
 	public void print() {
 		System.out.println("ID: " + id);
 		System.out.println("Directory: " + directory);
-		System.out.println("Title: " + title);
-		System.out.println("Artist: " + artist);
-		System.out.println("Album: " + album);
-		System.out.println("Length: " + length);
+		System.out.println("Title: " + title.get());
+		System.out.println("Artist: " + artist.get());
+		System.out.println("Album: " + album.get());
+		System.out.println("Length: " + length.get());
 		System.out.println("Length in seconds: " + lengthInSeconds);
-		System.out.println("Play count: " + playCount);
+		System.out.println("Play count: " + playCount.get());
+		System.out.println();
 
 	}
 }

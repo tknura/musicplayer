@@ -42,6 +42,7 @@ public class Explorer {
 	}
 	
 	public static void exploreDirectories() {
+		Logger.debug("Exploring directories");
 		for(String directory : Config.getDirectories()) {
 			addFilesToList(directory);
 		}
@@ -49,6 +50,7 @@ public class Explorer {
 		
 	private static void addFilesToList(String startDirectory){
 		try {
+			Logger.debug("[DIRECTORY] Adding files from " + startDirectory);
 			File dir = new File(startDirectory);
 			File[] files = dir.listFiles(fileFilter);
 			
@@ -57,6 +59,7 @@ public class Explorer {
 					addFilesToList(file.getAbsolutePath());
 
 				}else if(file.isFile()) {
+					Logger.debug("Adding " + file.getName());
 					fileList.add(file);
 				}
 			}
@@ -66,6 +69,7 @@ public class Explorer {
 	}
 	
 	public static void printSongList() {
+		Logger.debug("[SONGLIST]");
 		for(File file : fileList) {
 			System.out.println(file.getAbsolutePath());
 		}

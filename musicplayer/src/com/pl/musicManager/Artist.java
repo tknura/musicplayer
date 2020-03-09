@@ -2,13 +2,14 @@ package com.pl.musicManager;
 
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class Artist implements Comparable<Artist>{
 	
 	private SimpleStringProperty name;
-	private LinkedList<Album> albums;
+	private List<Album> albums;
 	
 	public Artist(String name) {
 		super();
@@ -24,11 +25,11 @@ public class Artist implements Comparable<Artist>{
 		this.name = name;
 	}
 
-	public LinkedList<Album> getAlbums() {
+	public List<Album> getAlbums() {
 		return albums;
 	}
 
-	public void setAlbums(LinkedList<Album> albums) {
+	public void setAlbums(List<Album> albums) {
 		this.albums = albums;
 	}
 	

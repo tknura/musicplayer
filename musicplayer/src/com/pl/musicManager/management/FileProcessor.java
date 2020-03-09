@@ -13,6 +13,7 @@ import org.jaudiotagger.tag.Tag;
 
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
+import com.pl.utility.Logger;
 
 public class FileProcessor {
 	
@@ -37,22 +38,22 @@ public class FileProcessor {
 	private static void parse(){
 		int id = 0;
 		for(File file : Explorer.getFileList()) {
-			System.out.println("Parsing file");
+			Logger.debug("Parsing file " + file.getAbsolutePath());
 			AudioFile audioFile;
 			try {
-				//Tutaj sa errory! 
 				audioFile = AudioFileIO.read(file);
 				Tag tag = audioFile.getTag();
 				AudioHeader header = audioFile.getAudioHeader();
 				
 				String directory = file.getAbsolutePath();
 				String title = tag.getFirst(FieldKey.TITLE);
-				String artist = tag.getFirst(FieldKey.ALBUM_ARTIST);
+				String artist = tag.getFirst(FieldKey.ARTIST);
 				String album = tag.getFirst(FieldKey.ALBUM);
 				long length = header.getTrackLength();
 				Duration duration = Duration.ofSeconds(header.getAudioDataLength());
 				
 				Song song = new Song(id++, directory, title, artist, album, Duration.ofSeconds(length), 0);
+				Logger.debug("Adding " + artist + " - " + title );
 				songList.add(song);
 				
 			} catch (Exception e) {

@@ -1,22 +1,35 @@
 package com.pl.musicManager;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class SongList {
+	protected SimpleStringProperty title;
 	protected List<Song> songs;
 	
-	public SongList() {
-		songs = new LinkedList<Song>();
+	public SongList(String title) {
+		this(title, new LinkedList<Song>());
 	}
 	
-	public SongList(List<Song> songs) {
+	public SongList(String title, List<Song> songs) {
+		this.title = new SimpleStringProperty(title);
 		this.songs = songs;
 	}
 	
 	public List<Song> get() {
 		return songs;
+	}
+	
+	public String getTitle() {
+		return title.get();
+	}
+
+	public void setName(String title) {
+		this.title = new SimpleStringProperty(title);
 	}
 	
 	public void add(Song song) {
@@ -46,5 +59,14 @@ public class SongList {
 	public void sortByName() {
 		Collections.sort(songs);
 	}
+	
+	public void print() {
+		int i = 1;
+		for(Song song : songs) {
+			System.out.println("Song #" + i++ + ": ");
+			song.print();
+		}
+	}
+
 	
 }

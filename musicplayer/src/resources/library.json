@@ -1,16 +1,189 @@
 {
-  "songs": [
-    {
-      "title": "Sunflower - Spider-Man: Into the Spider-Verse",
-      "artist": "",
-      "album": "",
-      "length": "2:158",
-      "lengthInSeconds": 158,
-      "playCount": 0,
-      "directory": "C:\\Users\\BÅ‚aÅ¼ej\\Desktop\\test\\Sunflower.mp3",
-      "selected": false,
-      "playing": false,
-      "id": 0
+  "songlist": {
+    "title": "main.songlist",
+    "songs": [
+      {
+        "title": "Sunflower - Spider-Man: Into the Spider-Verse",
+        "artist": "Post Malone",
+        "album": "",
+        "length": "2:38",
+        "lengthInSeconds": 158,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Sunflower.mp3",
+        "id": 0
+      },
+      {
+        "title": "Café Belga",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:09",
+        "lengthInSeconds": 249,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\01 Cafe Belga.mp3",
+        "id": 1
+      },
+      {
+        "title": "ZTM",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:39",
+        "lengthInSeconds": 279,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\02 ZTM.mp3",
+        "id": 2
+      },
+      {
+        "title": "Wszystko na niby",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:18",
+        "lengthInSeconds": 258,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\03 Wszystko na niby.mp3",
+        "id": 3
+      },
+      {
+        "title": "Re¿yseria: Kubrick",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "3:31",
+        "lengthInSeconds": 211,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\04 Rezyseria - Kubrick.mp3",
+        "id": 4
+      },
+      {
+        "title": "2031",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:59",
+        "lengthInSeconds": 299,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\05 2031.mp3",
+        "id": 5
+      },
+      {
+        "title": "Fiji",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:02",
+        "lengthInSeconds": 242,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\06 Fiji.mp3",
+        "id": 6
+      },
+      {
+        "title": "Abonent jest czasowo niedostêpny",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:33",
+        "lengthInSeconds": 273,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\07 Abonent jest czasowo niedostepny.mp3",
+        "id": 7
+      },
+      {
+        "title": "Motorola",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "3:11",
+        "lengthInSeconds": 191,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\08 Motorola.mp3",
+        "id": 8
+      },
+      {
+        "title": "Modigliani",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "3:50",
+        "lengthInSeconds": 230,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\09 Modigliani.mp3",
+        "id": 9
+      },
+      {
+        "title": "Adieu",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "4:47",
+        "lengthInSeconds": 287,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\10 Adieu.mp3",
+        "id": 10
+      },
+      {
+        "title": "4 AM in Girona",
+        "artist": "Taco Hemingway",
+        "album": "Café Belga",
+        "length": "3:08",
+        "lengthInSeconds": 188,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\11 4 AM in Girona.mp3",
+        "id": 11
+      },
+      {
+        "title": "hotel wolnych pokoi",
+        "artist": "schafter",
+        "album": "",
+        "length": "3:02",
+        "lengthInSeconds": 182,
+        "playCount": 0,
+        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\temp\\test.mp3",
+        "id": 12
+      }
+    ]
+  },
+  "playlistList": {
+    "playlist1": [
+      0,
+      1,
+      2
+    ],
+    "lololol! :D": [
+      3,
+      6,
+      7
+    ]
+  },
+  "albumList": {
+    "Hollywood is bleeding": {
+      "id": 256,
+      "artist": "Post Malone",
+      "release.year": 2019,
+      "length.in.seconds": 699,
+      "songs": [
+        5,
+        6,
+        0
+      ]
+    },
+    "Marmur": {
+      "id": 123,
+      "artist": "Haco Temingway",
+      "release.year": 2015,
+      "length.in.seconds": 679,
+      "songs": [
+        8,
+        9,
+        3
+      ]
+    },
+    "test album": {
+      "id": 1024,
+      "artist": "Post Malone",
+      "release.year": 2020,
+      "length.in.seconds": 0,
+      "songs": []
     }
-  ]
+  },
+  "artistList": {
+    "Post malone": [
+      256,
+      1024
+    ],
+    "Paco Hemingway": [
+      123
+    ]
+  }
 }

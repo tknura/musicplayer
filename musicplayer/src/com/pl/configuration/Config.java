@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Config {
 	
+	private static Boolean verbose = false;
 	private static List<String> directories;
 	private static List<String> extensions;
 	
@@ -45,6 +46,10 @@ public class Config {
  	
  	public static List<String> getExtensions(){
  		return Config.extensions;
+ 	}
+ 	
+ 	public static Boolean getVerbose() {
+ 		return verbose;
  	}
  	
  	public static void printConfig() {

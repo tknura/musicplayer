@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import org.hildan.fxgson.FxGson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
@@ -24,6 +27,8 @@ import com.pl.musicManager.Artist;
 import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.SongList;
+import com.pl.utility.Logger;
+import com.sun.javafx.collections.MappingChange.Map;
   
 public class Library {
 
@@ -32,22 +37,31 @@ public class Library {
 	private static List<Artist> artistList;
 	private static List<Playlist> playlistList;
 	
-	public SongList getSongList() {
+	static {
+		initializeLibrary();
+		albumList = new LinkedList<Album>();
+		artistList = new LinkedList<Artist>();
+		playlistList = new LinkedList<Playlist>();
+	}
+	
+	
+	public static SongList getSongList() {
 		return songList;
 	}
-	public List<Album> getAlbumList() {
+	public static List<Album> getAlbumList() {
 		return albumList;
 	}
-	public List<Artist> getArtistList() {
+	public static List<Artist> getArtistCollections() {
 		return artistList;
 	}
-	public List<Playlist> getPlaylistList() {
+	public static List<Playlist> getPlaylistList() {
 		return playlistList;
 	}
+	
 	/**
-	 * Method checks if library.json exists
-	 * If it does, it reads its contents, and initializes music structures
-	 * Or creates the file, exploring specified folders in Config class*/
+	 * Method initializes Library with library.json contents if the file exists. 
+	 * Otherwise, it explores specified folders from Config class in search for songs.
+	 * */
 	public static void initializeLibrary() {
 		
 		File libFile = new File(Paths.get("src/resources" + "/library.json").toString());
@@ -55,97 +69,159 @@ public class Library {
 			 load(libFile);
 		}else {
 			System.out.println("File has not been found, creating library");
-			songList = new SongList(retrieveSongs());	
+			songList = new SongList("main.songlist", retrieveSongs());	
 		}
 	}
 	
 	/** 
 	 * method parses library.json file into valid songList*/
 	private static void load(File libFile) {
-		Gson gson = new Gson();
 	}
 	
 	/** 
-	 * method explores directories,
-	 * parses files as songs
-	 * return List of Songs needed to create SongList */
+	 * Method explores directories,
+	 * parses files as songs,
+	 * returns list of songs. */
 	private static List<Song> retrieveSongs() {
 		return FileProcessor.getSongList();
 	}
 	
 	/**
-	 * Method creates library.json file
-	 * saves song list.
-	 * Method is being used in 2 scenarios:
-	 * when library does not exist
-	 * or when application is being closed*/
-	private static void saveSongList()  {
+	 * Method saves songlist, playlists, albums and artists into library.json file*/
+	public static void saveLibrary() {
+		
 		try {
-			
 			//Creating file inside resources
 			Path source = Paths.get("src/resources");
 			FileWriter fileWriter = new FileWriter(source.toAbsolutePath().toString() + "/library.json");
 			
-			
-			//GSON used for default serialization
 			Gson gson = FxGson.coreBuilder().setPrettyPrinting().create();
-			System.out.println("halo");
-			System.out.println(songList.get().size());
-			//Saving songList
-			gson.toJson(songList, fileWriter);
 			
+			JsonObject obj = new JsonObject();
 			
-			//GSON used for custom serialization of containers
-		
+			//Songlist - songs from songlist are serialized in default way
+			obj.add("songlist", gson.toJsonTree(songList));
 			
-//			JsonSerializer <List<SongList>> serializer = new JsonSerializer<List<SongList>>() {
-//				@Override
-//				public JsonElement serializer(List<SongList> src, Type typeOfSrc, JsonSerializationContext context) {
-//					JsonObject jsonSongList = new JsonObject();
-//					
-//					List<Integer> SongsIds = new LinkedList<>();
-//					for(Song song : src) {
-//						
-//					}
-//					
-//				}
-//			}
-//			//Saving albumList
-//			customGson.toJson(new AlbumListWrapper(Library.albumList), fileWriter);
-//			//Saving artistList
-//			customGson.toJson(new ArtistListWrapper(Library.artistList), fileWriter);
-//			//Saving playlistList
-//			customGson.toJson(new PlaylistListWrapper(Library.playlistList),fileWriter);
+			//Playlists
+			obj.add("playlistList", parseSongList(playlistList));
 			
+			//Albums
+			obj.add("albumList", parseSongList(albumList));
 			
+			//Artists
+			obj.add("artistList", parseArtistList(artistList));
 			
+			gson.toJson(obj, fileWriter);
 			fileWriter.close();
-		} catch (Exception e) {
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
-	private static void saveLibrary() {
-		saveSongList();
-	}
-	private class AlbumListWrapper{
-		List<Album> albumList;
-		private AlbumListWrapper(List<Album> albumList) {
-			this.albumList = albumList;
+	
+	/**
+	 * Method for Artists serialization. Each Artist object is represented by 
+	 * array of album id's.
+	 * */
+	private static JsonElement parseArtistList(List<Artist> list) {
+		
+		JsonSerializer <Artist> artistSerializer = new JsonSerializer<Artist>() {
+			@Override
+			public JsonElement serialize(Artist src, Type type, JsonSerializationContext context) {
+				JsonArray ids = new JsonArray();
+				for(Album album : src.getAlbums()) {
+					ids.add(album.getId());
+				}
+				return ids;
+			}
+		};
+		
+		JsonObject obj = new JsonObject();
+		
+		GsonBuilder customGsonBuilder = new GsonBuilder();
+		customGsonBuilder.registerTypeAdapter(Artist.class, artistSerializer);
+		Gson gson = customGsonBuilder.setPrettyPrinting().create();
+		
+		for(Artist artist : list) {
+			obj.add(artist.getName().get(), gson.toJsonTree(artist));
 		}
+		return obj;
+	}
+		
+	/**
+	 * Method used to parse playlists, albums, using songs id's only.
+	 */
+	private static <T extends SongList> JsonElement parseSongList(List<T> list) {
+		
+		//Custom serializer for songlist (id only)
+		GsonBuilder customGsonBuilder = new GsonBuilder();
+		JsonSerializer <SongList> playlistSerializer = new JsonSerializer<SongList>() {
+			
+			@Override
+			public JsonElement serialize(SongList src, Type type, JsonSerializationContext context) {
+				Logger.debug("[SERIALIZATION] custom serialization");
+				JsonArray ids = new JsonArray();
+				for(Song song : src.get()) {
+					ids.add(song.getId());
+				}
+				return ids;
+			};
+			
+		};
+		
+		//Custom serializer for albums
+		JsonSerializer <Album> albumSerializer = new JsonSerializer<Album>() {
+
+			@Override
+			public JsonElement serialize(Album src, Type type, JsonSerializationContext context) {
+				JsonObject result = new JsonObject();
+				result.addProperty("id", src.getId());
+				result.addProperty("artist", src.getArtist().get());
+				result.addProperty("release.year", src.getReleaseYear());
+				result.addProperty("length.in.seconds", src.getLengthInSeconds());
+					
+				JsonArray ids = (JsonArray) playlistSerializer.serialize(src, type, context);
+				result.add("songs", ids);
+				return result;
+			}
+			
+		};
+		
+		//Selecting type adapter
+		if(!list.isEmpty()) {
+			SongList tmp = list.get(0);
+			if(tmp instanceof Playlist) {
+				customGsonBuilder.registerTypeAdapter(Playlist.class, playlistSerializer);
+			}else if(tmp instanceof Album) {
+				customGsonBuilder.registerTypeAdapter(Album.class, albumSerializer);
+			}
+		}else {
+			return null;
+		}
+		
+		Gson customGson = customGsonBuilder.setPrettyPrinting().create();
+		
+		//serializing
+		JsonObject songs = new JsonObject();
+		for(SongList songlist : list) {
+			songs.add(songlist.getTitle(), customGson.toJsonTree(songlist));
+		}
+		
+		return songs;
+		
+	}
+
+	public static void addAlbum(Album album) {
+		albumList.add(album);
 	}
 	
-	private class ArtistListWrapper{
-		List<Artist> artistList;
-		private ArtistListWrapper(List<Artist> artistList) {
-			this.artistList = artistList;
-		}
+	public static void addPlaylist(Playlist playlist) {
+		playlistList.add(playlist);
 	}
 	
-	private class PlaylistListWrapper{
-		List<Playlist> playlistList;
-		private PlaylistListWrapper(List<Playlist> playlistList) {
-			this.playlistList = playlistList;
-		}
+	public static void addArtist(Artist artist) {
+		artistList.add(artist);
 	}
 }

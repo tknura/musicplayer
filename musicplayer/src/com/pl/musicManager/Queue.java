@@ -6,7 +6,7 @@ import java.util.Collections;
 public class Queue extends SongList{
 	
 	public Queue() {
-		super();
+		super("");
 	}
 	
 	public void shuffle() {
