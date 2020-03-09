@@ -19,8 +19,8 @@ public class SongDisplayController {
 	}
 	
 	public void LoadSong(Song song) {
-		songnameLabel.setText(song.getTitle());
-		artistnameLabel.setText(song.getArtist());
+		songnameLabel.setText(song.getTitle().toString());
+		artistnameLabel.setText(song.getArtist().toString());
 		//coverDisplay.setImage(song.get);
 	}
 }

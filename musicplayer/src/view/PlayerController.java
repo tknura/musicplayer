@@ -42,7 +42,7 @@ public class PlayerController {
 	
 	@FXML public void initialize() {
 	    
-		Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(250) , 0);
+		Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(260) , 0);
 		loadSong(song);
 		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
@@ -61,13 +61,6 @@ public class PlayerController {
             	}
             }
         });
-		
-	    Player.currentTimeProperty().addListener((ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) -> {
-	    	actualSongDuration.setText(numberToStringDuration((long)newValue.toSeconds()));
-	    	if (!timeSlider.isDisabled() && totalTime.greaterThan(Duration.ZERO) && !timeSlider.isValueChanging()) {
-	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
-	    	}
-	    });
 	   
 	}
 	
@@ -93,15 +86,15 @@ public class PlayerController {
 	public void loadSong(Song song) {
 		Player.load(song);
 		//SongDisplayController.instance.LoadSong(song);
-		//handlePlay();
-//		totalTime = Duration.seconds(song.getLengthInSeconds());
-	    Player.getMediaPlayer().setOnReady(new Runnable() {
-	        @Override
-	        public void run() {
-	        	totalTime = Player.getMediaPlayer().getMedia().getDuration();
-	        	System.out.println(totalTime);
-	        	songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
-	        }
+		handlePlay();
+		totalTime = Duration.seconds(song.getLengthInSeconds());
+		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
+		
+	    Player.currentTimeProperty().addListener((ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) -> {
+	    	actualSongDuration.setText(numberToStringDuration((long)newValue.toSeconds()));
+	    	if (!timeSlider.isDisabled() && totalTime.greaterThan(Duration.ZERO) && !timeSlider.isValueChanging()) {
+	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
+	    	}
 	    });
 	}
 	

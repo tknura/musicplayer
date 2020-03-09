@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.pl.configuration.Config;
+import com.pl.musicManager.Player;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 import com.pl.utility.Explorer;
@@ -36,7 +37,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-//		launch(args);
+		launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
@@ -55,7 +56,7 @@ public class Main extends Application {
 	public static void SetUpScene(Stage stage, Parent root) {
 		final Scene scene = new Scene(root);
     	stage.sizeToScene();
-        stage.setMinWidth(800);
+        stage.setMinWidth(1080);
         stage.setMinHeight(720);
         stage.setTitle("My Application");
         stage.setScene(scene);
