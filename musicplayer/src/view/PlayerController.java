@@ -73,7 +73,7 @@ public class PlayerController {
 			loadAndPlay(Player.getLastlyPlayedSongs().getSong());
 		}
 		else {
-			loadAndPlay(Player.getCurrentPlayingSong());
+			Player.seek(Duration.ZERO);
 		}
 	}
 	
