@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Config {
 	
-	private static Boolean verbose = false;
+	private static Boolean verbose = true;
 	private static List<String> directories;
 	private static List<String> extensions;
 	

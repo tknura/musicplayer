@@ -37,7 +37,7 @@ public class Main extends Application {
 }
 	
 	public static void main(String[] args) {
-		launch(args);
+//		launch(args);
 //		List<Song> songs = new LinkedList<>();
 //		Duration length = Duration.between(Instant.EPOCH, Instant.now());
 //		
@@ -46,11 +46,12 @@ public class Main extends Application {
 //		for(File file : explorer.getFileList()) {
 //			songs.add(new Song(null, null, null, length, 0, file.getAbsolutePath()));
 //		};
-		String[] directories = {"C:/Users/Błażej/Desktop/test"};
-		String[] extensions = {".pdf", ".mp3", ".png"};
+		String[] directories = {"C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]"};
+		String[] extensions = {".mp3"};
 		Config config = new Config(directories, extensions);	
 		
 		Library.initializeLibrary();
+		//Library.saveLibrary();
 	}
 	
 	public static void SetUpScene(Stage stage, Parent root) {

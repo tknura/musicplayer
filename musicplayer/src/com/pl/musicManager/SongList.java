@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+import com.pl.utility.Logger;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class SongList {
@@ -12,12 +15,15 @@ public class SongList {
 	protected List<Song> songs;
 	
 	public SongList(String title) {
+		
 		this(title, new LinkedList<Song>());
+		Logger.debug("Default linked list");
 	}
 	
 	public SongList(String title, List<Song> songs) {
 		this.title = new SimpleStringProperty(title);
 		this.songs = songs;
+		Logger.debug("Songs: " + songs);
 	}
 	
 	public List<Song> get() {
@@ -66,6 +72,10 @@ public class SongList {
 			System.out.println("Song #" + i++ + ": ");
 			song.print();
 		}
+	}
+	
+	public boolean isEmpty() {
+		return songs.isEmpty();
 	}
 
 	

@@ -3,24 +3,14 @@
     "title": "main.songlist",
     "songs": [
       {
-        "title": "Sunflower - Spider-Man: Into the Spider-Verse",
-        "artist": "Post Malone",
-        "album": "",
-        "length": "2:38",
-        "lengthInSeconds": 158,
-        "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Sunflower.mp3",
-        "id": 0
-      },
-      {
         "title": "Café Belga",
         "artist": "Taco Hemingway",
         "album": "Café Belga",
         "length": "4:09",
         "lengthInSeconds": 249,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\01 Cafe Belga.mp3",
-        "id": 1
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\01 Cafe Belga.mp3",
+        "id": 0
       },
       {
         "title": "ZTM",
@@ -29,8 +19,8 @@
         "length": "4:39",
         "lengthInSeconds": 279,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\02 ZTM.mp3",
-        "id": 2
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\02 ZTM.mp3",
+        "id": 1
       },
       {
         "title": "Wszystko na niby",
@@ -39,8 +29,8 @@
         "length": "4:18",
         "lengthInSeconds": 258,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\03 Wszystko na niby.mp3",
-        "id": 3
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\03 Wszystko na niby.mp3",
+        "id": 2
       },
       {
         "title": "Re¿yseria: Kubrick",
@@ -49,8 +39,8 @@
         "length": "3:31",
         "lengthInSeconds": 211,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\04 Rezyseria - Kubrick.mp3",
-        "id": 4
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\04 Rezyseria - Kubrick.mp3",
+        "id": 3
       },
       {
         "title": "2031",
@@ -59,8 +49,8 @@
         "length": "4:59",
         "lengthInSeconds": 299,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\05 2031.mp3",
-        "id": 5
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\05 2031.mp3",
+        "id": 4
       },
       {
         "title": "Fiji",
@@ -69,8 +59,8 @@
         "length": "4:02",
         "lengthInSeconds": 242,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\06 Fiji.mp3",
-        "id": 6
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\06 Fiji.mp3",
+        "id": 5
       },
       {
         "title": "Abonent jest czasowo niedostêpny",
@@ -79,8 +69,8 @@
         "length": "4:33",
         "lengthInSeconds": 273,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\07 Abonent jest czasowo niedostepny.mp3",
-        "id": 7
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\07 Abonent jest czasowo niedostepny.mp3",
+        "id": 6
       },
       {
         "title": "Motorola",
@@ -89,8 +79,8 @@
         "length": "3:11",
         "lengthInSeconds": 191,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\08 Motorola.mp3",
-        "id": 8
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\08 Motorola.mp3",
+        "id": 7
       },
       {
         "title": "Modigliani",
@@ -99,8 +89,8 @@
         "length": "3:50",
         "lengthInSeconds": 230,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\09 Modigliani.mp3",
-        "id": 9
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\09 Modigliani.mp3",
+        "id": 8
       },
       {
         "title": "Adieu",
@@ -109,8 +99,8 @@
         "length": "4:47",
         "lengthInSeconds": 287,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\10 Adieu.mp3",
-        "id": 10
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\10 Adieu.mp3",
+        "id": 9
       },
       {
         "title": "4 AM in Girona",
@@ -119,71 +109,9 @@
         "length": "3:08",
         "lengthInSeconds": 188,
         "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\Taco Hemingway - Cafe Belga [mp3]\\11 4 AM in Girona.mp3",
-        "id": 11
-      },
-      {
-        "title": "hotel wolnych pokoi",
-        "artist": "schafter",
-        "album": "",
-        "length": "3:02",
-        "lengthInSeconds": 182,
-        "playCount": 0,
-        "directory": "C:\\Users\\B³a¿ej\\Documents\\test\\temp\\test.mp3",
-        "id": 12
+        "directory": "C:\\Java Projects\\musicplayer\\Taco Hemingway - Cafe Belga [mp3]\\11 4 AM in Girona.mp3",
+        "id": 10
       }
-    ]
-  },
-  "playlistList": {
-    "playlist1": [
-      0,
-      1,
-      2
-    ],
-    "lololol! :D": [
-      3,
-      6,
-      7
-    ]
-  },
-  "albumList": {
-    "Hollywood is bleeding": {
-      "id": 256,
-      "artist": "Post Malone",
-      "release.year": 2019,
-      "length.in.seconds": 699,
-      "songs": [
-        5,
-        6,
-        0
-      ]
-    },
-    "Marmur": {
-      "id": 123,
-      "artist": "Haco Temingway",
-      "release.year": 2015,
-      "length.in.seconds": 679,
-      "songs": [
-        8,
-        9,
-        3
-      ]
-    },
-    "test album": {
-      "id": 1024,
-      "artist": "Post Malone",
-      "release.year": 2020,
-      "length.in.seconds": 0,
-      "songs": []
-    }
-  },
-  "artistList": {
-    "Post malone": [
-      256,
-      1024
-    ],
-    "Paco Hemingway": [
-      123
     ]
   }
 }

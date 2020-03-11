@@ -42,8 +42,8 @@ public class PlayerController {
 	
 	@FXML public void initialize() {
 	    
-		Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(260) , 0);
-		loadSong(song);
+		//Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(260) , 0);
+		//loadSong(song);
 		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
