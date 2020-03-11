@@ -1,10 +1,9 @@
 package view;
 
-import java.text.DecimalFormat;
-
 //import java.time.Duration;
 
 import com.pl.musicManager.Player;
+import com.pl.musicManager.Queue;
 import com.pl.musicManager.Song;
 
 import javafx.beans.value.ChangeListener;
@@ -41,8 +40,7 @@ public class PlayerController {
 	@FXML private ProgressBar timeProgressBar;
 	
 	@FXML public void initialize() {
-	    
-		Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(260) , 0);
+		Song song = new Song(1, "E:/Repositories/musicplayer/test.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(182) , 0);
 		loadSong(song);
 		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
@@ -52,24 +50,31 @@ public class PlayerController {
             	if(timeSlider.isValueChanging()) {
             		if(Player.getMediaPlayer() != null) {
             			Player.seek(totalTime.multiply(new_val.doubleValue() / 100.0));
-            			System.out.println("1: " + totalTime.multiply(new_val.doubleValue() / 100.0).toSeconds());
-            			System.out.println("2: " + Player.getMediaPlayer().getCurrentTime().toSeconds());
             		}
             		else {
             			timeSlider.valueProperty().setValue(0);
             		}
             	}
             }
-        });
-	   
+        });  
 	}
 	
 	@FXML private void handleNextButton(ActionEvent event) {
-
+		if(Player.getUserQueue().getSong() != null) {
+			loadAndPlay(Player.getSongsQueue().getSong());
+		}
+		else {
+			loadAndPlay(Player.getUserQueue().getSong());
+		}
 	}
 	
 	@FXML private void handlePrevButton(ActionEvent event) {
-		
+		if(Player.getLastlyPlayedSongs().getSong() != Player.getCurrentPlayingSong()) {
+			loadAndPlay(Player.getLastlyPlayedSongs().getSong());
+		}
+		else {
+			loadAndPlay(Player.getCurrentPlayingSong());
+		}
 	}
 	
 	@FXML private void handlePlayPauseButton(ActionEvent event) {
@@ -83,10 +88,45 @@ public class PlayerController {
 		}
 	}
 	
+	@FXML private void handleQueueButton(ActionEvent event) {
+		if(!queueButton.isSelected()) {
+			//hide queue
+		}
+		else {
+			//display queue
+		}
+	}
+	
+	@FXML private void handleShuffleButton(ActionEvent event) {
+		if(!shuffleButton.isSelected()) {
+			Player.shuffle(false);
+		}
+		else {
+			Player.shuffle(true);
+		}
+	}
+	
+	@FXML private void handleVolumeButton(ActionEvent event) {
+		if(!volumeButton.isSelected()) {			
+			Player.unMute();
+		}
+		else {
+			Player.mute();
+		}
+	}
+	
+	@FXML private void handleRepeatButton(ActionEvent event) {
+		if(!repeatButton.isSelected()) {
+			Player.repeat(false);
+		}
+		else {
+			Player.repeat(true);
+		}
+	}
+	
 	public void loadSong(Song song) {
 		Player.load(song);
 		//SongDisplayController.instance.LoadSong(song);
-		handlePlay();
 		totalTime = Duration.seconds(song.getLengthInSeconds());
 		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
 		
@@ -96,6 +136,11 @@ public class PlayerController {
 	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
 	    	}
 	    });
+	}
+	
+	public void loadAndPlay(Song song) {
+		loadSong(song);
+		handlePlay();
 	}
 	
 	private void handlePlay() {

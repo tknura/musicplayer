@@ -24,6 +24,10 @@ public class SongList {
 		return songs;
 	}
 	
+	public Song getSong() {
+		return songs.get(0);
+	}
+	
 	public String getTitle() {
 		return title.get();
 	}
