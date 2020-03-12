@@ -1,10 +1,16 @@
 package view;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import com.pl.musicManager.Album;
+
 //import java.time.Duration;
 
 import com.pl.musicManager.Player;
 import com.pl.musicManager.Queue;
 import com.pl.musicManager.Song;
+import com.pl.musicManager.management.Library;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -16,6 +22,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class PlayerController {
@@ -39,9 +47,12 @@ public class PlayerController {
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
-	@FXML public void initialize() {
-		Song song = new Song(1, "E:/Repositories/musicplayer/test.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(182) , 0);
-		loadSong(song);
+	@FXML public void initialize() throws FileNotFoundException {
+		Album testAlbum = new Album(1, "Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
+		testAlbum.add(Library.getSongList().get());
+
+		loadSong(testAlbum.front());
+		Player.setCurrentPlayingSongList(testAlbum);
 		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
@@ -57,24 +68,24 @@ public class PlayerController {
             	}
             }
         });  
+		
+		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
+
+			@Override
+			public void run() {
+				Player.getCurrentPlayingSong().played();
+				handleNext();
+			}
+
+		});
 	}
 	
 	@FXML private void handleNextButton(ActionEvent event) {
-		if(Player.getUserQueue().getSong() != null) {
-			loadAndPlay(Player.getSongsQueue().getSong());
-		}
-		else {
-			loadAndPlay(Player.getUserQueue().getSong());
-		}
+		handleNext();
 	}
 	
 	@FXML private void handlePrevButton(ActionEvent event) {
-		if(Player.getLastlyPlayedSongs().getSong() != Player.getCurrentPlayingSong()) {
-			loadAndPlay(Player.getLastlyPlayedSongs().getSong());
-		}
-		else {
-			Player.seek(Duration.ZERO);
-		}
+		loadAndPlay(Player.prev());
 	}
 	
 	@FXML private void handlePlayPauseButton(ActionEvent event) {
@@ -141,6 +152,22 @@ public class PlayerController {
 	public void loadAndPlay(Song song) {
 		loadSong(song);
 		handlePlay();
+	}
+	
+	private void handleStop() {
+		Player.stop();
+		playIcon.setOpacity(1);
+		pauseIcon.setOpacity(0);
+	}
+	
+	private void handleNext() {
+		if(Player.next() != null) {
+			loadAndPlay(Player.next());
+		}
+		else {
+			loadSong(Player.getCurrentPlayingSongList().front());
+			handlePause();
+		}
 	}
 	
 	private void handlePlay() {

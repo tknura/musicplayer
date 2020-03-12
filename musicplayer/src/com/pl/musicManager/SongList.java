@@ -24,8 +24,16 @@ public class SongList {
 		return songs;
 	}
 	
-	public Song getSong() {
+	public Song back() {
+		return songs.get(songs.size() - 1);
+	}
+	
+	public Song front() {
 		return songs.get(0);
+	}
+	
+	public Song getSong(int index) {
+		return songs.get(index);
 	}
 	
 	public String getTitle() {
@@ -40,7 +48,7 @@ public class SongList {
 		songs.add(song);
 	}
 	
-	public void add(LinkedList<Song> songList) {
+	public void add(List<Song> songList) {
 		songs.addAll(songList);
 	}
 	
@@ -48,8 +56,8 @@ public class SongList {
 		songs.remove(song);
 	}
 	
-	public void remove(int index) {
-		songs.remove(index);
+	public Song remove(int index) {
+		return songs.remove(index);
 	}
 	
 	public void load() {
@@ -62,6 +70,18 @@ public class SongList {
 	
 	public void sortByName() {
 		Collections.sort(songs);
+	}
+	
+	public boolean isEmpty() {
+		return songs.isEmpty();
+	}
+	
+	public int size() {
+		return songs.size();
+	}
+	
+	public int indexOf(Song song) {
+		return songs.indexOf(song);
 	}
 	
 	public void print() {

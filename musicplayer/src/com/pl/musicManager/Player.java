@@ -6,18 +6,19 @@ import java.util.LinkedList;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 import javafx.util.Duration;
 
 public class Player{
 	
 	private static MediaPlayer mediaPlayer;
-	private static Queue songsQueue;
+	private static Queue currentPlayingSongList;
 	private static Queue userQueue;
 	private static Queue lastlyPlayedSongs;
 	private static Song currentPlayingSong;
 	
 	static {
-		songsQueue = new Queue();
+		currentPlayingSongList = new Queue();
 		userQueue = new Queue();
 		lastlyPlayedSongs = new Queue();
 	}
@@ -30,24 +31,28 @@ public class Player{
 		Player.mediaPlayer = mediaPlayer;
 	}
 	
-	public static void setSongsQueue(Queue songsQueue) {
-		Player.songsQueue = songsQueue;
+	public static void setCurrentPlayingSongList(Queue songsQueue) {
+		Player.currentPlayingSongList = songsQueue;
 	}
 	
-	public static Queue getSongsQueue() {
-		return songsQueue;
+	public static Queue getCurrentPlayingSongList() {
+		return currentPlayingSongList;
 	}
 
+	public static void setCurrentPlayingSongList(SongList songList) {
+		currentPlayingSongList.add(songList.get());
+	}
+	
 	public static void addToQueue(Song song) {
-		songsQueue.add(song);
+		userQueue.add(song);
+	}
+	
+	public static void addToQueue(Album album) {
+		userQueue.add(album);
 	}
 	
 	public static Queue getUserQueue() {
 		return userQueue;
-	}
-
-	public static void setUserQueue(Queue userQueue) {
-		Player.userQueue = userQueue;
 	}
 
 	public static Queue getLastlyPlayedSongs() {
@@ -67,21 +72,23 @@ public class Player{
 	}
 
 	public static void load(Song song) {
+		if(mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
+			Player.stop();
+		}
 		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toString());
 		currentPlayingSong = song;
-		lastlyPlayedSongs.add(song);
 		mediaPlayer = new MediaPlayer(currentSongMedia);
 	}
 	
 	public static void shuffle(boolean state) {
-		Queue tmp = songsQueue;
+		Queue tmp = currentPlayingSongList;
 		if(state) {
-			tmp = Player.getSongsQueue();
-			Player.getSongsQueue().shuffle();
+			tmp = Player.getCurrentPlayingSongList();
+			Player.getCurrentPlayingSongList().shuffle();
 		}
 		else {
 			if(tmp != null) {
-				Player.setSongsQueue(tmp);
+				Player.setCurrentPlayingSongList(tmp);
 			}
 		}
 	}
@@ -109,12 +116,41 @@ public class Player{
 		currentPlayingSong.setPlaying(false);
 	}
 	
+	public static void stop() {
+		mediaPlayer.stop();
+		currentPlayingSong.setPlaying(false);
+	}
+	
+	public static Song next() {
+		if(Player.getUserQueue().isEmpty()) {
+			Player.getLastlyPlayedSongs().add(currentPlayingSong);
+			return Player.getCurrentPlayingSongList().getNext(currentPlayingSong);
+		}
+		else {
+			return Player.getUserQueue().popFront();
+		}
+	}
+	
+	public static Song prev() {
+		if(Player.getLastlyPlayedSongs().front() != Player.getCurrentPlayingSong()) {
+			Player.getLastlyPlayedSongs().back().print();
+			return Player.getLastlyPlayedSongs().popBack();
+		}
+		else {
+			return currentPlayingSong;
+		}
+	}
+
 	public static void mute() {
 		mediaPlayer.setMute(true);
 	}
 	
 	public static void unMute() {
 		mediaPlayer.setMute(false);
+	}
+	
+	public static Status getStatus() {
+		return mediaPlayer.getStatus();
 	}
 	
 	public static ReadOnlyObjectProperty<Duration> currentTimeProperty(){
