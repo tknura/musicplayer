@@ -26,10 +26,6 @@ public class Player{
 	public static MediaPlayer getMediaPlayer() {
 		return mediaPlayer;
 	}
-
-	public static void setMediaPlayer(MediaPlayer mediaPlayer) {
-		Player.mediaPlayer = mediaPlayer;
-	}
 	
 	public static void setCurrentPlayingSongList(Queue songsQueue) {
 		Player.currentPlayingSongList = songsQueue;
@@ -76,6 +72,9 @@ public class Player{
 			Player.stop();
 		}
 		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toString());
+		if(currentPlayingSong != null) {
+			lastlyPlayedSongs.add(currentPlayingSong);
+		}
 		currentPlayingSong = song;
 		mediaPlayer = new MediaPlayer(currentSongMedia);
 	}
@@ -83,12 +82,12 @@ public class Player{
 	public static void shuffle(boolean state) {
 		Queue tmp = currentPlayingSongList;
 		if(state) {
-			tmp = Player.getCurrentPlayingSongList();
-			Player.getCurrentPlayingSongList().shuffle();
+			tmp = currentPlayingSongList;
+			currentPlayingSongList.shuffle();
 		}
 		else {
 			if(tmp != null) {
-				Player.setCurrentPlayingSongList(tmp);
+				currentPlayingSongList = tmp;
 			}
 		}
 	}
@@ -122,19 +121,17 @@ public class Player{
 	}
 	
 	public static Song next() {
-		if(Player.getUserQueue().isEmpty()) {
-			Player.getLastlyPlayedSongs().add(currentPlayingSong);
-			return Player.getCurrentPlayingSongList().getNext(currentPlayingSong);
+		if(userQueue.isEmpty()) {
+			return currentPlayingSongList.getNext(currentPlayingSong);
 		}
 		else {
-			return Player.getUserQueue().popFront();
+			return userQueue.popFront();
 		}
 	}
 	
 	public static Song prev() {
-		if(Player.getLastlyPlayedSongs().front() != Player.getCurrentPlayingSong()) {
-			Player.getLastlyPlayedSongs().back().print();
-			return Player.getLastlyPlayedSongs().popBack();
+		if(lastlyPlayedSongs.front() != currentPlayingSong) {
+			return lastlyPlayedSongs.popBack();
 		}
 		else {
 			return currentPlayingSong;

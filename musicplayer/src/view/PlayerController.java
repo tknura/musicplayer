@@ -2,6 +2,7 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.pl.musicManager.Album;
 
@@ -16,7 +17,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -27,6 +30,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class PlayerController {
+	
+	@FXML private SongDisplayController songDisplayController;
 	
 	@FXML private Group pauseIcon;
 	@FXML private Group playIcon;
@@ -47,12 +52,14 @@ public class PlayerController {
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
-	@FXML public void initialize() throws FileNotFoundException {
+	@FXML public void initialize() throws IOException {
 		Album testAlbum = new Album(1, "Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
 		testAlbum.add(Library.getSongList().get());
-
-		loadSong(testAlbum.front());
+		
+		songDisplayController = new SongDisplayController();
+		
 		Player.setCurrentPlayingSongList(testAlbum);
+		loadSong(testAlbum.front());
 		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
@@ -68,7 +75,6 @@ public class PlayerController {
             	}
             }
         });  
-		
 		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
 
 			@Override
@@ -137,7 +143,7 @@ public class PlayerController {
 	
 	public void loadSong(Song song) {
 		Player.load(song);
-		//SongDisplayController.instance.LoadSong(song);
+		//songDisplayController.LoadSong(song);
 		totalTime = Duration.seconds(song.getLengthInSeconds());
 		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
 		
