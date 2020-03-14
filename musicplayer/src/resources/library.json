@@ -113,5 +113,53 @@
         "id": 10
       }
     ]
-  }
+  },
+  "playlistList": [
+    {
+      "title": "temp playlist",
+      "songs": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "title": "temp playlist twoooo",
+      "songs": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "albumList": [
+    {
+      "title": "Hollywood is bleeding",
+      "id": 10,
+      "artist": "Post Malone",
+      "release.year": 2019,
+      "length.in.seconds": 786,
+      "songs": [
+        0,
+        1,
+        2
+      ]
+    }
+  ],
+  "artistList": [
+    {
+      "name": "Post Malone",
+      "songs": [
+        10,
+        20
+      ]
+    },
+    {
+      "name": "Mata",
+      "songs": [
+        10,
+        20
+      ]
+    }
+  ]
 }

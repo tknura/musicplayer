@@ -17,16 +17,17 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Scanner;
-import java.util.Set;
 
 import org.hildan.fxgson.FxGson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
@@ -37,8 +38,8 @@ import com.pl.musicManager.Artist;
 import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.SongList;
+import com.pl.utility.JsonHelper;
 import com.pl.utility.Logger;
-import com.sun.javafx.collections.MappingChange.Map;
   
 public class Library {
 
@@ -48,12 +49,15 @@ public class Library {
 	private static List<Artist> artistList;
 	private static List<Playlist> playlistList;
 	
+	private static JsonHelper jsonHelper;
+	
 	static {
 		libFile = new File(Paths.get("src/resources" + "/library.json").toString());
 		songList = new SongList("main.songlist");
 		albumList = new LinkedList<Album>();
 		artistList = new LinkedList<Artist>();
 		playlistList = new LinkedList<Playlist>();
+		jsonHelper = new JsonHelper();
 		//initializeLibrary();
 	}
 	
@@ -76,8 +80,8 @@ public class Library {
 	 * Otherwise, it explores specified folders from Config class in search for songs.
 	 * */
 	public static void initializeLibrary() {
-		System.out.println(libFile.getAbsolutePath());
 		if(libFile.exists()) {
+			System.out.println("Library file found, loading contents");
 			 load();
 		}else {
 			System.out.println("File has not been found, creating library");
@@ -85,37 +89,52 @@ public class Library {
 		}
 	
 	}
-	
-	
+		
 	/** 
 	 * method parses library.json file into valid songList*/
 	private static void load() {	
-		FileReader fileReader;
+		
 		try {
-			fileReader = new FileReader(libFile.getAbsolutePath());
 			
-			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			JsonObject obj = gson.fromJson(fileReader, JsonObject.class); 
-			JsonObject sl = (JsonObject) obj.get("songlist");
-			//Logger.debug("songlist-read:\n " + gson.toJson(sl));
+			JsonDeserializer<SongList> songListDeserializer = jsonHelper.getSongListDeserializer();
+			JsonDeserializer<Playlist> playlistDeserializer = jsonHelper.getPlaylistDeserializer();
 			
-			Logger.debug("songlist adress: " + songList);
-			songList = gson.fromJson(gson.toJson(sl), SongList.class);
+			GsonBuilder customGsonBuilder = new GsonBuilder();
 			
-			songList.print();
-			try {
-				fileReader.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			customGsonBuilder.registerTypeAdapter(SongList.class, songListDeserializer);
+			customGsonBuilder.registerTypeAdapter(Playlist.class, playlistDeserializer);
+			
+			Gson gson = customGsonBuilder.setPrettyPrinting().create();
+			
+			FileReader reader = new FileReader(libFile.getAbsolutePath());
+			
+			JsonObject json = gson.fromJson(reader, JsonObject.class);
+			
+			HashMap<String,JsonElement> map = new HashMap<String, JsonElement>();
+			Type mapType = new TypeToken<HashMap<String, JsonElement>>(){}.getType();
+			map = gson.fromJson(json, mapType);
+						
+			for(Entry<String, JsonElement> entry : json.entrySet()) {
+				
+				if(entry.getKey().equals("songlist")) {
+					songList = gson.fromJson(entry.getValue(), SongList.class);
+				}else if(entry.getKey().equals("playlistList")) {
+					
+					Type listType = new TypeToken<List<Playlist>>() {}.getType();
+					playlistList = gson.fromJson(entry.getValue(), listType);
+					
+				}
 			}
 			
-			
+			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
+		
 	}
 	
 	/** 
@@ -143,13 +162,13 @@ public class Library {
 			obj.add("songlist", gson.toJsonTree(songList));
 			
 			//Playlists
-			//obj.add("playlistList", parseSongList(playlistList));
+			obj.add("playlistList", parseSongList(playlistList));
 			
 			//Albums
-			//obj.add("albumList", parseSongList(albumList));
+			obj.add("albumList", parseSongList(albumList));
 			
 			//Artists
-			//obj.add("artistList", parseArtistList(artistList));
+			obj.add("artistList", parseArtistList(artistList));
 			
 			gson.toJson(obj, fileWriter);
 			fileWriter.close();
@@ -162,32 +181,22 @@ public class Library {
 	
 	
 	/**
-	 * Method for Artists serialization. Each Artist object is represented by 
-	 * array of album id's.
+	 * Method for Artists serialization. 
+	 * Each Artist object is represented by array of album id's.
 	 * */
 	private static JsonElement parseArtistList(List<Artist> list) {
 		
-		JsonSerializer <Artist> artistSerializer = new JsonSerializer<Artist>() {
-			@Override
-			public JsonElement serialize(Artist src, Type type, JsonSerializationContext context) {
-				JsonArray ids = new JsonArray();
-				for(Album album : src.getAlbums()) {
-					ids.add(album.getId());
-				}
-				return ids;
-			}
-		};
+		JsonSerializer<Artist> artistSerializer = jsonHelper.getArtistSerializer();
 		
 		JsonObject obj = new JsonObject();
 		
 		GsonBuilder customGsonBuilder = new GsonBuilder();
 		customGsonBuilder.registerTypeAdapter(Artist.class, artistSerializer);
+		
 		Gson gson = customGsonBuilder.setPrettyPrinting().create();
 		
-		for(Artist artist : list) {
-			obj.add(artist.getName().get(), gson.toJsonTree(artist));
-		}
-		return obj;
+		Type type = new TypeToken<List<Artist>>() {}.getType();
+		return gson.toJsonTree(list, type);
 	}
 		
 	/**
@@ -195,39 +204,10 @@ public class Library {
 	 */
 	private static <T extends SongList> JsonElement parseSongList(List<T> list) {
 		
-		//Custom serializer for songlist (id only)
 		GsonBuilder customGsonBuilder = new GsonBuilder();
-		JsonSerializer <SongList> playlistSerializer = new JsonSerializer<SongList>() {
-			
-			@Override
-			public JsonElement serialize(SongList src, Type type, JsonSerializationContext context) {
-				Logger.debug("[SERIALIZATION] custom serialization");
-				JsonArray ids = new JsonArray();
-				for(Song song : src.get()) {
-					ids.add(song.getId());
-				}
-				return ids;
-			};
-			
-		};
 		
-		//Custom serializer for albums
-		JsonSerializer <Album> albumSerializer = new JsonSerializer<Album>() {
-
-			@Override
-			public JsonElement serialize(Album src, Type type, JsonSerializationContext context) {
-				JsonObject result = new JsonObject();
-				result.addProperty("id", src.getId());
-				result.addProperty("artist", src.getArtist().get());
-				result.addProperty("release.year", src.getReleaseYear());
-				result.addProperty("length.in.seconds", src.getLengthInSeconds());
-					
-				JsonArray ids = (JsonArray) playlistSerializer.serialize(src, type, context);
-				result.add("songs", ids);
-				return result;
-			}
-			
-		};
+		JsonSerializer <SongList> playlistSerializer = jsonHelper.getSonglistSerializer();
+		JsonSerializer <Album> albumSerializer = jsonHelper.getAlbumSerializer();
 		
 		//Selecting type adapter
 		if(!list.isEmpty()) {
@@ -242,14 +222,8 @@ public class Library {
 		}
 		
 		Gson customGson = customGsonBuilder.setPrettyPrinting().create();
-		
-		//serializing
-		JsonObject songs = new JsonObject();
-		for(SongList songlist : list) {
-			songs.add(songlist.getTitle(), customGson.toJsonTree(songlist));
-		}
-		
-		return songs;
+				
+		return customGson.toJsonTree(list);
 		
 	}
 
@@ -264,4 +238,8 @@ public class Library {
 	public static void addArtist(Artist artist) {
 		artistList.add(artist);
 	}
+	
 }
+
+
+

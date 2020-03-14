@@ -17,17 +17,23 @@ public class SongList {
 	public SongList(String title) {
 		
 		this(title, new LinkedList<Song>());
-		Logger.debug("Default linked list");
 	}
 	
 	public SongList(String title, List<Song> songs) {
 		this.title = new SimpleStringProperty(title);
 		this.songs = songs;
-		Logger.debug("Songs: " + songs);
 	}
 	
 	public List<Song> get() {
 		return songs;
+	}
+	
+	public Song getSong(int index) {
+		if(songs.size() >= index) {
+			return songs.get(index);
+		}else {
+			return null;
+		}
 	}
 	
 	public String getTitle() {

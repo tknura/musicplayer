@@ -1,6 +1,7 @@
 package com.pl.musicManager;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class Playlist extends SongList implements Comparable<Playlist>{
 	
@@ -9,6 +10,9 @@ public class Playlist extends SongList implements Comparable<Playlist>{
 		super(title);
 	}
 
+	public Playlist(String title, List<Song> songs) {
+		super(title, songs);
+	}
 
 	
 	public void sortByAlbums() {

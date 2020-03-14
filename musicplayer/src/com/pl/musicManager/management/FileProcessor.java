@@ -11,6 +11,8 @@ import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
+import com.pl.musicManager.Album;
+import com.pl.musicManager.Artist;
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 import com.pl.utility.Logger;
@@ -18,7 +20,8 @@ import com.pl.utility.Logger;
 public class FileProcessor {
 	
 	private static List<Song> songList;
-	
+	private static List<Album> albumList;
+	private static List<Artist> artistList;
 	static {
 		songList = new LinkedList<Song>();
 		FileProcessor.parse();
