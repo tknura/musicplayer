@@ -26,11 +26,13 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class PlayerController {
 	
+	@FXML private StackPane songDisplay;
 	@FXML private SongDisplayController songDisplayController;
 	
 	@FXML private Group pauseIcon;
@@ -52,15 +54,14 @@ public class PlayerController {
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
-	@FXML public void initialize() throws IOException {
+	@FXML public void initialize() throws IOException {	
+		
 		Album testAlbum = new Album(1, "Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
 		testAlbum.add(Library.getSongList().get());
 		
-		songDisplayController = new SongDisplayController();
-		
 		Player.setCurrentPlayingSongList(testAlbum);
 		loadSong(testAlbum.front());
-		
+
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -75,15 +76,7 @@ public class PlayerController {
             	}
             }
         });  
-		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
-
-			@Override
-			public void run() {
-				Player.getCurrentPlayingSong().played();
-				handleNext();
-			}
-
-		});
+		
 	}
 	
 	@FXML private void handleNextButton(ActionEvent event) {
@@ -143,7 +136,7 @@ public class PlayerController {
 	
 	public void loadSong(Song song) {
 		Player.load(song);
-		//songDisplayController.LoadSong(song);
+		songDisplayController.loadSong(song);
 		totalTime = Duration.seconds(song.getLengthInSeconds());
 		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
 		
@@ -153,6 +146,14 @@ public class PlayerController {
 	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
 	    	}
 	    });
+	    
+		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				Player.getCurrentPlayingSong().played();
+				handleNext();
+			}
+		});
 	}
 	
 	public void loadAndPlay(Song song) {
