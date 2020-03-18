@@ -21,6 +21,7 @@ public class SongPanelController {
     @FXML private TableColumn<Song, String> aritstCol;
     
     public void initialize(){
+   	
     	ObservableList<Song> songOList = generatetest();
     	songTableView.setItems(songOList);
     	

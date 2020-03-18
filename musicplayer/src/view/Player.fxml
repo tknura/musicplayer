@@ -7,12 +7,18 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.SVGPath?>
 
 <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" styleClass="player" stylesheets="@../resources/stylesheets/player.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PlayerController">
    <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0">
+         <children>
+            <fx:include fx:id="songDisplay" source="SongDisplay.fxml" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="30.0" StackPane.alignment="BOTTOM_LEFT" />
+         </children>
+      </AnchorPane>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="200.0" prefHeight="14.0" prefWidth="560.0" StackPane.alignment="BOTTOM_CENTER">
          <children>
             <StackPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0">
@@ -27,7 +33,7 @@
             <HBox alignment="CENTER" spacing="5.0">
                <children>
                   <Label fx:id="actualSongDuration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="0:00" />
-                  <Label fx:id="songDuration11" contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="/" textAlignment="CENTER" />
+                  <Label contentDisplay="RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="/" textAlignment="CENTER" />
                   <Label fx:id="songDuration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="songtime-label" text="0:00" />
                </children>
                <HBox.margin>
@@ -41,7 +47,7 @@
       </HBox>
       <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="135.0" StackPane.alignment="TOP_RIGHT">
          <children>
-            <ToggleButton fx:id="queueButton" mnemonicParsing="false" styleClass="clickable-button">
+            <ToggleButton fx:id="queueButton" mnemonicParsing="false" onAction="#handleQueueButton" styleClass="clickable-button">
                <graphic>
                   <Group scaleX="0.05" scaleY="0.05">
                      <children>
@@ -61,7 +67,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </ToggleButton>
-            <ToggleButton fx:id="repeatButton" mnemonicParsing="false" styleClass="clickable-button">
+            <ToggleButton fx:id="repeatButton" mnemonicParsing="false" onAction="#handleRepeatButton" styleClass="clickable-button">
                <graphic>
                   <Group scaleX="0.05" scaleY="0.05">
                      <children>
@@ -75,7 +81,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </ToggleButton>
-            <ToggleButton fx:id="shuffleButton" mnemonicParsing="false" styleClass="clickable-button">
+            <ToggleButton fx:id="shuffleButton" mnemonicParsing="false" onAction="#handleShuffleButton" styleClass="clickable-button">
                <graphic>
                   <Group scaleX="0.05" scaleY="0.05">
                      <children>
@@ -88,7 +94,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </ToggleButton>
-            <ToggleButton fx:id="volumeButton" mnemonicParsing="false" styleClass="clickable-button">
+            <ToggleButton fx:id="volumeButton" mnemonicParsing="false" onAction="#handleVolumeButton" styleClass="clickable-button">
                <graphic>
                   <Group scaleX="0.05" scaleY="0.05">
                      <children>
@@ -109,7 +115,7 @@
       </HBox>
       <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="110.0" StackPane.alignment="TOP_CENTER">
          <children>
-            <Button fx:id="prevButton" maxHeight="97.0" maxWidth="99.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="99.0" styleClass="back-button">
+            <Button fx:id="prevButton" maxHeight="97.0" maxWidth="99.0" mnemonicParsing="false" onAction="#handlePrevButton" prefHeight="97.0" prefWidth="99.0" styleClass="back-button">
                <graphic>
                   <Group scaleX="0.05" scaleY="0.05">
                      <children>

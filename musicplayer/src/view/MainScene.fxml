@@ -24,7 +24,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="1280.0">
                            <children>
-                              <fx:include source="SongPanel.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <fx:include fx:id="songPanel" source="SongPanel.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </content>
@@ -73,15 +73,10 @@
          <bottom>
             <AnchorPane prefHeight="0.0" prefWidth="0.0" BorderPane.alignment="CENTER">
                <children>
-                  <fx:include source="Player.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
+                  <fx:include fx:id="player" source="Player.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER" />
                </children>
             </AnchorPane>
          </bottom>
       </BorderPane>
-      <AnchorPane maxHeight="0.0" maxWidth="0.0" minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" StackPane.alignment="BOTTOM_LEFT">
-         <children>
-            <fx:include source="SongDisplay.fxml" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="40.0" StackPane.alignment="BOTTOM_LEFT" />
-         </children>
-      </AnchorPane>
    </children>
 </StackPane>
