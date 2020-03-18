@@ -4,18 +4,23 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
-public class Album extends SongList implements Comparable<Album> {
+public class Album extends MusicStructure{
 	
 	private SimpleStringProperty artist;
 	private int releaseYear;
 	private long lengthInSeconds;
-	private Image cover;
-	private SimpleObjectProperty<Image> coverProperty;
+	private transient Image cover;
+	private transient SimpleObjectProperty<Image> coverProperty;
 	private int id;
+	private static int idProvider;
 	
-	public Album(int id, String title, String artist, int releaseYear, Image cover) {
+	static {
+		idProvider = 0;
+	}
+	
+	public Album(String title, String artist, int releaseYear, Image cover) {
 		super(title);
-		this.id = id;
+		this.id = idProvider++;
 		if(title == null) {
 			title = "Unknown album";
 		}
@@ -74,23 +79,23 @@ public class Album extends SongList implements Comparable<Album> {
 		this.coverProperty = coverProperty;
 	}
 	
-	@Override
-	public int compareTo(Album album) {
-		return this.getTitle().toString().compareTo(album.getTitle().toString());
-	}
+//	@Override
+//	public int compareTo(Album album) {
+//		return this.getTitle().toString().compareTo(album.getTitle().toString());
+//	}
 	
-	private long calculateAlbumLength() {
-		long result = 0;
-		
-		for(Song s : songs) {
-			result += s.getLengthInSeconds();
-		}
-		
-		return result;
-	}
+//	private long calculateAlbumLength() {
+//		long result = 0;
+//		
+//		for(Song s : songs) {
+//			result += s.getLengthInSeconds();
+//		}
+//		
+//		return result;
+//	}
 	
 	public void add(Song song) {
-		songs.add(song);
+		songs.add(song.getId());
 		lengthInSeconds += song.getLengthInSeconds();
 	}
 	  

@@ -1,5 +1,6 @@
 package com.pl.musicManager.management;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.time.Duration;
 import java.util.LinkedList;
@@ -10,12 +11,16 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.images.Artwork;
+import org.jaudiotagger.tag.images.ArtworkFactory;
 
 import com.pl.musicManager.Album;
 import com.pl.musicManager.Artist;
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 import com.pl.utility.Logger;
+
+import javafx.scene.image.Image;
 
 public class FileProcessor {
 	
@@ -52,6 +57,7 @@ public class FileProcessor {
 				String title = tag.getFirst(FieldKey.TITLE);
 				String artist = tag.getFirst(FieldKey.ARTIST);
 				String album = tag.getFirst(FieldKey.ALBUM);
+				
 				long length = header.getTrackLength();
 				Duration duration = Duration.ofSeconds(header.getAudioDataLength());
 				
@@ -65,5 +71,31 @@ public class FileProcessor {
 		}
 	}
 		
+	public static int retrieveAlbumReleaseYear(File file) {
+		AudioFile audioFile;
+		try {
+			audioFile = AudioFileIO.read(file);
+			Tag tag = audioFile.getTag();
+			int releaseYear = Integer.parseInt(tag.getFirst(FieldKey.YEAR));
+			return releaseYear;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public static Image retrieveAlbumCover(File file) {
+		
+		try {
+			Artwork artwork = ArtworkFactory.createArtworkFromFile(file);
+			byte[] bytes = artwork.getBinaryData();
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			Image image = new Image(bis);
+			return image;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 }

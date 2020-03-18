@@ -1,11 +1,15 @@
 package com.pl.musicManager;
 
+import java.io.File;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.annotations.SerializedName;
+import com.pl.musicManager.management.FileProcessor;
 import com.pl.utility.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -26,6 +30,20 @@ public class SongList {
 	
 	public List<Song> get() {
 		return songs;
+	}
+	
+	/**
+	 * Method returns list of songs, which ids are contained inside list of integers
+	 * */
+	public List<Song> get(List<Integer> ids){
+		List<Song> obj = new LinkedList<Song>();
+		for(int id : ids) {
+			Song tmp = getSong(id);
+			if(tmp!=null) {
+				obj.add(getSong(id));
+			}
+		}
+		return obj;
 	}
 	
 	public Song getSong(int index) {
@@ -56,17 +74,6 @@ public class SongList {
 		songs.remove(song);
 	}
 	
-	public void remove(int index) {
-		songs.remove(index);
-	}
-	
-	public void load() {
-		//TODO loading from JSON file
-	}
-	
-	public void save() {
-		//TODO saving to JSON file
-	}
 	
 	public void sortByName() {
 		Collections.sort(songs);
@@ -82,6 +89,42 @@ public class SongList {
 	
 	public boolean isEmpty() {
 		return songs.isEmpty();
+	}
+	
+	public boolean contains(int id) {
+		for(Song song : songs) {
+			if(song.getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void synchronize() {
+		for(Song song : songs) {
+			File file = new File(song.getDirectory());
+			if(!file.exists()) {
+				songs.remove(song);
+			}
+		}
+	}
+	
+	public List<Album> retrieveAlbums() {
+		Map<String, Album> albums = new HashMap<String, Album>();
+		for(Song song : songs) {
+			
+			String albumName = song.getAlbum();
+			String artistName = song.getArtist();
+			
+			Album album = albums.get(albumName);
+			if(album == null) {
+				int releaseYear = FileProcessor.retrieveAlbumReleaseYear(new File(song.getDirectory()));
+				albums.put(albumName, new Album(albumName, artistName, releaseYear, null));
+			}else {
+				album.add(song);
+			}
+		}
+		return null;
 	}
 
 	

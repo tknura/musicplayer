@@ -116,50 +116,78 @@
   },
   "playlistList": [
     {
-      "title": "temp playlist",
       "songs": [
         0,
         1,
         2
-      ]
+      ],
+      "title": "temp playlist"
     },
     {
-      "title": "temp playlist twoooo",
       "songs": [
         0,
         1,
         2
-      ]
+      ],
+      "title": "temp playlist twoooo"
+    },
+    {
+      "songs": [
+        0,
+        1,
+        2
+      ],
+      "title": "temp playlist 3"
+    },
+    {
+      "songs": [
+        0,
+        1,
+        2
+      ],
+      "title": "temp playlist"
+    },
+    {
+      "songs": [
+        0,
+        1,
+        2
+      ],
+      "title": "temp playlist twoooo"
+    },
+    {
+      "songs": [
+        0,
+        1,
+        2
+      ],
+      "title": "temp playlist 3"
     }
   ],
   "albumList": [
     {
-      "title": "Hollywood is bleeding",
-      "id": 10,
       "artist": "Post Malone",
-      "release.year": 2019,
-      "length.in.seconds": 786,
+      "releaseYear": 2019,
+      "lengthInSeconds": 786,
+      "id": 0,
       "songs": [
         0,
         1,
         2
-      ]
-    }
-  ],
-  "artistList": [
-    {
-      "name": "Post Malone",
-      "songs": [
-        10,
-        20
-      ]
+      ],
+      "title": "Hollywood is bleeding"
     },
     {
-      "name": "Mata",
+      "artist": "Mata",
+      "releaseYear": 2020,
+      "lengthInSeconds": 786,
+      "id": 1,
       "songs": [
-        10,
-        20
-      ]
+        0,
+        1,
+        2
+      ],
+      "title": "Schodki"
     }
   ]
 }
