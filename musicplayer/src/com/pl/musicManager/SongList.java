@@ -48,7 +48,15 @@ public class SongList {
 		songs.add(song);
 	}
 	
-	public void add(LinkedList<Song> songList) {
+	public Song front() {
+		return getSong(0);
+	}
+	
+	public int size() {
+		return songs.size();
+	}
+	
+	public void add(List<Song> songList) {
 		songs.addAll(songList);
 	}
 	

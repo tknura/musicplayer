@@ -20,7 +20,7 @@ public class Queue extends SongList{
 	 * Method which pops front element of the list and return him
 	 */
 	public Song popBack() {
-		return super.remove(super.size() - 1);
+		return super.get().remove(super.size() - 1);
 	}
 	
 	/*
@@ -44,7 +44,7 @@ public class Queue extends SongList{
 	 */
 	public Song getNext(Song song) {
 		if(super.get().indexOf(song) + 1 <= super.get().size() - 1) {
-			return super.getSong(super.indexOf(song) + 1);
+			return super.getSong(super.get().indexOf(song) + 1);
 		}
 		else {
 			return null;
