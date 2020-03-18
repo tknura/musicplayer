@@ -1,25 +1,39 @@
 package view;
 
-import java.text.DecimalFormat;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import com.pl.musicManager.Album;
 
 //import java.time.Duration;
 
 import com.pl.musicManager.Player;
+import com.pl.musicManager.Queue;
 import com.pl.musicManager.Song;
+import com.pl.musicManager.management.Library;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class PlayerController {
+	
+	@FXML private StackPane songDisplay;
+	@FXML private SongDisplayController songDisplayController;
 	
 	@FXML private Group pauseIcon;
 	@FXML private Group playIcon;
@@ -40,11 +54,14 @@ public class PlayerController {
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
-	@FXML public void initialize() {
-	    
-		//Song song = new Song(1, "E:/Repositories/musicplayer/Taco Hemingway - Cafe Belga [mp3]/02 ZTM.mp3", "schafter", "schafter", "schafter",  java.time.Duration.ofSeconds(260) , 0);
-		//loadSong(song);
+	@FXML public void initialize() throws IOException {	
 		
+		Album testAlbum = new Album(1, "Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
+		testAlbum.add(Library.getSongList().get());
+		
+		Player.setCurrentPlayingSongList(testAlbum);
+		loadSong(testAlbum.front());
+
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -52,24 +69,22 @@ public class PlayerController {
             	if(timeSlider.isValueChanging()) {
             		if(Player.getMediaPlayer() != null) {
             			Player.seek(totalTime.multiply(new_val.doubleValue() / 100.0));
-            			System.out.println("1: " + totalTime.multiply(new_val.doubleValue() / 100.0).toSeconds());
-            			System.out.println("2: " + Player.getMediaPlayer().getCurrentTime().toSeconds());
             		}
             		else {
             			timeSlider.valueProperty().setValue(0);
             		}
             	}
             }
-        });
-	   
+        });  
+		
 	}
 	
 	@FXML private void handleNextButton(ActionEvent event) {
-
+		handleNext();
 	}
 	
 	@FXML private void handlePrevButton(ActionEvent event) {
-		
+		loadAndPlay(Player.prev());
 	}
 	
 	@FXML private void handlePlayPauseButton(ActionEvent event) {
@@ -83,10 +98,45 @@ public class PlayerController {
 		}
 	}
 	
+	@FXML private void handleQueueButton(ActionEvent event) {
+		if(!queueButton.isSelected()) {
+			//hide queue
+		}
+		else {
+			//display queue
+		}
+	}
+	
+	@FXML private void handleShuffleButton(ActionEvent event) {
+		if(!shuffleButton.isSelected()) {
+			Player.shuffle(false);
+		}
+		else {
+			Player.shuffle(true);
+		}
+	}
+	
+	@FXML private void handleVolumeButton(ActionEvent event) {
+		if(!volumeButton.isSelected()) {			
+			Player.unMute();
+		}
+		else {
+			Player.mute();
+		}
+	}
+	
+	@FXML private void handleRepeatButton(ActionEvent event) {
+		if(!repeatButton.isSelected()) {
+			Player.repeat(false);
+		}
+		else {
+			Player.repeat(true);
+		}
+	}
+	
 	public void loadSong(Song song) {
 		Player.load(song);
-		//SongDisplayController.instance.LoadSong(song);
-		handlePlay();
+		songDisplayController.loadSong(song);
 		totalTime = Duration.seconds(song.getLengthInSeconds());
 		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
 		
@@ -96,6 +146,35 @@ public class PlayerController {
 	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
 	    	}
 	    });
+	    
+		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				Player.getCurrentPlayingSong().played();
+				handleNext();
+			}
+		});
+	}
+	
+	public void loadAndPlay(Song song) {
+		loadSong(song);
+		handlePlay();
+	}
+	
+	private void handleStop() {
+		Player.stop();
+		playIcon.setOpacity(1);
+		pauseIcon.setOpacity(0);
+	}
+	
+	private void handleNext() {
+		if(Player.next() != null) {
+			loadAndPlay(Player.next());
+		}
+		else {
+			loadSong(Player.getCurrentPlayingSongList().front());
+			handlePause();
+		}
 	}
 	
 	private void handlePlay() {

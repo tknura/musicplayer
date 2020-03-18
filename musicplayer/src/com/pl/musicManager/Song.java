@@ -15,6 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.image.Image;
 
 public class Song implements Comparable<Song>{
 	
@@ -137,6 +138,11 @@ public class Song implements Comparable<Song>{
 		return this.getTitle().compareTo(song.getTitle());
 	}
 
+	public Image getCover() {
+		return new Image("resources/placeholders/albumPlaceholder.jpg");
+		//search in albumList with album property and return as image its cover
+	}
+	
 	public void print() {
 		System.out.println("ID: " + id);
 		System.out.println("Directory: " + directory);
