@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.hildan.fxgson.FxGson;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.pl.utility.Logger;
@@ -17,11 +18,15 @@ public abstract class JsonHandler {
 		return gson.toJsonTree(obj);
 	}
 	
-	public abstract <T> T parseFromJson(JsonElement src);
+	public <T> T parseFromJson(JsonElement src, Type type) {
+		Gson gson = FxGson.coreBuilder().setPrettyPrinting().create();
+		//System.out.println(gson.toJson(src).toString());
+		return gson.fromJson(src, type);
+	}
+	
 	
 	public <T> JsonElement parseCollectionToJson(Collection<T> src) {
 		if(src != null) {
-			Logger.debug("Parsing collection");
 			JsonArray parseResult = new JsonArray();
 			
 			for(T item : src) {
@@ -33,7 +38,13 @@ public abstract class JsonHandler {
 		
 	}
 	
-	public abstract <T> Collection<T> parseCollectionFromJson(JsonArray src, Type type);
+	public <T> Collection<T> parseCollectionFromJson(JsonElement src, Type type) {
+		Gson gson = FxGson.coreBuilder().setPrettyPrinting().create();
+		if(src != null) {
+			return gson.fromJson(src, type);
+		}
+		return null;
+	}
 	
 
 }

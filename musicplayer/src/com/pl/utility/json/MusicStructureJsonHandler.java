@@ -20,17 +20,4 @@ import com.pl.utility.Logger;
 
 public class MusicStructureJsonHandler extends JsonHandler {
 
-	@Override
-	public <T> T parseFromJson(JsonElement src) {
-
-		return null;
-	}
-
-
-	@Override
-	public <T> Collection<T> parseCollectionFromJson(JsonArray src, Type type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

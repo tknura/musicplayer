@@ -13,18 +13,5 @@ import com.pl.musicManager.SongList;
 
 public class SongListJsonHandler extends JsonHandler {
 
-	@Override
-	public <T> T parseFromJson(JsonElement src) {
-		GsonBuilder customGsonBuilder = FxGson.coreBuilder(); 
-		Gson gson = customGsonBuilder.setPrettyPrinting().create();
-		return (T) gson.fromJson(src, SongList.class);
-
-	}
-
-	@Override
-	public <T> Collection<T> parseCollectionFromJson(JsonArray src, Type type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
