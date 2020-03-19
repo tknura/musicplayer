@@ -38,21 +38,39 @@ public class SongList {
 	public List<Song> get(List<Integer> ids){
 		List<Song> obj = new LinkedList<Song>();
 		for(int id : ids) {
-			Song tmp = getSong(id);
+			Song tmp = getSongWithIndex(id);
 			if(tmp!=null) {
-				obj.add(getSong(id));
+				obj.add(getSongWithIndex(id));
 			}
 		}
 		return obj;
 	}
 	
-	public Song getSong(int index) {
+	public Song getSongWithIndex(int index) {
 		if(songs.size() >= index) {
 			return songs.get(index);
 		}else {
 			return null;
 		}
 	}
+	
+	public Song getSongWithID(int songID) {
+		for(Song song : songs) {
+			if(song.getId() == songID) {
+				return song;
+			}
+		}
+		return null;
+	}
+	
+	public Song front() {
+		return getSongWithIndex(0);
+	}
+	
+	public Song back() {
+		return getSongWithIndex(songs.size() - 1);
+	}
+	
 	
 	public String getTitle() {
 		return title.get();
@@ -64,10 +82,6 @@ public class SongList {
 	
 	public void add(Song song) {
 		songs.add(song);
-	}
-	
-	public Song front() {
-		return getSong(0);
 	}
 	
 	public int size() {

@@ -3,7 +3,7 @@ package com.pl.musicManager;
 
 import java.util.Collections;
 
-public class Queue extends SongList{
+public class Queue extends MusicStructure{
 	
 	public Queue() {
 		super("");
@@ -13,38 +13,37 @@ public class Queue extends SongList{
 	 * Method which adds whole album to the queue
 	 */
 	public void add(Album album) {
-		super.add(album.get());
+		super.add(album);
 	}
+	
 	
 	/*
 	 * Method which pops front element of the list and return him
 	 */
 	public Song popBack() {
-		return super.get().remove(super.size() - 1);
+		return super.remove(super.back());	
 	}
 	
 	/*
 	 * Method which pops front element of the list and return him
 	 */
 	public Song popFront() {
-		Song result = super.front();
-		super.remove(0);
-		return result;
+		return super.remove(super.front());
 	}
 	
 	/*
 	 * Method which return lastly added song to queue
 	 */
 	public Song getLastlyAdded() {
-		return super.getSong(super.size() - 1);
+		return super.getSongWithID(super.size() - 1);
 	}
 	
 	/*
 	 * Method which return index of song passed in the argument
 	 */
 	public Song getNext(Song song) {
-		if(super.get().indexOf(song) + 1 <= super.get().size() - 1) {
-			return super.getSong(super.get().indexOf(song) + 1);
+		if(super.indexOf(song) + 1 <= super.size() - 1) {
+			return super.getSongWithID(super.indexOf(song) + 1);
 		}
 		else {
 			return null;

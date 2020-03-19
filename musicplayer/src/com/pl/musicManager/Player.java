@@ -27,14 +27,16 @@ public class Player{
 		return mediaPlayer;
 	}
 	
-	public static void setCurrentPlayingSongList(Queue songsQueue) {
-		Player.currentPlayingSongList = songsQueue;
+	public static void setCurrentPlayingSongList(MusicStructure struct) {
+		Player.currentPlayingSongList = (Queue)struct;
 	}
 	
 	public static Queue getCurrentPlayingSongList() {
 		return currentPlayingSongList;
 	}
 
+	/**
+	 * Adds*/
 	public static void setCurrentPlayingSongList(SongList songList) {
 		currentPlayingSongList.add(songList.get());
 	}
