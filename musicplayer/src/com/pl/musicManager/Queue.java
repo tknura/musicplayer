@@ -1,12 +1,16 @@
 package com.pl.musicManager;
 
-
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Queue extends MusicStructure{
 	
+	private List<Integer> shuffleTmpList;
+	
 	public Queue() {
 		super("");
+		shuffleTmpList = new ArrayList<Integer>();
 	}
 	
 	/*
@@ -15,7 +19,6 @@ public class Queue extends MusicStructure{
 	public void add(Album album) {
 		super.add(album);
 	}
-	
 	
 	/*
 	 * Method which pops front element of the list and return him
@@ -39,7 +42,7 @@ public class Queue extends MusicStructure{
 	}
 	
 	/*
-	 * Method which return index of song passed in the argument
+	 * Method which return next song in queue if it exists
 	 */
 	public Song getNext(Song song) {
 		if(super.indexOf(song) + 1 <= super.size() - 1) {
@@ -54,6 +57,11 @@ public class Queue extends MusicStructure{
 	 * Method which shuffles queue
 	 */
 	public void shuffle() {
+		shuffleTmpList = songs;
 		Collections.shuffle(songs);
+	}
+	
+	public void deshuffle() { 
+		songs = shuffleTmpList;
 	}
 }
