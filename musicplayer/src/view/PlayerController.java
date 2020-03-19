@@ -54,9 +54,12 @@ public class PlayerController {
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
+	/*
+	 * Initialize method which is executed after fxml loads
+	 */
 	@FXML public void initialize() throws IOException {	
 		
-		Album testAlbum = new Album(1, "Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
+		Album testAlbum = new Album("Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
 		testAlbum.add(Library.getSongList().get());
 		
 		Player.setCurrentPlayingSongList(testAlbum);
@@ -79,14 +82,23 @@ public class PlayerController {
 		
 	}
 	
+	/*
+	 * Next button click behavior
+	 */
 	@FXML private void handleNextButton(ActionEvent event) {
 		handleNext();
 	}
 	
+	/*
+	 * Prev button click behavior
+	 */
 	@FXML private void handlePrevButton(ActionEvent event) {
 		loadAndPlay(Player.prev());
 	}
 	
+	/*
+	 * Pause/Play button click behavior
+	 */
 	@FXML private void handlePlayPauseButton(ActionEvent event) {
 		if(Player.getCurrentPlayingSong() != null) {
 			if(!playPauseButton.isSelected()) {
@@ -98,6 +110,9 @@ public class PlayerController {
 		}
 	}
 	
+	/*
+	 * Queue button click behavior
+	 */
 	@FXML private void handleQueueButton(ActionEvent event) {
 		if(!queueButton.isSelected()) {
 			//hide queue
@@ -107,6 +122,9 @@ public class PlayerController {
 		}
 	}
 	
+	/*
+	 * Shuffle button click behavior
+	 */
 	@FXML private void handleShuffleButton(ActionEvent event) {
 		if(!shuffleButton.isSelected()) {
 			Player.shuffle(false);
@@ -116,15 +134,22 @@ public class PlayerController {
 		}
 	}
 	
+	/*
+	 * Volume button click behavior
+	 * TODO change mute button to slider controlling volume
+	 */
 	@FXML private void handleVolumeButton(ActionEvent event) {
 		if(!volumeButton.isSelected()) {			
-			Player.unMute();
+			Player.unmute();
 		}
 		else {
 			Player.mute();
 		}
 	}
 	
+	/*
+	 * Repeat button click behavior
+	 */
 	@FXML private void handleRepeatButton(ActionEvent event) {
 		if(!repeatButton.isSelected()) {
 			Player.repeat(false);
@@ -134,6 +159,9 @@ public class PlayerController {
 		}
 	}
 	
+	/*
+	 * Method for loading song to Player class and necessary ui behavior
+	 */
 	public void loadSong(Song song) {
 		Player.load(song);
 		songDisplayController.loadSong(song);
@@ -156,17 +184,17 @@ public class PlayerController {
 		});
 	}
 	
+	/*
+	 * Method for loading song and playing it
+	 */
 	public void loadAndPlay(Song song) {
 		loadSong(song);
 		handlePlay();
 	}
 	
-	private void handleStop() {
-		Player.stop();
-		playIcon.setOpacity(1);
-		pauseIcon.setOpacity(0);
-	}
-	
+	/*
+	 * Method for handling next song
+	 */
 	private void handleNext() {
 		if(Player.next() != null) {
 			loadAndPlay(Player.next());
@@ -177,6 +205,9 @@ public class PlayerController {
 		}
 	}
 	
+	/*
+	 * Method for handling play button
+	 */
 	private void handlePlay() {
 		if(!playPauseButton.isSelected()) {
 			playPauseButton.setSelected(true);
@@ -186,12 +217,18 @@ public class PlayerController {
 		pauseIcon.setOpacity(1);
 	}
 	
+	/*
+	 * Method for handling pause button
+	 */
 	private void handlePause() {
 		Player.pause();
 		playIcon.setOpacity(1);
 		pauseIcon.setOpacity(0);
 	}
 	
+	/*
+	 * Method which changes duration as long number to String which is shown in ui
+	 */
 	private static String numberToStringDuration(long number) {
 		return String.valueOf(number/60) + ":" + ((number%60 >= 10) ? String.valueOf(number%60) : "0" + String.valueOf(number%60) );
 	}
