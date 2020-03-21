@@ -146,7 +146,8 @@ public class SongList {
 				album.add(song);
 			}
 		}
-		return null;
+		List<Album> albumList = new LinkedList<>(albums.values());
+		return albumList;
 	}
 
 	

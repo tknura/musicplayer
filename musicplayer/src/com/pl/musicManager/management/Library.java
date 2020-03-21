@@ -73,6 +73,8 @@ public class Library {
 		}else {
 			System.out.println("File has not been found, creating library");
 			songList = new SongList("main.songlist", retrieveSongs());	
+			albumList = songList.retrieveAlbums();
+			
 		}
 	
 	}
