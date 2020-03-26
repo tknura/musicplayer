@@ -9,6 +9,7 @@ import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
@@ -16,12 +17,10 @@ import javafx.scene.layout.StackPane;
 public class MainSceneController {
 	
 	@FXML private StackPane player;
-	@FXML private PlayerController playerController;
-	
-	@FXML private AnchorPane songPanel;
-	@FXML private SongPanelController songPanelController;
+	@FXML public PlayerController playerController;
 	
 	@FXML public void initialize() throws FileNotFoundException {	
-
+		
 	}
+	
 }

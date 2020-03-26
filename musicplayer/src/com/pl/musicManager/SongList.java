@@ -18,8 +18,7 @@ public class SongList {
 	protected SimpleStringProperty title;
 	protected List<Song> songs;
 	
-	public SongList(String title) {
-		
+	public SongList(String title) {	
 		this(title, new LinkedList<Song>());
 	}
 	

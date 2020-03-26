@@ -62,7 +62,7 @@ public class PlayerController {
 		Album testAlbum = new Album("Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
 		testAlbum.add(Library.getSongList().get());
 		
-		Player.setCurrentPlayingSongList(testAlbum);
+		Player.setMainQueue(testAlbum);
 		loadSong(testAlbum.front());
 
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
@@ -200,7 +200,7 @@ public class PlayerController {
 			loadAndPlay(Player.next());
 		}
 		else {
-			loadSong(Player.getCurrentPlayingSongList().front());
+			loadSong(Player.getMainQueue().front());
 			handlePause();
 		}
 	}

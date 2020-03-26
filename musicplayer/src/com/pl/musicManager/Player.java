@@ -28,11 +28,12 @@ public class Player{
 		return mediaPlayer;
 	}
 	
-	public static Queue getCurrentPlayingSongList() {
+	public static Queue getMainQueue() {
 		return mainQueue;
 	}
 
-	public static void setCurrentPlayingSongList(MusicStructure struct) {
+	public static void setMainQueue(MusicStructure struct) {
+	
 		mainQueue.songs.clear();
 		mainQueue.add(struct);
 	}

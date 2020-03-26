@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../resources/stylesheets/tabContent.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlbumTabController">
+   <children>
+      <VBox prefWidth="270.0" styleClass="title-group" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <SVGPath content="m181 226v80.855469c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-109.84375l120-48v88.699219c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-232.15625l-180 72zm-30 135c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm150-30c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm-90-154.84375 120-48v27.6875l-120 48zm0 0" scaleX="0.75" scaleY="0.75" />
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="270.0" text="ALBUMS" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="45.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <TableView fx:id="albumTableView" accessibleRole="IMAGE_VIEW" layoutX="540.0" layoutY="-200.0" prefHeight="827.0" prefWidth="569.0" stylesheets="@../resources/stylesheets/table-view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="475.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="nameCol" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Name" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</AnchorPane>

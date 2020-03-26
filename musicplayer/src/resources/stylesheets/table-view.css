@@ -5,40 +5,48 @@
 } */
 
 .table-view {
-    -fx-background-color: transparent;
- }
-
- .table-view .column-header-background {
-    -fx-background-color: -primary-color;
-
- }
-
- .table-view .column-header-background .label {
-    -fx-text-fill: -basic-color;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
+  -fx-background-color: transparent;
 }
 
 .table-view .column-header {
-    -fx-background-color: transparent;
+  -fx-background-color: -primary-color;
 }
 
-.table-view .table-cell{
-    -fx-text-fill: -primary-color;
+.table-view .column-header-background {
+  -fx-background-color: -primary-color;
 }
 
-.table-view:focused{
-    -fx-background-color: transparent;
+.table-view .column-header-background .label {
+  -fx-text-fill: -basic-color;
+  -fx-font-size: 20px;
+  -fx-padding: 10 10 10 10;
+  -fx-font-weight: bold;
+}
+
+.table-view .column-header {
+  -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+  -fx-text-fill: -primary-color;
+}
+
+.table-view:focused {
+  -fx-background-color: transparent;
 }
 
 .table-row-cell {
-    -fx-background-insets: 0, 0 0 1 0;
- }
+  -fx-cell-size: 40px;
+}
+
+.table-column {
+  -fx-alignment: center-left;
+}
 
 .table-row-cell:selected {
-    -fx-background-color: -secondary-color;
- }
+  -fx-background-color: -secondary-color;
+}
 
- .table-row-cell:selected .text {
-        -fx-fill:  -basic-color;
- }
+.table-row-cell:selected .text {
+  -fx-fill: -basic-color;
+}
