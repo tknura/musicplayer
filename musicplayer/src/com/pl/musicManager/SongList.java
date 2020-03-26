@@ -47,7 +47,7 @@ public class SongList {
 	}
 	
 	public Song getSongWithIndex(int index) {
-		if(songs.size() >= index) {
+		if(songs.size() > index) {
 			return songs.get(index);
 		}else {
 			return null;
@@ -123,10 +123,12 @@ public class SongList {
 	}
 	
 	public void synchronize() {
-		for(Song song : songs) {
+		
+		for(Iterator<Song> iterator = songs.iterator(); iterator.hasNext();) {
+			Song song = iterator.next();
 			File file = new File(song.getDirectory());
 			if(!file.exists()) {
-				songs.remove(song);
+				iterator.remove();
 			}
 		}
 	}
@@ -134,20 +136,23 @@ public class SongList {
 	public List<Album> retrieveAlbums() {
 		Map<String, Album> albums = new HashMap<String, Album>();
 		for(Song song : songs) {
-			
 			String albumName = song.getAlbum();
-			String artistName = song.getArtist();
-			
+			String artistName = albumName.equals("Unknown album") ? 
+								"Various artists" : 
+								song.getArtist();
+						
 			Album album = albums.get(albumName);
 			if(album == null) {
-				int releaseYear = FileProcessor.retrieveAlbumReleaseYear(new File(song.getDirectory()));
-				albums.put(albumName, new Album(albumName, artistName, releaseYear, null));
-			}else {
-				album.add(song);
+				int releaseYear = albumName.equals("Unknown album") ?
+								  -1 :
+								  FileProcessor.retrieveAlbumReleaseYear(new File(song.getDirectory()));
+				album = new Album(albumName, artistName, releaseYear, null);
+				albums.put(albumName, album);
 			}
+			album.add(song);
 		}
-		List<Album> albumList = new LinkedList<>(albums.values());
-		return albumList;
+
+			return new LinkedList<>(albums.values());
 	}
 
 	

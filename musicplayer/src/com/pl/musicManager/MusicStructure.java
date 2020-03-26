@@ -1,6 +1,7 @@
 package com.pl.musicManager;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -80,7 +81,9 @@ public abstract class MusicStructure {
 	
 	
 	public void add(Song song) {
-		songs.add(song.getId());
+		if(song != null) {
+			songs.add(song.getId());
+		}
 	}
 	
 	public void add(List<Song> obj) {
@@ -109,25 +112,22 @@ public abstract class MusicStructure {
 		}
 	}
 	
-
-	public void synchronize() {
-		SongList sl = Library.getSongList();
-		if(sl != null) {
-			for(int id : songs) {
-				if(!sl.contains(id)){
-					songs.remove(id);
-				}
-			}
-		}
-		
-	}
-
-	
-	public void print() {
+	public void verbosePrint() {
 		System.out.println(title + ":");
 		List<Song> temp = Library.getSongs(songs);
 		for(Song song : temp) {
 			song.print();
+		}
+	}
+	
+	public void printIDs() {
+		System.out.println(title + ":");
+//		List<Song> temp = Library.getSongs(songs);
+//		for(Song song : temp) {
+//			System.out.println(song.getId());
+//		}
+		for(int song : songs) {
+			System.out.println(song);
 		}
 	}
 	
@@ -141,6 +141,15 @@ public abstract class MusicStructure {
 	
 	public boolean isEmpty() {
 		return songs.isEmpty();
+	}
+	
+	public void synchronize() {
+		for(Iterator<Integer> intIterator = songs.iterator(); intIterator.hasNext();) {
+			int song = intIterator.next();
+			if(this.getSongWithIndex(song) == null) {
+				intIterator.remove();
+			}
+		}
 	}
 	
 

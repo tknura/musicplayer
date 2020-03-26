@@ -1,4 +1,4 @@
-package com.pl.configuration;
+package com.pl.utility.configuration;
 
 public class ConfigReader {
 

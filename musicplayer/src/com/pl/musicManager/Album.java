@@ -36,6 +36,24 @@ public class Album extends MusicStructure{
 		
 	}
 
+	@Override
+	public void verbosePrint() {
+		super.verbosePrint();
+		System.out.println("Artist: " + artist.get() +
+						   "\nRelease year: " + releaseYear +
+						   "\nlength in seconds: " + lengthInSeconds + 
+						   "\nAlbum ID: " + id);
+	}
+	
+	@Override
+	public void printIDs() {
+		super.printIDs();
+		System.out.println("Artist: " + artist.get() +
+				   "\nRelease year: " + releaseYear +
+				   "\nlength in seconds: " + lengthInSeconds + 
+				   "\nAlbum ID: " + id);
+	}
+	
 	public SimpleStringProperty getArtist() {
 		return artist;
 	}
@@ -98,6 +116,8 @@ public class Album extends MusicStructure{
 		songs.add(song.getId());
 		lengthInSeconds += song.getLengthInSeconds();
 	}
+	
+	
 	  
 
 }

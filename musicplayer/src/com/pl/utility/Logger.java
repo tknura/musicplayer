@@ -1,6 +1,6 @@
 package com.pl.utility;
 
-import com.pl.configuration.Config;
+import com.pl.utility.configuration.Config;
 
 public class Logger {
 

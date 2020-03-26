@@ -1,4 +1,4 @@
-package com.pl.configuration;
+package com.pl.utility.configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Config {
 	
-	private static Boolean verbose = true;
+	private static Boolean verbose = false;
 	private static List<String> directories;
 	private static List<String> extensions;
 	

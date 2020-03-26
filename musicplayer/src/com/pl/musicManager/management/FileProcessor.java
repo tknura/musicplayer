@@ -25,8 +25,6 @@ import javafx.scene.image.Image;
 public class FileProcessor {
 	
 	private static List<Song> songList;
-	private static List<Album> albumList;
-	private static List<Artist> artistList;
 	static {
 		songList = new LinkedList<Song>();
 		FileProcessor.parse();
@@ -48,25 +46,29 @@ public class FileProcessor {
 		for(File file : Explorer.getFileList()) {
 			Logger.debug("Parsing file " + file.getAbsolutePath());
 			AudioFile audioFile;
+			
 			try {
+				
 				audioFile = AudioFileIO.read(file);
 				Tag tag = audioFile.getTag();
 				AudioHeader header = audioFile.getAudioHeader();
-				
 				String directory = file.getAbsolutePath();
 				String title = tag.getFirst(FieldKey.TITLE);
 				String artist = tag.getFirst(FieldKey.ARTIST);
+				
 				String album = tag.getFirst(FieldKey.ALBUM);
+				if(album.equals("")) {
+					album = null;
+				}
 				
 				long length = header.getTrackLength();
-				Duration duration = Duration.ofSeconds(header.getAudioDataLength());
 				
 				Song song = new Song(id++, directory, title, artist, album, Duration.ofSeconds(length), 0);
 				Logger.debug("Adding " + artist + " - " + title );
 				songList.add(song);
 				
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.debug("Error occurred - Skipped file " + file.getAbsolutePath());
 			}			
 		}
 	}
@@ -76,12 +78,11 @@ public class FileProcessor {
 		try {
 			audioFile = AudioFileIO.read(file);
 			Tag tag = audioFile.getTag();
-			int releaseYear = Integer.parseInt(tag.getFirst(FieldKey.YEAR));
-			return releaseYear;
+			String yearString = tag.getFirst(FieldKey.YEAR);
+			return Integer.parseInt(yearString);
 		}catch(Exception e) {
-			e.printStackTrace();
+			return -1;
 		}
-		return -1;
 	}
 	
 	public static Image retrieveAlbumCover(File file) {
@@ -90,12 +91,10 @@ public class FileProcessor {
 			Artwork artwork = ArtworkFactory.createArtworkFromFile(file);
 			byte[] bytes = artwork.getBinaryData();
 			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-			Image image = new Image(bis);
-			return image;
+			return new Image(bis);
 		}catch(Exception e) {
-			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 }

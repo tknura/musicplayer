@@ -40,12 +40,17 @@ public class Library {
 	
 	static {
 		libFile = new File(Paths.get("src/resources" + "/library.json").toString());
-		songList = new SongList("main.songlist");
-		albumList = new LinkedList<Album>();
-		artistList = new LinkedList<Artist>();
-		playlistList = new LinkedList<Playlist>();
-	
-		//initializeLibrary();
+		initializeLibrary();
+		
+		if(albumList == null) {
+			albumList = new LinkedList<Album>();
+		}
+		if(artistList == null) {
+			artistList = new LinkedList<Artist>();
+		}
+		if(playlistList == null) {
+			playlistList = new LinkedList<Playlist>();
+		}
 	}
 	
 	
@@ -74,7 +79,6 @@ public class Library {
 			System.out.println("File has not been found, creating library");
 			songList = new SongList("main.songlist", retrieveSongs());	
 			albumList = songList.retrieveAlbums();
-			
 		}
 	
 	}
@@ -246,8 +250,8 @@ public class Library {
 		artistList.add(artist);
 	}
 	
-	private static void synchronize() {
-		
+	public static void synchronize() {
+		songList.synchronize();
 	}
 }
 
