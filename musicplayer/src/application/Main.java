@@ -2,7 +2,7 @@ package application;
 	
 
 
-import com.pl.configuration.Config;
+import com.pl.utility.configuration.Config;
 import com.pl.musicManager.Album;
 import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
@@ -83,7 +83,7 @@ public class Main extends Application {
 		Logger.debug("Playlist list");
 		System.out.println(Library.getPlaylistList());
 		for(Playlist playlist : Library.getPlaylistList()) {
-			playlist.print();
+			playlist.printIDs();
 			System.out.println();
 		}
 		
@@ -91,7 +91,7 @@ public class Main extends Application {
 		
 		
 		for(Album album : Library.getAlbumList()) {
-			album.print();
+			album.printIDs();
 			System.out.println();
 		}
 		
