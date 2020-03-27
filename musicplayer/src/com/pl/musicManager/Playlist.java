@@ -16,6 +16,9 @@ public class Playlist extends MusicStructure{
 		super(title, songs);
 	}
 
+	public Song popBack() {
+		return super.remove(super.back());	
+	}
 	
 //	public void sortByAlbums() {
 //		Comparator<Song> compareByAlbum = (Song s1, Song s2) ->  s1.getAlbum().toString().compareTo(s2.getAlbum().toString());

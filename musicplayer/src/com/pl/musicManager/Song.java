@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.UUID;
 
+import com.pl.musicManager.management.Library;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -139,7 +140,13 @@ public class Song implements Comparable<Song>{
 	}
 
 	public Image getCover() {
-		return new Image("resources/placeholders/albumPlaceholder.jpg");
+		//return new Image("resources/placeholders/albumPlaceholder.jpg");
+		for(Album a : Library.getAlbumList()) {
+			if(a.contains(this)) {
+				return a.getCover();
+			}
+		}
+		return null;
 		//search in albumList with album property and return as image its cover
 	}
 	

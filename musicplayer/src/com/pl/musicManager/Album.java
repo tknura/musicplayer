@@ -13,9 +13,11 @@ public class Album extends MusicStructure{
 	private transient SimpleObjectProperty<Image> coverProperty;
 	private int id;
 	private static int idProvider;
+	private static transient Image coverPlaceholder;
 	
 	static {
 		idProvider = 0;
+		coverPlaceholder = new Image("resources/placeholders/albumPlaceholder.jpg"); 
 	}
 	
 	public Album(String title, String artist, int releaseYear, Image cover) {
@@ -89,12 +91,17 @@ public class Album extends MusicStructure{
 	public int getId() {
 		return id;
 	}
+	
 	public SimpleObjectProperty<Image> getCoverProperty() {
 		return coverProperty;
 	}
 
 	public void setCoverProperty(SimpleObjectProperty<Image> coverProperty) {
 		this.coverProperty = coverProperty;
+	}
+	
+	public static Image getCoverPlaceholder() {
+		return coverPlaceholder;
 	}
 	
 //	@Override

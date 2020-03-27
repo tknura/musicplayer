@@ -50,7 +50,7 @@ public class Player{
 		return userQueue;
 	}
 
-	public static Playlist RecentlyPlayedSongs() {
+	public static Playlist getRecentlyPlayedSongs() {
 		return recentlyPlayedSongs;
 	}
 
@@ -151,7 +151,8 @@ public class Player{
 	 */
 	public static Song prev() {
 		if(recentlyPlayedSongs.front() != currentPlayingSong) {
-			return recentlyPlayedSongs.back();
+			System.out.println("lol");
+			return recentlyPlayedSongs.popBack();
 		}
 		else {
 			return currentPlayingSong;

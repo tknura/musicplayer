@@ -93,7 +93,7 @@ public class FileProcessor {
 			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 			return new Image(bis);
 		}catch(Exception e) {
-			return null;
+			return Album.getCoverPlaceholder();
 		}
 	}
 	

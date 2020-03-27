@@ -152,5 +152,14 @@ public abstract class MusicStructure {
 		}
 	}
 	
+	public boolean contains(Song song) {
+		for(int i : songs) {
+			if(i == song.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 
 }
