@@ -1,15 +1,12 @@
 package view;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.pl.musicManager.Album;
-
-//import java.time.Duration;
+import com.pl.musicManager.MusicStructure;
 
 import com.pl.musicManager.Player;
-import com.pl.musicManager.Queue;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
@@ -17,9 +14,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -27,7 +22,6 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class PlayerController {
@@ -62,9 +56,8 @@ public class PlayerController {
 		Album testAlbum = new Album("Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
 		testAlbum.add(Library.getSongList().get());
 		
-		Player.setMainQueue(testAlbum);
-		loadSong(testAlbum.front());
-
+		load(testAlbum.front(), testAlbum);
+		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -160,9 +153,18 @@ public class PlayerController {
 	}
 	
 	/*
+	 *	Method for loading passed song to mediaPlayer and playing list 
+	 */
+	public void load(Song song, MusicStructure playingList) {
+		//set currently playing list
+		Player.setCurrentPlayingList(playingList);
+		loadSong(song);
+	}
+	
+	/*
 	 * Method for loading song to Player class and necessary ui behavior
 	 */
-	public void loadSong(Song song) {
+	private void loadSong(Song song) {
 		Player.load(song);
 		songDisplayController.loadSong(song);
 		totalTime = Duration.seconds(song.getLengthInSeconds());
@@ -200,7 +202,7 @@ public class PlayerController {
 			loadAndPlay(Player.next());
 		}
 		else {
-			loadSong(Player.getMainQueue().front());
+			loadSong(Player.getCurrentPlayingList().front());
 			handlePause();
 		}
 	}

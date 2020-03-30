@@ -15,6 +15,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class SongTabController {
+	
+	private MainSceneController mainSceneController;
+	
 	@FXML private TableView<Song> songTableView;
 	
 	@FXML private TableColumn<Song, String> songCol;
@@ -31,7 +34,7 @@ public class SongTabController {
     		final TableRow<Song> row = new TableRow<>();
     		row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                   //playerController.load(row.getItem());
+                   mainSceneController.playerController.loadAndPlay(row.getItem());
                 }
     		});
     		return row;
@@ -43,4 +46,9 @@ public class SongTabController {
     	
     	songTableView.getColumns().setAll(songCol, albumCol, aritstCol);
     }
+    
+    public void injectMainController(MainSceneController mainSceneController) {
+    	this.mainSceneController = mainSceneController;
+    }
+    
 }
