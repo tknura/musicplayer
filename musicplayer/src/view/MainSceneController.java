@@ -16,11 +16,11 @@ import javafx.scene.layout.StackPane;
 
 public class MainSceneController {
 	
-	@FXML private StackPane player;
 	@FXML public PlayerController playerController;
+	@FXML public SongTabController songTabController;
 	
 	@FXML public void initialize() throws FileNotFoundException {	
-		
+		songTabController.injectMainController(this);
 	}
 	
 }
