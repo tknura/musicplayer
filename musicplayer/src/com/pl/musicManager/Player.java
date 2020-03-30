@@ -1,7 +1,6 @@
 package com.pl.musicManager;
 
 import java.io.File;
-import java.util.LinkedList;
 
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.media.Media;
@@ -12,73 +11,73 @@ import javafx.util.Duration;
 public class Player{
 	
 	private static MediaPlayer mediaPlayer;
-	private static Queue mainQueue;
+	//queue where user puts his song demands
 	private static Queue userQueue;
-	private static Playlist recentlyPlayedSongs;
+	//playlist which Player uses to move forward and backward while playing
+	private static Playlist currentPlayingList;
 	private static Song currentPlayingSong;
 	
+	//playlist with last 50 played songs
+	private static Playlist recentlyPlayedSongs;
+
 	static {
-		mainQueue = new Queue();
 		userQueue = new Queue();
+		currentPlayingList = new Playlist("Now Playing");
 		recentlyPlayedSongs = new Playlist("Recently Played");
 	}
 	
-	// GETERS AND SETTERS
+	// GETERS AND SETTERS ----------------------------------------------
+	
 	public static MediaPlayer getMediaPlayer() {
 		return mediaPlayer;
 	}
 	
-	public static Queue getMainQueue() {
-		return mainQueue;
+	public static Playlist getCurrentPlayingList() {
+		return currentPlayingList;
 	}
-
-	public static void setMainQueue(MusicStructure struct) {
 	
-		mainQueue.songs.clear();
-		mainQueue.add(struct);
+	public static void setCurrentPlayingList(MusicStructure struct) {
+		currentPlayingList.songs.clear();
+		currentPlayingList.add(struct);
 	}
 	
 	public static void addToQueue(Song song) {
 		userQueue.add(song);
 	}
 	
-	public static void addToQueue(Album album) {
-		userQueue.add(album);
-	}
-	
-	public static Queue getUserQueue() {
-		return userQueue;
+	public static void addToQueue(MusicStructure struct) {
+		userQueue.add(struct);
 	}
 
 	public static Playlist getRecentlyPlayedSongs() {
 		return recentlyPlayedSongs;
 	}
-
-	public static void setRecentlyPlayedSongs(Playlist lastlyPlayedSongs) {
-		Player.recentlyPlayedSongs = lastlyPlayedSongs;
-	}
 	
 	public static Song getCurrentPlayingSong() {
 		return currentPlayingSong;
 	}
-
-	public static void setCurrentPlayingSong(Song currentPlayingSong) {
-		Player.currentPlayingSong = currentPlayingSong;
-	}
+	
 	// -------------------------------------------------------------------------
 	
 	/*
 	 *	Method for loading passed song to mediaPlayer 
 	 */
 	public static void load(Song song) {
+		//check if 
 		if(mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
 			Player.stop();
 		}
+		//create media
 		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toString());
+		//check if there was playing something
 		if(currentPlayingSong != null) {
+			if(recentlyPlayedSongs.size() > 50) {
+				recentlyPlayedSongs.popFront();
+			}
 			recentlyPlayedSongs.add(currentPlayingSong);
 		}
 		currentPlayingSong = song;
+		//load media
 		mediaPlayer = new MediaPlayer(currentSongMedia);
 	}
 	
@@ -86,15 +85,11 @@ public class Player{
 	 *	Method for shuffling main queue
 	 */
 	public static void shuffle(boolean state) {
-		Queue tmp = mainQueue;
 		if(state) {
-			tmp = mainQueue;
-			mainQueue.shuffle();
+			currentPlayingList.shuffle();
 		}
 		else {
-			if(tmp != null) {
-				mainQueue = tmp;
-			}
+			currentPlayingList.deshuffle();
 		}
 	}
 	
@@ -139,7 +134,7 @@ public class Player{
 	 */
 	public static Song next() {
 		if(userQueue.isEmpty()) {
-			return mainQueue.getNext(currentPlayingSong);
+			return currentPlayingList.getNext(currentPlayingSong);
 		}
 		else {
 			return userQueue.popFront();
@@ -147,12 +142,12 @@ public class Player{
 	}
 	
 	/*
-	 * Method which return previous song depending on queues states
+	 * Method which return previous song in current playing list
 	 */
 	public static Song prev() {
-		if(recentlyPlayedSongs.front() != currentPlayingSong) {
-			System.out.println("lol");
-			return recentlyPlayedSongs.popBack();
+		Song result;
+		if((result = currentPlayingList.getPrev(currentPlayingSong)) != null) {
+			return result;
 		}
 		else {
 			return currentPlayingSong;
@@ -205,4 +200,5 @@ public class Player{
 	public static void seek(Duration duration) {
 		mediaPlayer.seek(duration);
 	}
+
 }

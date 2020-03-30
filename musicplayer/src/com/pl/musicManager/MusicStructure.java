@@ -75,10 +75,8 @@ public abstract class MusicStructure {
 	 * Method retrieves last song of the Music Structure
 	 * */
 	public Song back() {
-		return this.getSongWithIndex(this.size());
+		return this.getSongWithIndex(this.size() - 1);
 	}
-
-	
 	
 	public void add(Song song) {
 		if(song != null) {
