@@ -1,14 +1,19 @@
 package com.pl.musicManager.management;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
+import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
@@ -88,9 +93,11 @@ public class FileProcessor {
 	public static Image retrieveAlbumCover(File file) {
 		
 		try {
-			Artwork artwork = ArtworkFactory.createArtworkFromFile(file);
+			MP3File mp3 = new MP3File(file);
+			Artwork artwork = mp3.getTag().getFirstArtwork();
 			byte[] bytes = artwork.getBinaryData();
 			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			BufferedImage img = ImageIO.read(bis);
 			return new Image(bis);
 		}catch(Exception e) {
 			return Album.getCoverPlaceholder();
