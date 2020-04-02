@@ -74,7 +74,7 @@ public class Player{
 			if(recentlyPlayedSongs.size() > 50) {
 				recentlyPlayedSongs.popFront();
 			}
-			recentlyPlayedSongs.add(currentPlayingSong);
+			currentPlayingSong.played();
 		}
 		currentPlayingSong = song;
 		//load media

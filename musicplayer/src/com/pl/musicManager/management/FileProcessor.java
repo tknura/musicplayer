@@ -96,10 +96,11 @@ public class FileProcessor {
 			MP3File mp3 = new MP3File(file);
 			Artwork artwork = mp3.getTag().getFirstArtwork();
 			byte[] bytes = artwork.getBinaryData();
-			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-			BufferedImage img = ImageIO.read(bis);
-			return new Image(bis);
-		}catch(Exception e) {
+			return new Image(new ByteArrayInputStream(bytes));
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
 			return Album.getCoverPlaceholder();
 		}
 	}

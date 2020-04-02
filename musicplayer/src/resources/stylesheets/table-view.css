@@ -1,9 +1,3 @@
-/* .root{
-    -selected: -secondary-color;
-    -hover: #d4d4d4;
-    -focused: #4ed6ff;
-} */
-
 .table-view {
   -fx-background-color: transparent;
 }
@@ -49,4 +43,42 @@
 
 .table-row-cell:selected .text {
   -fx-fill: -basic-color;
+}
+
+.table-view .scroll-bar {
+}
+
+.table-view .scroll-bar:vertical .track-background {
+  -fx-background-color: -unselc-primary-color;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+  -fx-background-color: -secondary-color;
+  -fx-border-color: -unselc-primary-color;
+  -fx-border-size: 2px;
+  -fx-border-radius: 5px;
+}
+
+.table-view .scroll-bar:horizontal .track-background {
+  -fx-background-color: -unselc-primary-color;
+}
+
+.table-view .scroll-bar:horizontal .thumb {
+  -fx-background-color: -secondary-color;
+}
+
+.table-view *.increment-button,
+.table-view *.decrement-button,
+.table-view *.increment-arrow,
+.table-view *.decrement-arrow
+{
+  -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:horizontal *.increment-button,
+.table-view .scroll-bar:horizontal *.decrement-button,
+.table-view .scroll-bar:horizontal *.increment-arrow,
+.table-view .scroll-bar:horizontal *.decrement-arrow
+{
+  -fx-padding: 0;
 }

@@ -1,5 +1,6 @@
 .title-group {
-    -fx-padding: 75 0 0 100;
+    -fx-alignment: CENTER;
+    -fx-padding: 50;
 }
 
 .title-group > SVGPath{

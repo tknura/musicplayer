@@ -1,5 +1,6 @@
 package com.pl.musicManager;
 
+import java.io.File;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -10,6 +11,9 @@ import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
+
+import com.pl.musicManager.management.FileProcessor;
 import com.pl.musicManager.management.Library;
 
 import javafx.beans.property.SimpleBooleanProperty;
@@ -122,8 +126,7 @@ public class Song implements Comparable<Song>{
 	
 	public void played() {
 		setPlayCount(this.playCount.get() + 1);
-		//TO DO:
-		//adding to lastPlayedList in library 	
+		Player.getRecentlyPlayedSongs().add(this);
 	}
 	
 	public void setSelected(boolean selected) {
@@ -140,14 +143,12 @@ public class Song implements Comparable<Song>{
 	}
 
 	public Image getCover() {
-		//return new Image("resources/placeholders/albumPlaceholder.jpg");
-		for(Album a : Library.getAlbumList()) {
-			if(a.contains(this)) {
-				return a.getCover();
-			}
-		}
-		return null;
-		//search in albumList with album property and return as image its cover
+//		for(Album a : Library.getAlbumList()) {
+//			if(a.contains(this)) {
+//				return a.getCover();
+//			}
+//		};
+		return FileProcessor.retrieveAlbumCover(new File(directory));
 	}
 	
 	public void print() {
