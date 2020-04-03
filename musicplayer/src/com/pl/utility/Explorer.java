@@ -24,8 +24,19 @@ public class Explorer {
 					return true;
 				}
 				String fileName = f.getName();
-				String fileExtension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-				return  Config.getExtensions().contains(fileExtension);
+				int dotIndex = fileName.lastIndexOf(".");
+				int length = fileName.length();
+				
+				if(dotIndex != -1 && dotIndex < length)
+				{
+					//Logger.debug("Current extension check on: " + fileName);
+					String fileExtension = fileName.substring(dotIndex, length);
+					//Logger.debug("FileExtension passed on " + fileExtension + ": " +
+					//		Config.getExtensions().contains(fileExtension));
+					return  Config.getExtensions().contains(fileExtension);
+				}
+				return false;
+				
 			}
 		};
 		
@@ -53,6 +64,7 @@ public class Explorer {
 			Logger.debug("[DIRECTORY] Adding files from " + startDirectory);
 			File dir = new File(startDirectory);
 			File[] files = dir.listFiles(fileFilter);
+			
 			
 			for(File file : files) {
 				if(file.isDirectory()) {

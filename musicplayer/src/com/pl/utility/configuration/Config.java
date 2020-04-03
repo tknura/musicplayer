@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.pl.utility.Logger;
+
 
 public class Config {
 	
@@ -11,22 +13,8 @@ public class Config {
 	private static List<String> directories;
 	private static List<String> extensions;
 	
- 	public Config(String[] directories, String[] extensions) {
+ 	public Config() {
  		
- 		Config.directories = Arrays.asList(directories);
- 		if(Config.directories.isEmpty()) {
- 			//TODO add more directories
- 		}
- 		
-		Config.extensions = new ArrayList<>();
-		for(String extension : extensions) {
-			if(isSupportedExtension(extension)){
-				Config.extensions.add(extension);
-			}
-		}
-		if(Config.extensions.isEmpty()) {
-			//TODO add more extensions
-		}
 	}
  	
  	public static boolean isSupportedExtension(String extension) {
@@ -50,6 +38,21 @@ public class Config {
  	
  	public static Boolean getVerbose() {
  		return verbose;
+ 	}
+ 	
+ 	public static void setDirectories(String[] dirs) {
+ 		Config.directories = Arrays.asList(dirs);
+		
+ 	}
+ 	
+ 	public static void setExtensions(String[] extensions) {
+ 		Config.extensions = new ArrayList<>();
+		for(String extension : extensions) {
+			Logger.debug("Extension: " + extension);
+			if(isSupportedExtension(extension)){
+				Config.extensions.add(extension);
+			}
+		}
  	}
  	
  	public static void printConfig() {

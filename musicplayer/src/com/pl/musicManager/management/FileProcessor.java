@@ -1,14 +1,11 @@
 package com.pl.musicManager.management;
 
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.time.Duration;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
@@ -17,10 +14,8 @@ import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
-import org.jaudiotagger.tag.images.ArtworkFactory;
 
 import com.pl.musicManager.Album;
-import com.pl.musicManager.Artist;
 import com.pl.musicManager.Song;
 import com.pl.utility.Explorer;
 import com.pl.utility.Logger;
@@ -30,6 +25,7 @@ import javafx.scene.image.Image;
 public class FileProcessor {
 	
 	private static List<Song> songList;
+	
 	static {
 		songList = new LinkedList<Song>();
 		FileProcessor.parse();
@@ -48,6 +44,11 @@ public class FileProcessor {
 	 * into List of Song objects */
 	private static void parse(){
 		int id = 0;
+		System.out.println("Files in parse");
+		for(File file : Explorer.getFileList()) {
+			System.out.println(file.getAbsolutePath());
+		}
+		System.out.println("End of files in parse");
 		for(File file : Explorer.getFileList()) {
 			Logger.debug("Parsing file " + file.getAbsolutePath());
 			AudioFile audioFile;
@@ -96,10 +97,9 @@ public class FileProcessor {
 			MP3File mp3 = new MP3File(file);
 			Artwork artwork = mp3.getTag().getFirstArtwork();
 			byte[] bytes = artwork.getBinaryData();
-			return new Image(new ByteArrayInputStream(bytes));
-			
-			
-		} catch(Exception e) {
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			return new Image(bis);
+		}catch(Exception e) {
 			e.printStackTrace();
 			return Album.getCoverPlaceholder();
 		}
