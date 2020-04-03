@@ -3,6 +3,7 @@ package view;
 import java.time.Duration;
 
 import com.pl.musicManager.Player;
+import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
@@ -28,6 +29,8 @@ public class SongTabController {
     @FXML private TableColumn<Song, String> aritstCol;
     
     public void initialize(){
+    	Playlist songList = new Playlist("Songs");
+    	songList.add(Library.getSongList().get());
     	ObservableList<Song> songOList = FXCollections.observableList(Library.getSongList().get());
     	songTableView.setItems(songOList);
     	
@@ -35,7 +38,7 @@ public class SongTabController {
     		final TableRow<Song> row = new TableRow<>();
     		row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                   mainSceneController.playerController.loadAndPlay(row.getItem());
+                   mainSceneController.playerController.loadAndPlay(row.getItem(), songList);
                 }
     		});
     		return row;

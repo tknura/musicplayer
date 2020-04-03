@@ -77,5 +77,10 @@
             </AnchorPane>
          </bottom>
       </BorderPane>
+      <AnchorPane maxHeight="200.0" maxWidth="200.0" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="BOTTOM_LEFT">
+         <children>
+            <fx:include fx:id="songDisplay" source="SongDisplay.fxml" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="30.0" />
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>

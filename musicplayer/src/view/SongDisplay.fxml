@@ -15,7 +15,7 @@
          <children>
             <ImageView fx:id="coverDisplay" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../UI/placeholder.jpg" />
+                  <Image url="@../resources/placeholders/albumPlaceholder.png" />
                </image>
             </ImageView>
             <VBox alignment="BOTTOM_LEFT" prefHeight="120.0" prefWidth="156.0">
