@@ -43,12 +43,9 @@ public class FileProcessor {
 	 * Method parses List of Files retrieved from Explorer class
 	 * into List of Song objects */
 	private static void parse(){
+		
 		int id = 0;
-		System.out.println("Files in parse");
-		for(File file : Explorer.getFileList()) {
-			System.out.println(file.getAbsolutePath());
-		}
-		System.out.println("End of files in parse");
+	
 		for(File file : Explorer.getFileList()) {
 			Logger.debug("Parsing file " + file.getAbsolutePath());
 			AudioFile audioFile;

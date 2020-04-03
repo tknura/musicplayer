@@ -41,21 +41,19 @@ public class Explorer {
 		};
 		
 		//Explore directories and collect files
-		exploreDirectories();
-	}
-	
-	public Explorer() {
-
+		initializeFileList();
 	}
 	
 	public static List<File> getFileList(){
 		return fileList;
 	}
 	
-	public static void exploreDirectories() {
+	public static void initializeFileList() {
 		Logger.debug("Exploring directories");
 		for(String directory : Config.getDirectories()) {
-			addFilesToList(directory);
+			if(new File(directory).isDirectory()) {
+				addFilesToList(directory);
+			}
 		}
 	}
 		
