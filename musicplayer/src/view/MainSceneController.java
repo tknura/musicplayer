@@ -19,9 +19,12 @@ public class MainSceneController {
 	
 	@FXML public PlayerController playerController;
 	@FXML public SongTabController songTabController;
+	@FXML public SongDisplayController songDisplayController;
+	
 	
 	@FXML public void initialize() throws FileNotFoundException {	
 		songTabController.injectMainController(this);
+		playerController.injectMainController(this);
 	}
 	
 }

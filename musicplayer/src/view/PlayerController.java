@@ -26,8 +26,7 @@ import javafx.util.Duration;
 
 public class PlayerController {
 	
-	@FXML private StackPane songDisplay;
-	@FXML private SongDisplayController songDisplayController;
+	private MainSceneController mainController;
 	
 	@FXML private Group pauseIcon;
 	@FXML private Group playIcon;
@@ -52,12 +51,6 @@ public class PlayerController {
 	 * Initialize method which is executed after fxml loads
 	 */
 	@FXML public void initialize() throws IOException {	
-		
-		Album testAlbum = new Album("Cafe Belga", "Taco Hemingway", 2018, new Image(new FileInputStream("E:/Repositories/musicplayer/musicplayer/src/resources/placeholders/albumPlaceholder.jpg")));
-		testAlbum.add(Library.getSongList().get());
-		
-		load(testAlbum.front(), testAlbum);
-		
 		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -72,7 +65,10 @@ public class PlayerController {
             	}
             }
         });  
-		
+	}
+	
+	public void injectMainController(MainSceneController mc) {
+		this.mainController = mc;
 	}
 	
 	/*
@@ -155,10 +151,18 @@ public class PlayerController {
 	/*
 	 *	Method for loading passed song to mediaPlayer and playing list 
 	 */
-	public void load(Song song, MusicStructure playingList) {
+	public void loadSong(Song song, MusicStructure playingList) {
 		//set currently playing list
 		Player.setCurrentPlayingList(playingList);
 		loadSong(song);
+	}
+	
+	/*
+	 * Method for loading song, its playing list and playing it
+	 */
+	public void loadAndPlay(Song song, MusicStructure playingList) {
+		loadSong(song, playingList);
+		handlePlay();
 	}
 	
 	/*
@@ -166,7 +170,7 @@ public class PlayerController {
 	 */
 	private void loadSong(Song song) {
 		Player.load(song);
-		songDisplayController.loadSong(song);
+		mainController.songDisplayController.loadSong(song);
 		totalTime = Duration.seconds(song.getLengthInSeconds());
 		songDuration.setText(numberToStringDuration((long)totalTime.toSeconds()));
 		
