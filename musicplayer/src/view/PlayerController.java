@@ -21,6 +21,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -44,6 +45,9 @@ public class PlayerController {
 	@FXML private Label actualSongDuration;
 	private Duration totalTime;
 	
+	@FXML private Slider volumeSlider;
+	@FXML private ProgressBar volumeProgressBar;
+	
 	@FXML private Slider timeSlider;
 	@FXML private ProgressBar timeProgressBar;
 	
@@ -51,20 +55,8 @@ public class PlayerController {
 	 * Initialize method which is executed after fxml loads
 	 */
 	@FXML public void initialize() throws IOException {	
-		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
-		
-		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-            	if(timeSlider.isValueChanging()) {
-            		if(Player.getMediaPlayer() != null) {
-            			Player.seek(totalTime.multiply(new_val.doubleValue() / 100.0));
-            		}
-            		else {
-            			timeSlider.valueProperty().setValue(0);
-            		}
-            	}
-            }
-        });  
+		setTimeSlider();
+		setVolumeSlider();
 	}
 	
 	public void injectMainController(MainSceneController mc) {
@@ -130,9 +122,11 @@ public class PlayerController {
 	@FXML private void handleVolumeButton(ActionEvent event) {
 		if(!volumeButton.isSelected()) {			
 			Player.unmute();
+			volumeSlider.setValue(Player.getVolume() * 100);
 		}
 		else {
 			Player.mute();
+			volumeSlider.setValue(0);
 		}
 	}
 	
@@ -180,6 +174,7 @@ public class PlayerController {
 	    		timeSlider.setValue(newValue.divide(totalTime.toMillis()).toMillis() * 100.0);
 	    	}
 	    });
+
 	    
 		Player.getMediaPlayer().setOnEndOfMedia(new Runnable() {
 			@Override
@@ -211,6 +206,7 @@ public class PlayerController {
 		}
 	}
 	
+	
 	/*
 	 * Method for handling play button
 	 */
@@ -237,5 +233,49 @@ public class PlayerController {
 	 */
 	private static String numberToStringDuration(long number) {
 		return String.valueOf(number/60) + ":" + ((number%60 >= 10) ? String.valueOf(number%60) : "0" + String.valueOf(number%60) );
+	}
+	
+	private void setTimeSlider() {
+		timeProgressBar.progressProperty().bind(timeSlider.valueProperty().divide(100));
+		
+		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            	if(timeSlider.isValueChanging()) {
+            		if(Player.getMediaPlayer() != null) {
+            			Player.seek(totalTime.multiply(new_val.doubleValue() / 100.0));
+            		}
+            		else {
+            			timeSlider.valueProperty().setValue(0);
+            		}
+            	}
+            }
+        });  
+		
+		timeSlider.setOnMouseReleased((MouseEvent event) -> {
+			if(Player.getMediaPlayer() != null) {
+    			Player.seek(totalTime.multiply(timeSlider.getValue() / 100.0));
+    		}
+    		else {
+    			timeSlider.valueProperty().setValue(0);
+    		}
+		});
+	}
+	
+	private void setVolumeSlider() {
+		volumeProgressBar.progressProperty().bind(volumeSlider.valueProperty().divide(100));
+		
+		volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
+            	if(volumeSlider.isValueChanging()) {
+            		Player.setVolume(new_val.doubleValue() / 100.0);
+            	}
+            }
+        }); 
+		
+		volumeSlider.setOnMouseReleased((MouseEvent event) -> {
+    		Player.setVolume(volumeSlider.getValue() / 100.0);
+		});
+		
+		volumeSlider.setValue(Player.getVolume() * 100);
 	}
 }

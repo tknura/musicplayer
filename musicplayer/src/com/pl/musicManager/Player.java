@@ -2,6 +2,7 @@ package com.pl.musicManager;
 
 import java.io.File;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -20,7 +21,10 @@ public class Player{
 	//playlist with last 50 played songs
 	private static Playlist recentlyPlayedSongs;
 
+	private static double volume;
+	
 	static {
+		volume = 0.5;
 		userQueue = new Queue();
 		currentPlayingList = new Playlist("Now Playing");
 		recentlyPlayedSongs = new Playlist("Recently Played");
@@ -57,18 +61,19 @@ public class Player{
 		return currentPlayingSong;
 	}
 	
+	public static double getVolume() {
+		return volume;
+	}
+	
 	// -------------------------------------------------------------------------
 	
 	/*
 	 *	Method for loading passed song to mediaPlayer 
 	 */
 	public static void load(Song song) {
-		//check if 
 		if(mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
 			Player.stop();
 		}
-		//create media
-		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toString());
 		//check if there was playing something
 		if(currentPlayingSong != null) {
 			if(recentlyPlayedSongs.size() > 50) {
@@ -77,8 +82,12 @@ public class Player{
 			currentPlayingSong.played();
 		}
 		currentPlayingSong = song;
+		
+		//create media
+		Media currentSongMedia = new Media(new File(song.getDirectory()).toURI().toASCIIString());
 		//load media
 		mediaPlayer = new MediaPlayer(currentSongMedia);
+		setVolume(volume);
 	}
 	
 	/*
@@ -178,6 +187,16 @@ public class Player{
 	 */
 	public static void unmute() {
 		mediaPlayer.setMute(false);
+	}
+	
+	/*
+	 *	Method which set volume as passed value
+	 */
+	public static void setVolume(double value) {
+		volume = value;
+		if(mediaPlayer != null) {
+			mediaPlayer.setVolume(value);
+		}
 	}
 	
 	/*

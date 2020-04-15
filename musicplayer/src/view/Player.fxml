@@ -15,7 +15,7 @@
    <children>
       <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="200.0" prefHeight="14.0" prefWidth="560.0" StackPane.alignment="BOTTOM_CENTER">
          <children>
-            <StackPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0">
+            <StackPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0" styleClass="time-proslider">
                <children>
                   <ProgressBar fx:id="timeProgressBar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="5.0" prefWidth="460.0" progress="0.0" />
                   <Slider fx:id="timeSlider" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="110.0" prefHeight="14.0" prefWidth="460.0" />
@@ -39,7 +39,7 @@
             <Insets bottom="10.0" left="390.0" right="340.0" />
          </StackPane.margin>
       </HBox>
-      <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="135.0" StackPane.alignment="TOP_RIGHT">
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="275.0" spacing="10.0" StackPane.alignment="CENTER_RIGHT">
          <children>
             <ToggleButton fx:id="queueButton" mnemonicParsing="false" onAction="#handleQueueButton" styleClass="clickable-button">
                <graphic>
@@ -99,12 +99,15 @@
                   </Group>
                </graphic>
             </ToggleButton>
+            <StackPane maxHeight="-Infinity" maxWidth="100.0" minHeight="-Infinity" minWidth="100.0" prefHeight="25.0" prefWidth="100.0" styleClass="volume-proslider">
+               <children>
+                  <ProgressBar fx:id="volumeProgressBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" prefWidth="100.0" progress="0.0" />
+                  <Slider fx:id="volumeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="100.0" />
+               </children>
+            </StackPane>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
          <StackPane.margin>
-            <Insets right="30.0" top="37.0" />
+            <Insets right="20.0" />
          </StackPane.margin>
       </HBox>
       <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="110.0" StackPane.alignment="TOP_CENTER">

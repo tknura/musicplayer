@@ -72,38 +72,69 @@
     -fx-background-color: -primary-color;
 }
 
-.progress-bar {
-    -fx-accent: -secondary-color;
-}
-
-.progress-bar .bar {
-    -fx-background-color: -secondary-color;
-    -fx-background-insets: 0, 1, 2;
-    -fx-padding: 0.416667em; /* 5 */
-}
-
-.progress-bar > .track {
-    -fx-background-color: -unselc-primary-color;
-    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
-    -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
-}
-
 .songtime-label {
     -fx-font-size: 12;
     -fx-text-fill: -unselc-primary-color;
 }
 
-.slider .track {
+.time-proslider .slider .track {
     -fx-background-color:null;  /* Hide the track */
     -fx-background-insets: 1 0 -1 0, 0, 1;
     -fx-background-radius: 2.5, 2.5, 1.5;
     -fx-padding: 0.208333em; /* 2.5 */
 }
 
-.slider:hover .thumb {
+.time-proslider .slider:hover .thumb {
     -fx-background-color: -secondary-color;
 }
 
-.slider .thumb {
+.time-proslider .slider .thumb {
     -fx-background-color: null;
+}
+
+.time-proslider .progress-bar {
+    -fx-accent: -secondary-color;
+}
+
+.time-proslider .progress-bar .bar {
+    -fx-background-color: -secondary-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.416667em; /* 5 */
+}
+
+.time-proslider .progress-bar > .track {
+    -fx-background-color: -unselc-primary-color;
+    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
+    -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
+}
+
+.volume-proslider .slider .track {
+    -fx-background-color:null;  /* Hide the track */
+    -fx-background-insets: 1 0 -1 0, 0, 1;
+    -fx-background-radius: 2.5, 2.5, 1.5;
+    -fx-padding: 0.208333em; /* 2.5 */
+}
+
+.volume-proslider .slider:hover .thumb {
+    -fx-background-color: -secondary-color;
+}
+
+.volume-proslider .slider .thumb {
+    -fx-background-color: null;
+}
+
+.volume-proslider .progress-bar {
+    -fx-accent: -secondary-color;
+}
+
+.volume-proslider .progress-bar .bar {
+    -fx-background-color: -secondary-color;
+    -fx-background-insets: 0, 1, 2;
+    -fx-padding: 0.416667em; /* 5 */
+}
+
+.volume-proslider .progress-bar > .track {
+    -fx-background-color: -unselc-primary-color;
+    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
+    -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
 }
