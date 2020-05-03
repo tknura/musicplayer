@@ -1,9 +1,5 @@
 package com.pl.musicManager;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class Queue extends MusicStructure{
 	
 	public Queue() {

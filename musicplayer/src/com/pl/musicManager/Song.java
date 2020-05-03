@@ -1,20 +1,12 @@
 package com.pl.musicManager;
 
 import java.io.File;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.Duration;
-import java.util.UUID;
-
-import javax.imageio.ImageIO;
 
 import com.pl.musicManager.management.FileProcessor;
-import com.pl.musicManager.management.Library;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -143,11 +135,6 @@ public class Song implements Comparable<Song>{
 	}
 
 	public Image getCover() {
-//		for(Album a : Library.getAlbumList()) {
-//			if(a.contains(this)) {
-//				return a.getCover();
-//			}
-//		};
 		return FileProcessor.retrieveAlbumCover(new File(directory));
 	}
 	
