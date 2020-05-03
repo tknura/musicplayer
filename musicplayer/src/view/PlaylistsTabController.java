@@ -20,18 +20,19 @@ public class PlaylistsTabController extends TabController<Playlist> {
     @FXML private TableColumn<Playlist, String> nameCol;
     @FXML private DetailedTabController detailedTabController;
     @FXML private Button addPlaylistButton;
+    @FXML private NewPlaylistController newPlaylistController;
     
     @Override
     public void init(){
     	fillTable();
     	setDoubleClickBehaviour(albumTableView);
     	detailedTabController.injectMainController(msc);
+    	newPlaylistController.injectParent(this);
     }
 
 	@Override
 	public void refresh() {
-		// TODO Auto-generated method stub
-		
+		fillTable();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -60,7 +61,7 @@ public class PlaylistsTabController extends TabController<Playlist> {
 	}
 	
 	public void handleAddPlaylistButton() {
-		
+		newPlaylistController.setVisible(true);
 	}
 	
 }

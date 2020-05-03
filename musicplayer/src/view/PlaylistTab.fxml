@@ -18,20 +18,25 @@
          <children>
             <HBox spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox alignment="CENTER" spacing="10.0" styleClass="title-group">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <SVGPath content="m181 226v80.855469c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-109.84375l120-48v88.699219c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-232.15625l-180 72zm-30 135c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm150-30c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm-90-154.84375 120-48v27.6875l-120 48zm0 0" scaleX="0.75" scaleY="0.75" />
-                        <Label alignment="CENTER" text="PLAYLISTS" textAlignment="CENTER">
-                           <font>
-                              <Font name="Calibri" size="45.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Label>
-                        <Button fx:id="addPlaylistButton" mnemonicParsing="false" onAction="#handleAddPlaylistButton" text="New Playlist" />
+                        <VBox alignment="CENTER" spacing="10.0" styleClass="title-group" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <SVGPath content="m181 226v80.855469c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-109.84375l120-48v88.699219c-8.777344-3.730469-18.992188-5.855469-30-5.855469-33.644531 0-60 19.765625-60 45s26.355469 45 60 45 60-19.765625 60-45v-232.15625l-180 72zm-30 135c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm150-30c-18.3125 0-30-8.882812-30-15s11.6875-15 30-15 30 8.882812 30 15-11.6875 15-30 15zm-90-154.84375 120-48v27.6875l-120 48zm0 0" scaleX="0.75" scaleY="0.75" />
+                              <Label alignment="CENTER" text="PLAYLISTS" textAlignment="CENTER">
+                                 <font>
+                                    <Font name="Calibri" size="45.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Button fx:id="addPlaylistButton" mnemonicParsing="false" onAction="#handleAddPlaylistButton" text="New Playlist" />
+                           </children>
+                        </VBox>
+                        <fx:include fx:id="newPlaylist" source="NewPlaylist.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
-                  </VBox>
+                  </AnchorPane>
                   <AnchorPane HBox.hgrow="ALWAYS">
                      <children>
                         <TableView fx:id="albumTableView" accessibleRole="IMAGE_VIEW" stylesheets="@../resources/stylesheets/table-view.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -46,8 +51,8 @@
                   </AnchorPane>
                </children>
             </HBox>
+            <fx:include fx:id="detailedTab" source="DetailedAlbumTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" StackPane.alignment="CENTER" />
          </children>
       </AnchorPane>
-      <fx:include fx:id="detailedTab" source="DetailedAlbumTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" StackPane.alignment="CENTER" />
    </children>
 </StackPane>
