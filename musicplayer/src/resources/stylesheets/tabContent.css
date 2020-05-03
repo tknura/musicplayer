@@ -1,3 +1,7 @@
+.root {
+    -fx-background-color: -basic-color;
+}
+
 .title-group {
     -fx-alignment: CENTER;
     -fx-padding: 50;
@@ -14,8 +18,7 @@
     -fx-font-size: 17px;
     -fx-font-weight: bold;
     -fx-text-fill: -basic-color;
-    -fx-padding: 5px;
-    -fx-pref-width: 80px;
+    -fx-padding: 5px 15px;
     -fx-background-color: -primary-color;
     -fx-background-radius: 15px;
 }
@@ -27,6 +30,12 @@
 }
 
 .title-text {
-    -fx-font-size: 55px;
+    -fx-font-size: 40px;
     -fx-text-fill: -primary-color;
+}
+
+.title-author {
+    -fx-font-size: 20px;
+    -fx-text-fill: -secondary-color;
+    -fx-alignment: CENTER;
 }

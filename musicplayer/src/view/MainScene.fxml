@@ -30,7 +30,7 @@
                           <content>
                             <AnchorPane>
                                  <children>
-                                    <fx:include source="AlbumTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <fx:include fx:id="albumTab" source="AlbumTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -39,14 +39,17 @@
                           <content>
                             <AnchorPane>
                                  <children>
-                                    <fx:include source="ArtistTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <fx:include fx:id="artistTab" source="ArtistTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                           </content>
                         </Tab>
-                      <Tab closable="false" text="Playlist">
+                      <Tab closable="false" text="Playlists">
                         <content>
-                          <AnchorPane />
+                          <AnchorPane>
+                                 <children>
+                                    <fx:include fx:id="playlistsTab" source="PlaylistTab.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children></AnchorPane>
                         </content>
                       </Tab>
                         <Tab closable="false" text="Settings">
