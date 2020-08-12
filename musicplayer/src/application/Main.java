@@ -34,8 +34,8 @@ public class Main extends Application {
 	
 	
 	public static void main(String[] args) {
-		String[] directories = {};
-		String[] extensions = {};
+		String[] directories = {"C:\\Java Projects\\musicplayer\\music"};
+		String[] extensions = {".mp3", ".mp4", ".m4a"};
 		Config.setDirectories(directories);
 		Config.setExtensions(extensions);
 
