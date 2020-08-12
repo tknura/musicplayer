@@ -1,14 +1,12 @@
 package view;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
-import com.pl.musicManager.Album;
 import com.pl.musicManager.MusicStructure;
 
 import com.pl.musicManager.Player;
+import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
-import com.pl.musicManager.management.Library;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -20,9 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
 public class PlayerController {

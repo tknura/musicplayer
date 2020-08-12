@@ -1,9 +1,6 @@
 package view;
 
-import java.time.Duration;
-
 import com.pl.musicManager.Artist;
-import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
 import javafx.collections.FXCollections;
@@ -13,14 +10,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ArtistTabController {
+public class ArtistTabController extends TabController<Artist>{
+	
 	@FXML private TableView<Artist> artistTableView;
-	
 	@FXML private TableColumn<Artist, String> nameCol;
-	
     
-    public void initialize(){
-   	
+	@SuppressWarnings("unchecked")
+    public void init(){
     	ObservableList<Artist> artistOList = FXCollections.observableList(Library.getArtistCollections());
     	artistTableView.setItems(artistOList);
     	
@@ -28,4 +24,17 @@ public class ArtistTabController {
     	
     	artistTableView.getColumns().setAll(nameCol);
     }
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDoubleClickBehaviour(TableView<Artist> tableView) {
+		// TODO Auto-generated method stub
+		
+	}
+    
 }

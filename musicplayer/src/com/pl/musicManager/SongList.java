@@ -8,9 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import com.google.gson.annotations.SerializedName;
 import com.pl.musicManager.management.FileProcessor;
-import com.pl.utility.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
 

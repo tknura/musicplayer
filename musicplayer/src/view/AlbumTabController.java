@@ -1,26 +1,38 @@
 package view;
 
-import java.time.Duration;
-
 import com.pl.musicManager.Album;
-import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class AlbumTabController {
-	@FXML private TableView<Album> albumTableView;
+public class AlbumTabController extends TabController<Album> {
 	
+	@FXML private TableView<Album> albumTableView;
     @FXML private TableColumn<Album, String> nameCol;
+    @FXML private DetailedTabController detailedTabController;
     
-    public void initialize(){
-   	
-    	ObservableList<Album> albumOList = FXCollections.observableList(Library.getAlbumList());
+    @Override
+    public void init(){
+    	fillTable();
+    	setDoubleClickBehaviour(albumTableView);
+    	detailedTabController.injectMainController(msc);
+    }
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void fillTable() {
+		ObservableList<Album> albumOList = FXCollections.observableList(Library.getAlbumList());
     	if(!albumOList.isEmpty()) {
     		albumTableView.setItems(albumOList);
         	
@@ -28,5 +40,18 @@ public class AlbumTabController {
         	
         	albumTableView.getColumns().setAll(nameCol);
     	}
-    }
+	}
+	
+	@Override
+	public void setDoubleClickBehaviour(TableView<Album> tableView) {
+    	tableView.setRowFactory( tempTableView->{
+    		final TableRow<Album> row = new TableRow<>();
+    		row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                	detailedTabController.load(row.getItem());
+                }
+    		});
+    		return row;
+    	});
+	}
 }
