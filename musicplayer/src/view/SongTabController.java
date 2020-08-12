@@ -1,6 +1,8 @@
 package view;
 
-import com.pl.musicManager.MusicStructure;
+import java.time.Duration;
+
+import com.pl.musicManager.Player;
 import com.pl.musicManager.Playlist;
 import com.pl.musicManager.Song;
 import com.pl.musicManager.management.Library;
@@ -8,22 +10,39 @@ import com.pl.musicManager.management.Library;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class SongTabController extends SongTableController {
+public class SongTabController {
+	
+	private MainSceneController mainSceneController;
 	
 	@FXML private TableView<Song> songTableView;
+	
 	@FXML private TableColumn<Song, String> songCol;
+	
     @FXML private TableColumn<Song, String> albumCol;
+    
     @FXML private TableColumn<Song, String> aritstCol;
     
-    @SuppressWarnings("unchecked")
-	@Override
-    public void fillTableView(MusicStructure value) {
-    	ObservableList<Song> songOList = FXCollections.observableList(value.getSongs());
+    public void initialize(){
+    	Playlist songList = new Playlist("Songs");
+    	songList.add(Library.getSongList().get());
+    	ObservableList<Song> songOList = FXCollections.observableList(Library.getSongList().get());
     	songTableView.setItems(songOList);
+    	
+    	songTableView.setRowFactory( tableView->{
+    		final TableRow<Song> row = new TableRow<>();
+    		row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                   mainSceneController.playerController.loadAndPlay(row.getItem(), songList);
+                }
+    		});
+    		return row;
+    	});
     	
     	songCol.setCellValueFactory(new PropertyValueFactory<Song, String>("title"));
     	albumCol.setCellValueFactory(new PropertyValueFactory<Song, String>("album"));
@@ -31,18 +50,9 @@ public class SongTabController extends SongTableController {
     	
     	songTableView.getColumns().setAll(songCol, albumCol, aritstCol);
     }
-
-	@Override
-	public void refresh() {
-		//TODO 
-	}
-
-	@Override
-	public void init() {
-    	Playlist songList = new Playlist("Songs");
-    	songList.add(Library.getSongList().get());
-    	fillTableView(songList);
-    	setDoubleClickBehaviour(songTableView);
-	}
+    
+    public void injectMainController(MainSceneController mainSceneController) {
+    	this.mainSceneController = mainSceneController;
+    }
+    
 }
-

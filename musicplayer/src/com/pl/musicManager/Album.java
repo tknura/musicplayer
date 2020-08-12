@@ -67,7 +67,7 @@ public class Album extends MusicStructure{
 	public long getLengthInSeconds() {
 		return lengthInSeconds;
 	}
-	
+
 	public void setLengthInSeconds(long lengthInSeconds) {
 		this.lengthInSeconds = lengthInSeconds;
 	}
@@ -81,7 +81,7 @@ public class Album extends MusicStructure{
 	}
 
 	public Image getCover() {
-		return getSongWithIndex(0).getCover();
+		return cover;
 	}
 
 	public void setCover(Image cover) {
@@ -103,6 +103,21 @@ public class Album extends MusicStructure{
 	public static Image getCoverPlaceholder() {
 		return coverPlaceholder;
 	}
+	
+//	@Override
+//	public int compareTo(Album album) {
+//		return this.getTitle().toString().compareTo(album.getTitle().toString());
+//	}
+	
+//	private long calculateAlbumLength() {
+//		long result = 0;
+//		
+//		for(Song s : songs) {
+//			result += s.getLengthInSeconds();
+//		}
+//		
+//		return result;
+//	}
 	
 	public void add(Song song) {
 		songs.add(song.getId());

@@ -1,64 +1,16 @@
-#root {
-    -fx-background-color: -basic-color;
-}
-
-.root {
-    -fx-background-color: -basic-color;
-}
-
 .title-group {
     -fx-alignment: CENTER;
     -fx-padding: 50;
-    -fx-pref-width: 440px;
 }
 
 .title-group > SVGPath{
     -fx-fill: -color2;
     -fx-opacity: 0.8;
-    -fx-pref-width: 440px;
-}
-
-.text-field {
-    -fx-font-size: 17px;
-    -fx-text-fill: -primary-color;
-    -fx-padding: 5px 15px;
-    -fx-background-color: -basic-color;
-    -fx-background-radius: 15px;
-    -fx-border-color: -primary-color;
-    -fx-border-radius: 15px;
-}
-
-.button {
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -basic-color;
-    -fx-padding: 5px 15px;
-    -fx-background-color: -primary-color;
-    -fx-background-radius: 15px;
-}
-
-.cancel-button {
-    -fx-font-size: 17px;
-    -fx-font-weight: bold;
-    -fx-text-fill: -primary-color;
-    -fx-padding: 5px 15px;
-    -fx-background-color: -basic-color;
-    -fx-background-radius: 15px;
 }
 
 .title-group > .label {
     -fx-font-size: 45px;
     -fx-text-fill: -color2;
+    -fx-font-family: "Uniform Rnd Medium";
     -fx-font-weight: bold;
-}
-
-.title-text {
-    -fx-font-size: 40px;
-    -fx-text-fill: -primary-color;
-}
-
-.title-author {
-    -fx-font-size: 20px;
-    -fx-text-fill: -secondary-color;
-    -fx-alignment: CENTER;
 }

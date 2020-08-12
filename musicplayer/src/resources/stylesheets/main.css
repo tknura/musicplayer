@@ -5,18 +5,11 @@
     -color4:    #83886f;
     -color5:    #fefefe;
     -color6:    #504b62;
-    -color7:    #569b9c;
-    -color8:    #62d8d9;
-    -color9:    #c2c2c2;
 
     -primary-color: -color1;
     -unselc-primary-color: -color6;
     -secondary-color: -color3;
-    -hover-secondary-color: -color7;
-    -selected-secondary-color: -color8;
     -basic-color: -color5;
-    -hover-basic-color: -color9;
-    -selected-basic-color: white;
-
-    -fx-font-family: "Uniform Rnd";
+    
+     -fx-font-family: "Uniform Rnd";
 }

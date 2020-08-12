@@ -46,7 +46,7 @@
 }
 
 .table-view .verical-flow .scroll-bar {
-  -fx-font-size: 2px;
+  -fx-font-size: 2pt;
 }
 
 .table-view .scroll-bar:vertical .track {
@@ -78,7 +78,4 @@
 .table-view .scroll-bar:horizontal *.decrement-arrow
 {
   -fx-padding: 0;
-}
-
-.column {
 }

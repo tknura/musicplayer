@@ -2,6 +2,7 @@ package com.pl.musicManager;
 
 import java.io.File;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
